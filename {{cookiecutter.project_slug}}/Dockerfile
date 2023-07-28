@@ -13,4 +13,4 @@ RUN pip install -U pip -r requirements.txt
 {%- endif %}
 
 # running the main.py file
-ENTRYPOINT [ "python", "main.py" ]
+CMD [ "python", "main.py" ]
