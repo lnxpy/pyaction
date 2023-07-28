@@ -1,0 +1,11 @@
+name: {{ cookiecutter.action_name }}
+description: {{ cookiecutter.description }}
+author: {{ cookiecutter.author_name }}
+
+inputs:
+  name:
+    default: world
+
+runs:
+  using: docker
+  image: Dockerfile

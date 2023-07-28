@@ -1,0 +1,20 @@
+{
+    "action_name": "My Awesome Action",
+    "project_slug": "{{ cookiecutter.action_name.lower().replace(' ', '_') }}",
+    "description": "This action does miracles in a nutshell",
+    "author_name": "John Doe",
+    "email": "{{ cookiecutter.author_name.lower() | trim() |replace(' ', '-') }}@example.com",
+    "version": "0.1.0",
+    "open_source_license": [
+        "MIT License",
+        "BSD License",
+        "Apache Software License 2.0",
+        "GNU General Public License v3",
+        "Not open source"
+    ],
+    "python_version": [
+        "3",
+        "2"
+    ],
+    "has_dependencies": "n"
+}
