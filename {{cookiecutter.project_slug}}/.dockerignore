@@ -1,0 +1,13 @@
+# Ignore all files and folders that start with a dot.
+**/*.
+
+# Ignore all Python bytecode files.
+__pycache__/
+
+# Ignore all temporary files.
+*.tmp
+*.swp
+
+# Ignore all build artifacts.
+build/
+dist/
