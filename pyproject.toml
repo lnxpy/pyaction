@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "cookiecutter-pyaction"
+version = "0.1.0"
+description = "A cookiecutter template for python-based custom github actions"
+authors = ["Sadra Yahyapour <lnxpylnxpy@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+packages = []
+
+[tool.poetry.dependencies]
+python = ">3.8"
+cookiecutter = "^2.2.3"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
