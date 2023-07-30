@@ -5,13 +5,17 @@ description = "A cookiecutter template for python-based custom github actions"
 authors = ["Sadra Yahyapour <lnxpylnxpy@gmail.com>"]
 license = "MIT"
 readme = "README.md"
-packages = []
+
 
 [tool.poetry.dependencies]
 python = "^3.8"
-cookiecutter = "^2.2.3"
-bumpversion = "^0.6.0"
 
+[tool.poetry.dev-dependencies]
+bumpversion = "^0.6.0"
+cookiecutter = "^2.2.3"
+pre-commit = "^3.3.3"
+pytest = "^7.4.0"
+tox = "^4.6.4"
 
 [build-system]
 requires = ["poetry-core"]
