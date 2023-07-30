@@ -10,6 +10,7 @@ packages = []
 [tool.poetry.dependencies]
 python = ">3.8"
 cookiecutter = "^2.2.3"
+bumpversion = "^0.6.0"
 
 
 [build-system]
