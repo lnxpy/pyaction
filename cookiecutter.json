@@ -18,7 +18,7 @@
         "2"
     ],
     "has_dependencies": "n",
-    "include_badge": "y",
+    "include_badges": "y",
     "__prompts__": {
         "action_name": "Action name",
         "project_slug": "Project slug",
@@ -37,6 +37,6 @@
         },
         "python_version": "Python version",
         "has_dependencies": "Include dependencies",
-        "include_badge": "Include action badge"
+        "include_badges": "Include badges in readme"
     }
 }
