@@ -7,15 +7,36 @@
     "github_username": "johndoe",
     "version": "0.1.0",
     "open_source_license": [
-        "MIT License",
-        "BSD License",
-        "Apache Software License 2.0",
-        "GNU General Public License v3",
-        "Not open source"
+        "mit",
+        "bsd",
+        "apache",
+        "gplv3",
+        "notopensource"
     ],
     "python_version": [
         "3",
         "2"
     ],
-    "has_dependencies": "n"
+    "has_dependencies": "n",
+    "include_badge": "y",
+    "__prompts__": {
+        "action_name": "Action name",
+        "project_slug": "Project slug",
+        "description": "Description",
+        "author_name": "Author name",
+        "email": "Email address",
+        "github_username": "GitHub username or organization",
+        "version": "Starting version",
+        "open_source_license": {
+            "__prompt__": "Open source license",
+            "mit": "MIT License",
+            "bsd": "BSD License",
+            "apache": "Apache Software License 2.0",
+            "gplv3": "GNU General Public License v3",
+            "notopensource": "Not open source"
+        },
+        "python_version": "Python version",
+        "has_dependencies": "Include dependencies",
+        "include_badge": "Include action badge"
+    }
 }
