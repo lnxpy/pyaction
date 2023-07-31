@@ -1,5 +1,4 @@
 ## {{ cookiecutter.action_name }}
-{{ cookiecutter.description }}
 
 {%- if cookiecutter.include_badge|lower == "y" %}
 
@@ -7,12 +6,14 @@
 
 {%- endif %}
 
+{{ cookiecutter.description }}
+
 ### Usage
 <!-- use code-blocks to indicate how others can use the action -->
 
 {%- if cookiecutter.open_source_license != "notopensource" %}
 
 ### License
-This action is licensed under the terms of [{{ cookiecutter.open_source_license }}](LICENSE) license.
+This action is licensed under some specific terms. Check [here](LICENSE) for more information.
 
 {%- endif %}
