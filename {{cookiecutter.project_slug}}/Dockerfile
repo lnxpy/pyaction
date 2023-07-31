@@ -5,7 +5,7 @@ FROM python:{{ cookiecutter.python_version }}-slim
 ADD . /action
 WORKDIR /action
 
-{%- if cookiecutter.has_dependencies == "y" %}
+{%- if cookiecutter.has_dependencies|lower == "y" %}
 
 # installing the requirements
 RUN pip install -U pip -r requirements.txt
