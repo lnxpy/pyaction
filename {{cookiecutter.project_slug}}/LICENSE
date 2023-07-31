@@ -1,4 +1,4 @@
-{% if cookiecutter.open_source_license == 'MIT License' -%}
+{% if cookiecutter.open_source_license == 'mit' -%}
 
 The MIT License (MIT)
 Copyright (c) {% now 'utc', '%Y' %}, {{ cookiecutter.author_name }}
@@ -9,7 +9,7 @@ The above copyright notice and this permission notice shall be included in all c
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-{%- elif cookiecutter.open_source_license == 'BSD License' %}
+{%- elif cookiecutter.open_source_license == 'bsd' %}
 
 Copyright (c) {% now 'utc', '%Y' %}, {{ cookiecutter.author_name }}
 All rights reserved.
@@ -39,7 +39,7 @@ OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGEN
 OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
 OF THE POSSIBILITY OF SUCH DAMAGE.
 
-{%- elif cookiecutter.open_source_license == 'GNU General Public License v3' -%}
+{%- elif cookiecutter.open_source_license == 'gplv3' -%}
 
 Copyright (c) {% now 'utc', '%Y' %}, {{ cookiecutter.author_name }}
 
@@ -56,7 +56,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-{%- elif cookiecutter.open_source_license == 'Apache Software License 2.0' %}
+{%- elif cookiecutter.open_source_license == 'apache' %}
 
                                  Apache License
                            Version 2.0, January 2004
