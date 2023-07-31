@@ -1,35 +1,10 @@
 #!/usr/bin/env python
 import os
 import shutil
-import subprocess
+
+from hooks.messages import FURTHER_INSTRUCTIONS, TEMPLATE_CREATION
 
 PROJECT_DIRECTORY = os.path.realpath(os.path.curdir)
-
-PROJECT_SLUG = "{{ cookiecutter.project_slug }}"
-
-STARTING_VERSION = "{{ cookiecutter.version }}"
-
-GITHUB_USER = "{{ cookiecutter.github_username }}"
-
-CC_REQUIREMENTS_FILE = "cc_requirements.txt"
-
-GIT_INSTRUCTIONS_INFO = f"""
-- Now you can start working on it:
-
-```sh
-$ cd {PROJECT_SLUG} && git init
-```
-
-- Upload initial code to GitHub:
-
-```sh
-$ git add .
-$ git commit -m "Initial commit"
-$ git tag v{STARTING_VERSION}
-$ git branch -M main
-$ git remote add origin https://github.com/{GITHUB_USER}/{PROJECT_SLUG}.git
-$ git push -u origin main --tags
-"""
 
 
 def remove_file(filepath: str) -> None:
@@ -50,35 +25,19 @@ def remove_directory(path: str) -> None:
     shutil.rmtree(os.path.join(PROJECT_DIRECTORY, path))
 
 
-def install_requirements():
-    requirements_file = os.path.join(PROJECT_DIRECTORY, CC_REQUIREMENTS_FILE)
-    subprocess.check_call(
-        [
-            "pip",
-            "install",
-            "--disable-pip-version-check",
-            "--no-python-version-warning",
-            "-qUr",
-            requirements_file,
-        ]
-    )
-    remove_file(CC_REQUIREMENTS_FILE)
-
-
 if __name__ == "__main__":
-    if "{{ cookiecutter.has_dependencies }}" == "n":
+    if "{{ cookiecutter.has_dependencies }}".lower() == "n":
         remove_file("requirements.txt")
 
-    if "Not open source" == "{{ cookiecutter.open_source_license }}":
+    if "{{ cookiecutter.open_source_license }}" == "notopensource":
         remove_file("LICENSE")
 
-    install_requirements()
-
-    from rich.console import Console
-    from rich.markdown import Markdown
-
-    console = Console()
-
-    # project created successfuly
-    console.rule(f"[bold white]{PROJECT_SLUG} is created! :fire:")
-    console.print(Markdown(GIT_INSTRUCTIONS_INFO))
+    # project created successfully
+    print(TEMPLATE_CREATION.format(project_slug="{{ cookiecutter.project_slug }}"))
+    print(
+        FURTHER_INSTRUCTIONS.format(
+            project_slug="{{ cookiecutter.project_slug }}",
+            version="{{ cookiecutter.version }}",
+            github_username="{{ cookiecutter.github_username }}",
+        )
+    )
