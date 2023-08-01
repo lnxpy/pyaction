@@ -19,6 +19,7 @@
     ],
     "has_dependencies": "n",
     "include_badges": "y",
+    "publish_in_marketplace": "n",
     "__prompts__": {
         "action_name": "Action name",
         "project_slug": "Project slug",
@@ -37,6 +38,7 @@
         },
         "python_version": "Python version",
         "has_dependencies": "Include dependencies",
-        "include_badges": "Include badges in readme"
+        "include_badges": "Include badges in readme",
+        "publish_in_marketplace": "Publish in GitHub marketplace"
     }
 }
