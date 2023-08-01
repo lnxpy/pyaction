@@ -2,7 +2,7 @@
 import os
 import shutil
 
-from hooks.messages import FURTHER_INSTRUCTIONS, TEMPLATE_CREATION
+from hooks.utils.messages import FURTHER_INSTRUCTIONS, TEMPLATE_CREATION
 
 PROJECT_DIRECTORY = os.path.realpath(os.path.curdir)
 
@@ -26,11 +26,23 @@ def remove_directory(path: str) -> None:
 
 
 if __name__ == "__main__":
-    if "{{ cookiecutter.has_dependencies }}".lower() == "n":
-        remove_file("requirements.txt")
+    # if "{{ cookiecutter.has_dependencies }}".lower() == "n":
+    #     remove_file("requirements.txt")
 
-    if "{{ cookiecutter.open_source_license }}" == "notopensource":
-        remove_file("LICENSE")
+    # if "{{ cookiecutter.open_source_license }}" == "notopensource":
+    #     remove_file("LICENSE")
+
+    _files_to_be_removed = [
+        "requirements.txt"
+        if "{{ cookiecutter.has_dependencies }}".lower() == "n"
+        else None,
+        "LICENSE"
+        if "{{ cookiecutter.open_source_license }}" == "notopensource"
+        else None,
+    ]
+
+    for path in [_ for _ in _files_to_be_removed if _ is not None]:
+        remove_file(path)
 
     # project created successfully
     print(TEMPLATE_CREATION.format(project_slug="{{ cookiecutter.project_slug }}"))

@@ -11,3 +11,9 @@ Make a commit and upload initial code to GitHub:
     $ git branch -M main
     $ git remote add origin https://github.com/{github_username}/{project_slug}.git
     $ git push -u origin main --tags"""
+
+MARKETPLACE_WARNING = """
+If you want to publish your action in the GitHub marketplace:
+
+    - make sure {action_name} is unique. It cannot match an existing action, user or organization name.
+"""
