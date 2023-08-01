@@ -11,3 +11,13 @@ __pycache__/
 # Ignore all build artifacts.
 build/
 dist/
+
+# Ignore all github-related files.
+README.md
+CONTRIBUTING.md
+CHANGELOG.md
+LICENSE
+Dockerfile
+.github/
+
+.git/
