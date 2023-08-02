@@ -4,7 +4,7 @@ import shutil
 
 PROJECT_DIRECTORY = os.path.realpath(os.path.curdir)
 
-TEMPLATE_CREATION = "\n\r{project_slug} is created successfully! \U0001F525"
+TEMPLATE_CREATION = "\n\r{style}{project_slug}\033[0m is created successfully! \u2705"
 
 FURTHER_INSTRUCTIONS = """
 Now you can start working on your action:
@@ -15,7 +15,7 @@ Make a commit and upload initial code to GitHub:
     $ git commit -m "Initial commit"
     $ git tag v{version}
     $ git branch -M main
-    $ git remote add origin https://github.com/{github_username}/{project_slug}.git
+    $ git remote add origin git@github.com:{github_username}/{project_slug}.git
     $ git push -u origin main --tags"""
 
 
@@ -57,7 +57,11 @@ if __name__ == "__main__":
         remove_file(path)
 
     # project created successfully
-    print(TEMPLATE_CREATION.format(project_slug="{{ cookiecutter.project_slug }}"))
+    print(
+        TEMPLATE_CREATION.format(
+            project_slug="{{ cookiecutter.project_slug }}", style="\033[1;32m"
+        )
+    )
     print(
         FURTHER_INSTRUCTIONS.format(
             project_slug="{{ cookiecutter.project_slug }}",
