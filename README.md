@@ -30,6 +30,8 @@ Keep answering the prompt and your template will be generated.
 
 > Note: If you want to publish your action in the [GitHub Marketplace](https://github.com/marketplace), make sure to choose a unique name for you action.
 
+> Note: Look [over here](https://docs.github.com/en/actions/creating-actions/metadata-syntax-for-github-actions#brandingicon) for all the available options for the `branding_icon` field.
+
 ### Contribution
 All your contributions and assistance are welcome. For more information about how you can contribute to the project, please follow the steps [here](CONTRIBUTING.md). :beers:
 
