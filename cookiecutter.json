@@ -39,6 +39,6 @@
         "python_version": "Python version",
         "has_dependencies": "Include dependencies",
         "include_badges": "Include badges in readme",
-        "publish_in_marketplace": "Publish in GitHub marketplace"
+        "publish_in_marketplace": "Publish in the marketplace"
     }
 }
