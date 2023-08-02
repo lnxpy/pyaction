@@ -2,6 +2,10 @@ name: {{ cookiecutter.action_name }}
 description: {{ cookiecutter.description }}
 author: {{ cookiecutter.author_name }}
 
+branding:
+  icon: {{ cookiecutter.branding_icon }}
+  color: {{ cookiecutter.branding_color }}
+
 inputs:
   name:
     default: world

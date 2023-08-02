@@ -5,7 +5,7 @@
     "author_name": "John Doe",
     "email": "{{ cookiecutter.author_name.lower() | trim() |replace(' ', '-') }}@example.com",
     "github_username": "johndoe",
-    "version": "0.1.0",
+    "version": "0.0.0",
     "open_source_license": [
         "mit",
         "bsd",
@@ -19,6 +19,17 @@
     ],
     "has_dependencies": "n",
     "include_badges": "y",
+    "branding_icon": "activity",
+    "branding_color": [
+        "white",
+        "yellow",
+        "blue",
+        "green",
+        "orange",
+        "red",
+        "purple",
+        "gray-dark"
+    ],
     "publish_in_marketplace": "n",
     "__prompts__": {
         "action_name": "Action name",
@@ -39,6 +50,8 @@
         "python_version": "Python version",
         "has_dependencies": "Include dependencies",
         "include_badges": "Include badges in readme",
+        "branding_icon": "Branding icon",
+        "branding_color": "Branding color",
         "publish_in_marketplace": "Publish in the marketplace"
     }
 }
