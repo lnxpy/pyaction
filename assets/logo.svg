@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 500 500">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: url(#linear-gradient);
+      }
+
+      .cls-2 {
+        fill: #1c81fc;
+      }
+
+      .cls-3 {
+        filter: url(#drop-shadow-2);
+      }
+
+      .cls-4 {
+        fill: #fff;
+        filter: url(#drop-shadow-1);
+      }
+    </style>
+    <filter id="drop-shadow-1" filterUnits="userSpaceOnUse">
+      <feOffset dx="3" dy="3"/>
+      <feGaussianBlur result="blur" stdDeviation="7"/>
+      <feFlood flood-color="#000" flood-opacity=".08"/>
+      <feComposite in2="blur" operator="in"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="drop-shadow-2" filterUnits="userSpaceOnUse">
+      <feOffset dx="3" dy="7"/>
+      <feGaussianBlur result="blur-2" stdDeviation="7"/>
+      <feFlood flood-color="#000" flood-opacity=".16"/>
+      <feComposite in2="blur-2" operator="in"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <linearGradient id="linear-gradient" x1="124.33" y1="224.38" x2="237.6" y2="337.66" gradientTransform="translate(251.71 -45.65) rotate(45)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#1c81fc"/>
+      <stop offset="1" stop-color="#135de4"/>
+    </linearGradient>
+  </defs>
+  <path class="cls-4" d="M483.33,128.32v243.36c0,61.66-49.99,111.65-111.65,111.65H128.32c-34.54,0-65.41-15.68-85.88-40.32-16.1-19.35-25.77-44.21-25.77-71.33V128.32c0-61.66,49.99-111.65,111.65-111.65h243.36c27.12,0,51.98,9.67,71.33,25.77,14.42,11.98,25.76,27.51,32.7,45.26,4.92,12.59,7.62,26.29,7.62,40.62Z"/>
+  <g class="cls-3">
+    <path class="cls-1" d="M180.96,200.92h0c17.51,0,31.73,14.22,31.73,31.73v128.46h-63.47V232.66c0-17.51,14.22-31.73,31.73-31.73Z" transform="translate(-145.71 210.27) rotate(-45)"/>
+    <path class="cls-2" d="M284.2,116.82h0c17.51,0,31.73,14.22,31.73,31.73v226.99h-63.47V148.55c0-17.51,14.22-31.73,31.73-31.73Z" transform="translate(257.32 -128.85) rotate(45)"/>
+  </g>
+</svg>
