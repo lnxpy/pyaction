@@ -2,7 +2,7 @@
 import sys
 
 MARKETPLACE_WARNING = """
-If you want to publish your action in the GitHub marketplace:
+\u26A0\ufe0f  If you want to publish your action in the GitHub marketplace:
 
     - make sure {action_name} is unique. It cannot match an existing action, user or organization name.
 """
