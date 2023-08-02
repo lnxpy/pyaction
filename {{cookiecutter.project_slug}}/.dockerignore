@@ -1,6 +1,9 @@
 # Ignore all files and folders that start with a dot.
 **/*.
 
+# Ignore all virtual envs'
+venv/
+
 # Ignore all Python bytecode files.
 __pycache__/
 
