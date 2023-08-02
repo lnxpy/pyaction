@@ -23,12 +23,15 @@ pip install -U cookiecutter
 In order to create the template, change the directory to the desired path and run the following command.
 
 ```sh
-cookiecutter cookiecutter gh:lnxpy/cookiecutter-pyaction
+cookiecutter gh:lnxpy/cookiecutter-pyaction
 ```
 
 Keep answering the prompt and your template will be generated.
 
 > Note: If you want to publish your action in the [GitHub Marketplace](https://github.com/marketplace), make sure to choose a unique name for you action.
+
+### Contribution
+All your contributions and assistance are welcome. For more information about how you can contribute to the project, please follow the steps [here](CONTRIBUTING.md). :beers:
 
 ### License
 Cookiecutter PyAction is licensed under the terms of [MIT License](LICENSE).
