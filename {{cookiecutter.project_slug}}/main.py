@@ -1,5 +1,7 @@
-import os
+# import os
 import sys
+
+# from github import io
 
 
 def main(args: list[str]) -> None:
@@ -9,9 +11,12 @@ def main(args: list[str]) -> None:
         args (list[str]): STDIN arguments
     """
 
-    # now you can access the inputs like
+    # now you can access the inputs like:
     #    f"Hello {os.environ["INPUT_NAME"]}"
-    #
+
+    # you can write to output like:
+    #   io.write_to_output(var, val)
+
     pass
 
 
