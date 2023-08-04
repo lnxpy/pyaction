@@ -6,10 +6,18 @@ branding:
   icon: {{ cookiecutter.branding_icon }}
   color: {{ cookiecutter.branding_color }}
 
-inputs:
-  name:
-    default: world
-
 runs:
   using: docker
   image: Dockerfile
+
+# == inputs and outputs ==
+
+inputs:
+  name:
+    required: false
+    description: the person/thing you want to greet
+    default: World
+
+outputs:
+  phrase:
+    description: output variable
