@@ -9,7 +9,9 @@
 {{ cookiecutter.description }}
 
 ### Usage
-<!-- use code-blocks to indicate how others can use the action -->
+```yml
+example usage..
+```
 
 {%- if cookiecutter.open_source_license != "notopensource" %}
 
