@@ -16,7 +16,6 @@ def write_to_output(context: Dict[str, str]) -> None:
         >>> write_to_output({"name": "John", ...})
 
         ``name`` will be the variable name and ``John`` is its value.
-        In your workflow, access the variable(s) like ``${{ steps.<step-id>.outputs.name }}``.
     """
 
     with open(BUFFER_PATH, "a") as _buffer:
