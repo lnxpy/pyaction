@@ -51,7 +51,17 @@
         "has_dependencies": "Include dependencies",
         "include_badges": "Include badges in readme",
         "branding_icon": "Branding icon",
-        "branding_color": "Branding color",
+        "branding_color": {
+            "__prompt__": "Branding color",
+            "white": "White",
+            "yellow": "Yellow",
+            "blue": "Blue",
+            "green": "Green",
+            "orange": "Orange",
+            "red": "Red",
+            "purple": "Purple",
+            "gray-dark": "Gray dark"
+        },
         "publish_in_marketplace": "Publish in the marketplace"
     }
 }
