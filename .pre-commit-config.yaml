@@ -20,7 +20,7 @@ repos:
     rev: v1.4.1
     hooks:
       - id: mypy
-        args: ["--cache-dir=/dev/null"]
+        args: ["--cache-dir=/dev/null", "--ignore-missing-imports"]
   - repo: https://github.com/asottile/pyupgrade
     rev: v3.10.1
     hooks:
