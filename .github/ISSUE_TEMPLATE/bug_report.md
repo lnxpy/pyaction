@@ -16,10 +16,8 @@ about: Report a problem to help us improve
 
 ### Possible Solution
 [Do you have any possible solutions for that?]
-<!--- Not obligatory, but suggest a fix/reason for the bug, -->
 
 #### Steps to Reproduce
-
 1. [First Step]
 2. [Second Step]
 3. [Third Step]
