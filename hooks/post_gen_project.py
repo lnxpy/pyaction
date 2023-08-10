@@ -2,21 +2,24 @@
 import os
 import shutil
 
+from coloring import Color, cprint
+
 PROJECT_DIRECTORY = os.path.realpath(os.path.curdir)
 
-TEMPLATE_CREATION = "\n\r{style}{project_slug}\033[0m is created successfully! \u2705"
+TEMPLATE_CREATION = "\n\r{project_slug} is created successfully! \N{check mark}"
 
 FURTHER_INSTRUCTIONS = """
-Now you can start working on your action:
+Now you can start working on your action: \N{winking face}
     $ cd {project_slug} && git init
 
-Make a commit and upload initial code to GitHub:
+Make a commit and upload initial code to GitHub: \N{rocket}
     $ git add .
     $ git commit -m "Initial commit"
     $ git tag v{version}
     $ git branch -M main
     $ git remote add origin git@github.com:{github_username}/{project_slug}.git
-    $ git push -u origin main --tags"""
+    $ git push -u origin main --tags
+"""
 
 
 def remove_file(filepath: str) -> None:
@@ -57,15 +60,15 @@ if __name__ == "__main__":
         remove_file(path)
 
     # project created successfully
-    print(
-        TEMPLATE_CREATION.format(
-            project_slug="{{ cookiecutter.project_slug }}", style="\033[1;32m"
-        )
+    cprint(
+        TEMPLATE_CREATION.format(project_slug="{{ cookiecutter.project_slug }}"),
+        options=[Color.GREEN],
     )
+
     print(
         FURTHER_INSTRUCTIONS.format(
             project_slug="{{ cookiecutter.project_slug }}",
             version="{{ cookiecutter.version }}",
             github_username="{{ cookiecutter.github_username }}",
-        )
+        ),
     )
