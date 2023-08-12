@@ -1,6 +1,6 @@
 {
     "action_name": "My Awesome Action",
-    "project_slug": "{{ cookiecutter.action_name.lower().replace(' ', '_') }}",
+    "project_slug": "{{ cookiecutter.action_name.lower().replace(' ', '-') }}",
     "description": "This action does miracles in a nutshell",
     "author_name": "John Doe",
     "email": "{{ cookiecutter.author_name.lower() | trim() |replace(' ', '-') }}@example.com",

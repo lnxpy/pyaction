@@ -11,7 +11,7 @@ if __name__ == "__main__":
     if "{{ cookiecutter.publish_in_marketplace }}".lower() == "y":
         print(
             MARKETPLACE_WARNING.format(
-                action_name="{{ cookiecutter.action_name.lower().replace(' ', '_') }}",
+                action_name="{{ cookiecutter.action_name.lower().replace(' ','-') }}",
                 style="\033[1;32m",
             )
         )
