@@ -15,12 +15,13 @@ __pycache__/
 build/
 dist/
 
-# Ignore all github-related files.
+# Ignore all pyaction-related files.
 README.md
 CONTRIBUTING.md
 CHANGELOG.md
 LICENSE
 Dockerfile
+.env
 .github/
 
 .git/
