@@ -4,7 +4,7 @@ FROM python:{{ cookiecutter.python_version }}-slim
 # importing the action
 COPY . /action
 
-{%- if cookiecutter.has_dependencies|lower == "y" %}
+{%- if cookiecutter.include_dependencies|lower == "y" %}
 
 # installing the requirements
 RUN pip install -U pip -r /action/requirements.txt

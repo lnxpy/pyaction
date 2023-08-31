@@ -38,23 +38,14 @@ def remove_directory(path: str) -> None:
 
 
 if __name__ == "__main__":
-    # if "{{ cookiecutter.has_dependencies }}".lower() == "n":
-    #     remove_file("requirements.txt")
-
-    # if "{{ cookiecutter.open_source_license }}" == "notopensource":
-    #     remove_file("LICENSE")
-
-    _files_to_be_removed = [
-        "requirements.txt"
-        if "{{ cookiecutter.has_dependencies }}".lower() == "n"
-        else None,
-        "LICENSE"
-        if "{{ cookiecutter.open_source_license }}" == "notopensource"
-        else None,
+    REMOVE_PATHS = [
+        "{% if cookiecutter.include_dependencies.lower() == 'n' %} requirements.txt {% endif %}",
+        "{% if cookiecutter.open_source_license == 'notopensource' %} LICENSE {% endif %}",
     ]
 
-    for path in [_ for _ in _files_to_be_removed if _ is not None]:
-        remove_file(path)
+    for path in REMOVE_PATHS:
+        if path:
+            remove_file(path.strip())
 
     # project created successfully
     print(

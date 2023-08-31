@@ -17,7 +17,7 @@
         "3",
         "2"
     ],
-    "has_dependencies": "n",
+    "include_dependencies": "n",
     "include_badges": "y",
     "branding_icon": "activity",
     "branding_color": [
@@ -48,7 +48,7 @@
             "notopensource": "Not open source"
         },
         "python_version": "Python version",
-        "has_dependencies": "Include dependencies",
+        "include_dependencies": "Include dependencies",
         "include_badges": "Include badges in readme",
         "branding_icon": "Branding icon",
         "branding_color": {
