@@ -1,11 +1,8 @@
-import pytest
+def test_bake_project(cookies):
+    result = cookies.bake()
 
+    assert result.exit_code == 0
+    assert result.exception is None
 
-@pytest.fixture()
-def temp_dir():
-    ...
-
-
-@pytest.mark.skip
-def test_cookiecutter_defualt_generation(temp_dir):
-    ...
+    assert result.project_path.name == "my-awesome-action"
+    assert result.project_path.is_dir()
