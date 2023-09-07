@@ -1,8 +1,9 @@
 ---
-name: "Feature request \U0001F913︎"
+name: Feature request ✨
 about: Suggest an idea for this project
 title: "[FEATURE]"
 labels: enhancement
+assignees: ''
 
 ---
 
