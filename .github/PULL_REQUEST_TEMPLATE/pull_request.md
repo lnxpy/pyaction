@@ -10,6 +10,7 @@ is true:
 - [ ] Documentation has been updated to reflect your changes.
 - [ ] Tests have been added or updated to reflect your changes.
 - [ ] All tests have passed.
+- [ ] Docs don't need to be updated or I've already updated the docs.
 
 ---
 

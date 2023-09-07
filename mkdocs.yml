@@ -1,0 +1,50 @@
+site_name: PyAction Cookiecutter
+repo_name: lnxpy/cookiecutter-pyaction
+repo_url: https://lnxpy.github.io/cookiecutter-pyaction
+
+nav:
+  - Introduction: index.md
+  - Hello-world Example: example.md
+  - Contributing: contributing.md
+  - License: license.md
+
+theme:
+  name: material
+  features:
+    - navigation.instant
+    - navigation.tabs
+    - toc.integrate
+    - content.code.copy
+
+  palette:
+    primary: black
+  icon:
+    logo: octicons/package-24
+    repo: fontawesome/brands/github
+
+extra:
+  social:
+    - icon: fontawesome/brands/github-alt
+      link: https://github.com/lnxpy/cookiecutter-pyaction
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/lnxpylnxpy
+    - icon: fontawesome/brands/linkedin
+      link: https://linkedin.com/in/sadra-yahyapour
+    - icon: fontawesome/solid/globe
+      link: https://imsadra.me
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - attr_list
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
