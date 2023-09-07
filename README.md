@@ -6,7 +6,7 @@
 
 `cookiecutter-pyaction` template is a simple Python-supported implementation over the [Docker Container](https://docs.github.com/en/actions/creating-actions/creating-a-docker-container-action) action type. Follow the steps and make your action in a flash! :zap:
 
-> [!NOTE]  
+> [!NOTE]
 > Read ["Writing GitHub Actions in Python"](https://imsadra.me/writing-github-actions-in-python) article which walks you through a hello-world example.
 
 ### Installation
@@ -32,7 +32,7 @@ If you want to publish your action in the [GitHub Marketplace](https://github.co
 Look [over here](https://docs.github.com/en/actions/creating-actions/metadata-syntax-for-github-actions#brandingicon) for all the available options for the `branding_icon` field.
 
 ### Contribution
-All your contributions and assistance are welcome. For more information about how you can contribute to the project, please follow the instructions [here](CONTRIBUTING.md). :beers:
+All your contributions and assistance are welcome. For more information about how you can contribute to the project, please follow the instructions [here](https://lnxpy.github.io/cookiecutter-pyaction/contributing). :beers:
 
 ### License
 Cookiecutter PyAction is licensed under the terms of [MIT License](LICENSE).
