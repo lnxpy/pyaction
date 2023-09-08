@@ -1,3 +1,8 @@
+---
+title: Contributing
+description: PyAction contribution guide
+---
+
 Thanks for heading over to this index. I assume you're looking for a way to contributing to this repository and as always, all your helps are welcome. Follow the instructions in the next sections.
 
 !!! Note

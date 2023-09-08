@@ -16,11 +16,19 @@ theme:
     - navigation.tabs
     - toc.integrate
     - content.code.copy
+    - navigation.footer
+    - search.highlight
   palette:
-    primary: black
+    primary: white
+    accent: amber
+  logo: img/logo.svg
   icon:
-    logo: octicons/package-24
     repo: fontawesome/brands/github-alt
+
+plugins:
+  - social
+  - search:
+      lang: en
 
 extra:
   social:

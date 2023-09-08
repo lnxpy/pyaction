@@ -1,3 +1,8 @@
+---
+title: License
+description: MIT License terms
+---
+
 ### MIT License
 
 Copyright (c) 2023 Sadra Yahyapour
