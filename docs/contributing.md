@@ -3,7 +3,7 @@ title: Contributing
 description: PyAction contribution guide
 ---
 
-Thanks for heading over to this index. I assume you're looking for a way to contributing to this repository and as always, all your helps are welcome. Follow the instructions in the next sections.
+Thanks for heading over to this index. I assume you're looking for a way to contributing to this project and as always, all your helps are welcome. Follow the instructions in the next sections.
 
 !!! Note
     I highly recommend you [open an issue](https://github.com/lnxpy/cookiecutter-pyaction/issues/new/choose) first. Once we agree on the theory, then feel free to get your hands dirty. :beers:

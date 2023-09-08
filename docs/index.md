@@ -4,9 +4,9 @@ description: A Cookiecutter template for creating GitHub actions in Python!
 ---
 
 # Welcome to PyAction Cookiecutter
-PyAction is a [Cookiecutter](https://cookiecutter.io) template that allows you to develop GitHub Actions using Python language. This documentation covers a fundamental overview about the project, a hello-world example, and the key notes you need to remember if you want to push your PyAction actions to the [GitHub Marketplace](https://github.com/marketplace).
+PyAction is a [Cookiecutter](https://cookiecutter.io) template that allows you to develop GitHub Actions using Python language. This documentation covers a fundamental overview about the project, a demo action, and the key notes you need to remember if you want to push your PyAction actions to the [GitHub Marketplace](https://github.com/marketplace).
 
-## Theory
+## PyAction in Theory
 Custom GtiHub Actions can be made in the following types.
 
 * Docker-based Actions

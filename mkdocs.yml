@@ -5,9 +5,10 @@ site_url: https://lnxpy.github.io
 
 nav:
   - Introduction: index.md
-  - Hello-world Example: example.md
+  - Hello-world Demo: demo.md
   - Contributing: contributing.md
   - License: license.md
+  - Contact Me: contact.md
 
 theme:
   name: material
@@ -20,7 +21,6 @@ theme:
     - search.highlight
   palette:
     primary: white
-    accent: amber
   logo: img/logo.svg
   favicon: img/logo.svg
   icon:
