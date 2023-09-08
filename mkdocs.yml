@@ -22,6 +22,7 @@ theme:
     primary: white
     accent: amber
   logo: img/logo.svg
+  favicon: img/logo.svg
   icon:
     repo: fontawesome/brands/github-alt
 
