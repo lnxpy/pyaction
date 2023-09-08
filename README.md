@@ -4,7 +4,7 @@
 `cookiecutter-pyaction` template is a simple Python-supported implementation over the [Docker Container](https://docs.github.com/en/actions/creating-actions/creating-a-docker-container-action) action type. Follow the steps and make your action in a flash! :zap:
 
 > [!NOTE]
-> Read ["Writing GitHub Actions in Python"](https://imsadra.me/writing-github-actions-in-python) article which walks you through a hello-world example.
+> Read ["Writing GitHub Actions in Python"](https://imsadra.me/writing-github-actions-in-python) article that walks you through a hello-world example.
 
 ### Installation
 Make sure you have Python and `pip` installed on your machine and install the `cookiecutter` package. That's the template generator tool.
