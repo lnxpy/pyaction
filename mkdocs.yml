@@ -1,6 +1,6 @@
 site_name: PyAction Cookiecutter
 repo_name: lnxpy/cookiecutter-pyaction
-repo_url: https://lnxpy.github.io/cookiecutter-pyaction
+repo_url: https://github.com/lnxpy/cookiecutter-pyaction
 site_url: https://lnxpy.github.io
 
 nav:
@@ -16,15 +16,11 @@ theme:
     - navigation.tabs
     - toc.integrate
     - content.code.copy
-
   palette:
     primary: black
   icon:
     logo: octicons/package-24
-    repo: fontawesome/brands/github
-
-plugins:
-  - social
+    repo: fontawesome/brands/github-alt
 
 extra:
   social:
