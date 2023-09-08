@@ -1,8 +1,5 @@
-<p align="center">
-    <img src="assets/logo.svg" width="130">
-    <h3 align="center">Cookiecutter PyAction</h3>
-    <h6 align="center"><a href="https://github.com/cookiecutter">@cookiecutter</a> template for writing GitHub Actions in Python :package:</h6>
-</p><br>
+## PyAction Cookiecutter [![docs ci](https://github.com/lnxpy/cookiecutter-pyaction/actions/workflows/docs.yml/badge.svg?branch=main)](https://github.com/lnxpy/cookiecutter-pyaction/actions/workflows/docs.yml) [![main](https://github.com/lnxpy/cookiecutter-pyaction/actions/workflows/main.yml/badge.svg)](https://github.com/lnxpy/cookiecutter-pyaction/actions/workflows/main.yml) ![GitHub tag (with filter)](https://img.shields.io/github/v/tag/lnxpy/cookiecutter-pyaction?label=Version)
+
 
 `cookiecutter-pyaction` template is a simple Python-supported implementation over the [Docker Container](https://docs.github.com/en/actions/creating-actions/creating-a-docker-container-action) action type. Follow the steps and make your action in a flash! :zap:
 
@@ -25,11 +22,8 @@ cookiecutter gh:lnxpy/cookiecutter-pyaction
 
 Keep answering the prompt and your template will be generated.
 
-#### Publishing in the marketplace
-If you want to publish your action in the [GitHub Marketplace](https://github.com/marketplace), make sure to choose a unique name for your action.
-
-#### Action branding
-Look [over here](https://docs.github.com/en/actions/creating-actions/metadata-syntax-for-github-actions#brandingicon) for all the available options for the `branding_icon` field.
+### Docs
+Check out the [official docs](https://lnxpy.github.io/cookiecutter-pyaction/) for more information about PyAction and a demo hello-world action demonstration.
 
 ### Contribution
 All your contributions and assistance are welcome. For more information about how you can contribute to the project, please follow the instructions [here](https://lnxpy.github.io/cookiecutter-pyaction/contributing). :beers:
