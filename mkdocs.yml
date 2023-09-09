@@ -4,8 +4,8 @@ repo_url: https://github.com/lnxpy/cookiecutter-pyaction
 site_url: https://lnxpy.github.io/cookiecutter-pyaction
 
 nav:
-  - Introduction: index.md
-  - Hello-world Demo: demo.md
+  - Home: index.md
+  - Demo Action: demo.md
   - Contributing: contributing.md
   - License: license.md
   - Contact Me: contact.md
