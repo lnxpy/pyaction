@@ -35,7 +35,7 @@ Now, it's time for template generation. Easily do this via the following command
 cookiecutter gh:lnxpy/cookiecutter-pyaction
 ```
 
-In the next section, we'll be taking a look over each question that's being asked and the proper answeres you can give on each question.
+In the next section, we'll be taking a look over each question that's being asked and the proper answeres you can give on each one.
 
 ### Promting
 These are the questions that by answering them, you'll have the most suited action for your case.
