@@ -1,7 +1,7 @@
 site_name: PyAction Cookiecutter
 repo_name: lnxpy/cookiecutter-pyaction
 repo_url: https://github.com/lnxpy/cookiecutter-pyaction
-site_url: https://lnxpy.github.io/cookiecutter-pyaction
+site_url: https://pyaction.imsadra.me/
 
 nav:
   - PyAction: index.md

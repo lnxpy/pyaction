@@ -23,10 +23,10 @@ cookiecutter gh:lnxpy/cookiecutter-pyaction
 Keep answering the prompt and your template will be generated.
 
 ### Docs
-Check out the [official docs](https://lnxpy.github.io/cookiecutter-pyaction/) for more information about PyAction and a demo hello-world action demonstration.
+Check out the [official docs](https://pyaction.imsadra.me) for more information about PyAction and a demo hello-world action demonstration.
 
 ### Contribution
-All your contributions and assistance are welcome. For more information about how you can contribute to the project, please follow the instructions [here](https://lnxpy.github.io/cookiecutter-pyaction/contributing). :beers:
+All your contributions and assistance are welcome. For more information about how you can contribute to the project, please follow the instructions [here](https://pyaction.imsadra.me/contributing). :beers:
 
 ### License
 Cookiecutter PyAction is licensed under the terms of [MIT License](LICENSE).
