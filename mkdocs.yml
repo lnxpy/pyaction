@@ -17,12 +17,16 @@ theme:
     - content.code.copy
     - navigation.footer
     - search.highlight
+    - content.code.annotate
   palette:
-    primary: white
+    scheme: slate
+    # primary: amber
+    accent: amber
+
   logo: img/logo.svg
   favicon: img/logo.svg
   icon:
-    repo: fontawesome/brands/github-alt
+    repo: fontawesome/brands/github
 
 plugins:
   - social

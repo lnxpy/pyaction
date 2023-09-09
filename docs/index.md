@@ -5,7 +5,63 @@ description: A Cookiecutter template for creating GitHub actions in Python!
 # Welcome to PyAction Cookiecutter
 PyAction is a [Cookiecutter](https://cookiecutter.io) template that allows you to develop GitHub Actions using Python language. This documentation covers a fundamental overview about the project, a demo action, and the key notes you need to remember if you want to push your PyAction actions to the [GitHub Marketplace](https://github.com/marketplace).
 
-## PyAction in Theory
+```python title="main.py"
+import os
+import sys
+from typing import List
+
+from actions import io
+
+
+def main(args: List[str]) -> None:
+    """main function
+
+    Args:
+        args (list[str]): STDIN arguments
+    """
+
+    name = os.environ["INPUT_NAME"] #(1)
+
+    io.write_to_output(
+      {
+        "message": f"Hi {name}!" #(2)
+      }
+    )
+
+
+if __name__ == "__main__":
+    main(sys.argv)
+```
+
+1.  Simply read the values that your action users send via the `with` statement within their workflow YAML file.
+
+    ```yaml hl_lines="4" title=".github/workflows/main.yml"
+    steps:
+      - uses: you/your-action@v0.1.0
+        with:
+          name: John
+    ```
+
+    !!! Warning
+        Keep in mind that you have to update the `action.yml` file in order to support receiving the `name` variable from the users respectively.
+
+2.  Here is how you can return data to the workflow, store it, and use it as inputs for other steps inside your workflow. To retrieve `message`, give an `id` to your action execution step and then access the value via `${{ steps.<id>.outputs.message }}`.
+
+    ```yaml hl_lines="2 6 10" title=".github/workflows/main.yml"
+    steps:
+      - id: greetings
+        name: Using hello-world
+        uses: you/your-action@v0.1.0
+        with:
+          name: John
+
+      - name: Echo message
+        run: |
+          echo ${{ steps.greetings.outputs.message }}
+
+    ```
+
+## In Theory
 Custom GtiHub Actions can be made in the following types.
 
 * Docker-based Actions
