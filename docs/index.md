@@ -56,12 +56,7 @@ The name that you choose from your action.
 Slugged version of your action name. The best option is to leave it as how it is by default.
 
 #### `Description`
-A short description for your action. This description will be shown in the marketplace index of your action.
-
-<figure markdown>
-  ![Action Description](img/description-action.png){ width="700" }
-  <figcaption>This is where GitHub puts your action description</figcaption>
-</figure>
+A short description for your action. GitHub will use this description to showcase your action on their [action explore](https://github.com/marketplace/actions/) page.
 
 #### `Author name`
 The action author's name. You can put your both first name and last name together.
@@ -84,7 +79,7 @@ The Python version that you want to use in your action. Both Python3.X and Pytho
 #### `Include dependencies`
 Answer `y` if your action has some additional dependencies. This option creates a `requirements.txt` file and adds a new Dockerfile layer before your action execution whereas it ensures that all your dependencies are installed.
 
-``` { .plaintext .no-copy }
+```plaintext hl_lines="10"
 my-awesome-action
 ├── Dockerfile
 ├── LICENSE
@@ -96,6 +91,13 @@ my-awesome-action
 ├── main.py
 └── requirements.txt
 ```
+
+!!! Note
+    Once you've installed all the dependencies of your action on your machine (or within a `venv`), make sure to run the following command and update the  `requirements.txt` file. Otherwise, your action won't be working properly.
+
+    ```bash
+    pip freeze > requirements.txt
+    ```
 
 #### `Include badges in readme`
 If you want to show <img alt="action-badge" src="https://img.shields.io/badge/Your_Action-white?logo=github-actions&label=GitHub%20Action&labelColor=white&color=0064D7"> and <img alt="cookiecutter-pyaction" src="https://img.shields.io/badge/cookiecutter--pyaction-white?logo=cookiecutter&label=Made%20with&labelColor=white&color=0064D7"> badges on your action's README page, then answer `y` to this question.
