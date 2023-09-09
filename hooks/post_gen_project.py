@@ -3,20 +3,9 @@ import os
 import shutil
 
 PROJECT_DIRECTORY = os.path.realpath(os.path.curdir)
-
-TEMPLATE_CREATION = "\n\r{style}{project_slug}\033[0m is created successfully! \u2705"
-
-FURTHER_INSTRUCTIONS = """
-Now you can start working on your action:
-    $ cd {project_slug} && git init
-
-Make a commit and upload initial code to GitHub:
-    $ git add .
-    $ git commit -m "Initial commit"
-    $ git tag v{version}
-    $ git branch -M main
-    $ git remote add origin git@github.com:{github_username}/{project_slug}.git
-    $ git push -u origin main --tags"""
+TEMPLATE_CREATION_MESSAGE = (
+    "{style}{action_slug}\033[0m is created successfully! \u2705"
+)
 
 
 def remove_file(filepath: str) -> None:
@@ -49,14 +38,7 @@ if __name__ == "__main__":
 
     # project created successfully
     print(
-        TEMPLATE_CREATION.format(
-            project_slug="{{ cookiecutter.project_slug }}", style="\033[1;32m"
-        )
-    )
-    print(
-        FURTHER_INSTRUCTIONS.format(
-            project_slug="{{ cookiecutter.project_slug }}",
-            version="{{ cookiecutter.version }}",
-            github_username="{{ cookiecutter.github_username }}",
+        TEMPLATE_CREATION_MESSAGE.format(
+            action_slug="{{ cookiecutter.action_slug }}", style="\033[1;32m"
         )
     )
