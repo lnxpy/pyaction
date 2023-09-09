@@ -3,8 +3,8 @@ description: {{ cookiecutter.description }}
 author: {{ cookiecutter.author_name }}
 
 branding:
-  icon: {{ cookiecutter.branding_icon }}
-  color: {{ cookiecutter.branding_color }}
+  icon: check
+  color: blue
 
 runs:
   using: docker
