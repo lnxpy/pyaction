@@ -1,5 +1,5 @@
 ---
-title: PyAction Demo
+title: Demo
 description: A demo Hello-world action tutorial
 ---
 

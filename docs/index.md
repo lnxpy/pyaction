@@ -1,5 +1,5 @@
 ---
-title: PyAction Cookiecutter
+title: Home
 description: A Cookiecutter template for creating GitHub actions in Python!
 ---
 
