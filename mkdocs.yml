@@ -4,7 +4,7 @@ repo_url: https://github.com/lnxpy/cookiecutter-pyaction
 site_url: https://lnxpy.github.io/cookiecutter-pyaction
 
 nav:
-  - Home: index.md
+  - PyAction: index.md
   - Demo Action: demo.md
   - Contributing: contributing.md
   - License: license.md
@@ -14,8 +14,6 @@ theme:
   name: material
   features:
     - navigation.instant
-    - navigation.tabs
-    - toc.integrate
     - content.code.copy
     - navigation.footer
     - search.highlight
