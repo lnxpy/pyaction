@@ -15,7 +15,7 @@ def write_to_output(context: Dict[str, str]) -> None:
 
         >>> write_to_output({"name": "John", ...})
 
-        ``name`` will be the variable name and ``John`` is its value.
+        ``name`` will be the variable name and ``John`` is the value.
     """
 
     with open(BUFFER_PATH, "a") as _buffer:
