@@ -30,6 +30,7 @@ if __name__ == "__main__":
     REMOVE_PATHS = [
         "{% if cookiecutter.include_dependencies.lower() == 'n' %} requirements.txt {% endif %}",
         "{% if cookiecutter.open_source_license == 'notopensource' %} LICENSE {% endif %}",
+        "{% if cookiecutter.include_cicd_testing.lower() == 'n' %} .github/workflows/test.yml {% endif %}",
     ]
 
     for path in REMOVE_PATHS:
