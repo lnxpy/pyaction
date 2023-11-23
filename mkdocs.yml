@@ -36,7 +36,7 @@ extra:
   social:
     - icon: fontawesome/brands/github-alt
       link: https://github.com/lnxpy/cookiecutter-pyaction
-    - icon: fontawesome/brands/twitter
+    - icon: fontawesome/brands/x-twitter
       link: https://twitter.com/lnxpylnxpy
     - icon: fontawesome/brands/linkedin
       link: https://linkedin.com/in/sadra-yahyapour

@@ -3,10 +3,10 @@ description: A Cookiecutter template for creating GitHub actions in Python!
 ---
 
 # Introducing PyAction
-PyAction is a [Cookiecutter](https://cookiecutter.io) template that allows you to develop GitHub Actions using Python language. This documentation covers a fundamental overview of the project, a demo action, and the keynotes you need to remember if you want to push your PyAction actions to the [GitHub Marketplace](https://github.com/marketplace).
+PyAction is a [Cookiecutter](https://cookiecutter.io) template that allows you to develop GitHub Actions using Python language. This documentation covers a fundamental overview of the project, a demo action, and the keynotes you need to remember if you want to push your actions to the [GitHub Marketplace](https://github.com/marketplace).
 
 
-```python title="my-awesome-action/main.py"
+```python title="your-awesome-action/main.py"
 import os
 import sys
 from typing import List
@@ -63,7 +63,7 @@ if __name__ == "__main__":
     ```
 
 ## In Theory
-Custom GitHub Actions can be made in the following ways.
+Custom GitHub Actions can be developed in three ways.
 
 * Docker-based Actions
 * Javascript Actions
@@ -85,7 +85,7 @@ cookiecutter -V
 ```
 
 ## Usage
-Now, it's time for template generation. Easily do this via the following command and after a few promptings, you'll have your very first action generated there.
+Now, it's time to generate a template. Easily do this via the following command and after a few promptings, you'll have your action created!
 
 ```
 cookiecutter gh:lnxpy/cookiecutter-pyaction
@@ -99,8 +99,8 @@ These are the questions that by answering them, you'll have the most suited acti
 #### `action_name`
 The name that you choose from your action.
 
-!!! Warning
-    If you're planning to push your action to the GitHub Marketplace, make sure that the _slugged_ version of your action name is unique. To check if it's unique, make sure the following URLs lead you to a _404 page_.
+!!! Warning "If you want to publish to the marketplace.."
+    Make sure that the _slugged_ version of your action name is unique. To check if it's unique, all the following URLs should lead you to a _404 page_.
 
     * https://github.com/marketplace/actions/[slugged-action-name]
     * https://github.com/[slugged-action-name]
@@ -110,10 +110,10 @@ The name that you choose from your action.
 Slugged version of your action name. The best option is to leave it as how it is by default.
 
 #### `description`
-A short description of your action. GitHub will use this description to showcase your action on their [action explore](https://github.com/marketplace/actions/) page.
+A short description for your action. GitHub will use this description to showcase your action on their [action explore](https://github.com/marketplace/actions/) page.
 
 #### `auther_name`
-The action author's name. You can put your both first name and last name together.
+The action author's name. You can put your both first and last name together.
 
 #### `open_source_license`
 Choose an open-source license or `notopensource` if your action is not open-source.
@@ -122,4 +122,7 @@ Choose an open-source license or `notopensource` if your action is not open-sour
 The Python version that you want to use in your action. Both Python3.X and Python2.X are supported.
 
 #### `include_dependencies`
-Answer `y` if your action has some additional dependencies. This option creates a `requirements.txt` file and adds a new Dockerfile layer before your action execution whereas it ensures that all your dependencies are installed.
+Answer `y` if your action has some additional dependencies. This option creates a `requirements.txt` file and adds a new Dockerfile layer before your action execution whereas it ensures that all your action dependencies are installed.
+
+#### `include_cicd_testing`
+Creats a `.github/workflows/test.yml` basic configuration for self-testing your action.
