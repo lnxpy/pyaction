@@ -1,12 +1,14 @@
 ---
 title: Contributing
-description: PyAction contribution guide
+description: Contribution Guide
+hide:
+  - navigation
 ---
 
-Thanks for heading over to this index. I assume you're looking for a way to contributing to this project and as always, all your helps are welcome. Follow the instructions in the next sections.
+Thanks for heading over to this index. I assume you're looking for a way to contributing to this project and as always, all your helps are welcome. Follow the instructions and enjoy contributing!
 
 !!! Note "Open an issue first please.."
-    I highly recommend you [open an issue](https://github.com/lnxpy/cookiecutter-pyaction/issues/new/choose) first. Once we agree on the theory, then feel free to get your hands dirty. :beers:
+    I highly recommend you [open an issue](https://github.com/lnxpy/pyaction/issues/new/choose) first. Once we agree on the on-going conversation, then feel free to start working. :beers:
 
 ### Fork & Install
 Simply fork and clone the repository on your local machine. Change your directory to where the project is. Run the following command to make sure you have `pre-commit` and `tox` installed on your system.
@@ -17,7 +19,7 @@ pip install pre-commit tox && pre-commit install
 
 Once you're all set and need to test your changes in the supported environments, simply run `tox` and it'll grab your changes and puts them into test.
 
-If you've changed the docs and want to see the resuls, run the following command and it'll serve your docs on `localhost:8000`.
+If you've changed the docs and want to see the results, run the following command and it'll serve your docs on [http://localhost:8000](http://localhost:8000).
 
 ```bash
 tox -e docs -- serve

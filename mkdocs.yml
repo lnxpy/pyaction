@@ -1,10 +1,10 @@
-site_name: PyAction Cookiecutter
-repo_name: lnxpy/cookiecutter-pyaction
-repo_url: https://github.com/lnxpy/cookiecutter-pyaction
+site_name: PyAction
+repo_name: lnxpy/pyaction
+repo_url: https://github.com/lnxpy/pyaction
 site_url: https://pyaction.imsadra.me/
 
 nav:
-  - PyAction: index.md
+  - Introduction: index.md
   - Demo: demo.md
   - Contributing: contributing.md
   - License: license.md
@@ -12,30 +12,48 @@ nav:
 
 theme:
   name: material
+  logo: img/logo.svg
+  favicon: img/logo.svg
+  custom_dir: docs/overrides
   features:
     - navigation.instant
     - content.code.copy
     - navigation.footer
     - search.highlight
     - content.code.annotate
+    - navigation.tabs
+    - toc.integrate
+    - announce.dismiss
   palette:
-    scheme: slate
-    accent: amber
+    - scheme: default
+      primary: deep orange
+      accent: deep orange
+      toggle:
+        icon: material/sunglasses
+        name: Switch to dark mode
 
-  logo: img/logo.svg
-  favicon: img/logo.svg
+    - scheme: slate
+      primary: deep orange
+      accent: deep orange
+      toggle:
+        icon: material/glasses
+        name: Switch to light mode
   icon:
     repo: fontawesome/brands/github
 
 plugins:
-  - social
+  - social:
+      cards_layout_options:
+        background_color: "#F95428"
+        color: white
+        font_family: Montserrat
   - search:
       lang: en
 
 extra:
   social:
     - icon: fontawesome/brands/github-alt
-      link: https://github.com/lnxpy/cookiecutter-pyaction
+      link: https://github.com/lnxpy/pyaction
     - icon: fontawesome/brands/x-twitter
       link: https://twitter.com/lnxpylnxpy
     - icon: fontawesome/brands/linkedin
@@ -47,13 +65,14 @@ extra_css:
   - css/navbar.css
 
 markdown_extensions:
+  - attr_list
+  - md_in_html
   - pymdownx.highlight:
       anchor_linenums: true
       line_spans: __span
       pygments_lang_class: true
   - pymdownx.inlinehilite
   - pymdownx.snippets
-  - pymdownx.superfences
   - admonition
   - pymdownx.details
   - pymdownx.superfences
@@ -61,7 +80,13 @@ markdown_extensions:
   - tables
   - attr_list
   - pymdownx.emoji:
-      emoji_index: !!python/name:materialx.emoji.twemoji
-      emoji_generator: !!python/name:materialx.emoji.to_svg
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+      options:
+        custom_icons:
+          - docs/overrides/.icons
   - pymdownx.tasklist:
       custom_checkbox: true
+  - pymdownx.tabbed:
+      alternate_style: true
+  - tables

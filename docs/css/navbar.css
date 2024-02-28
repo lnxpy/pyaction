@@ -1,4 +1,25 @@
 .md-header {
-    background-color: #1F2128;
+    background-color: black;
     box-shadow: none;
+}
+
+.md-tabs{
+    background-color: black;
+}
+
+.md-footer{
+    background-color: #14161b;
+}
+
+.md-footer-meta{
+    background-color: black;
+}
+
+.md-banner{
+    background-color: #F95428;
+}
+
+.md-banner a{
+    color: white !important;
+    text-decoration: underline;
 }

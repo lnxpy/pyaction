@@ -1,4 +1,4 @@
-## {{ cookiecutter.action_name }} <img alt="action-badge" src="https://img.shields.io/badge/{{ cookiecutter.action_name }}-white?logo=github-actions&label=GitHub%20Action&labelColor=white&color=0064D7"> <a href="https://github.com/lnxpy/cookiecutter-pyaction"><img alt="cookiecutter-pyaction" src="https://img.shields.io/badge/cookiecutter--pyaction-white?logo=cookiecutter&label=Made%20with&labelColor=white&color=0064D7"></a>
+## {{ cookiecutter.action_name }} <img alt="action-badge" src="https://img.shields.io/badge/{{ cookiecutter.action_name }}-white?logo=github-actions&label=GitHub%20Action&labelColor=white&color=0064D7"> <a href="https://github.com/lnxpy/pyaction"><img alt="pyaction" src="https://img.shields.io/badge/pyaction-white?logo=cookiecutter&label=Made%20with&labelColor=white&color=0064D7"></a>
 
 {{ cookiecutter.description }}
 

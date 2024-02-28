@@ -1,128 +1,131 @@
 ---
-description: A Cookiecutter template for creating GitHub actions in Python!
+description: Create Github Actions in Python
+title: Introduction
 ---
 
-# Introducing PyAction
-PyAction is a [Cookiecutter](https://cookiecutter.io) template that allows you to develop GitHub Actions using Python language. This documentation covers a fundamental overview of the project, a demo action, and the keynotes you need to remember if you want to push your actions to the [GitHub Marketplace](https://github.com/marketplace).
+PyAction is a [:simple-cookiecutter: Cookiecutter](https://cookiecutter.io) template that allows you to develop custom [:simple-githubactions: GitHub Actions](https://docs.github.com/en/actions) using [:simple-python: Python](https://python.org/). This documentation covers the basics and a [Hello-world demo](demo.md) example action.
 
 
-```python title="your-awesome-action/main.py"
-import os
-import sys
-from typing import List
+## Easy to Setup
+Make sure you have `pip` installed on your machine and install the `cookiecutter` package.
 
-from actions import io
-
-
-def main(args: List[str]) -> None:
-    """main function
-
-    Args:
-        args (list[str]): STDIN arguments
-    """
-
-    name = os.environ["INPUT_NAME"] #(1)
-
-    io.write_to_output(
-      {
-        "message": f"Hi {name}!" #(2)
-      }
-    )
-
-
-if __name__ == "__main__":
-    main(sys.argv[1:])
+```
+pip install cookiecutter
 ```
 
-1.  Simply read the values that your action users send via the `with` statement within their workflow YAML file.
+Now, execute the following command and initialize a basic action template.
+```
+cookiecutter gh:lnxpy/pyaction
+```
 
-    ```yaml hl_lines="4" title=".github/workflows/main.yml"
-    steps:
-      - uses: you/your-action@v0.1.0
-        with:
-          name: John
+Follow the prompting and provide yourself a nicely put-to-gether action template.
+
+Here you can see a very basic hello-world example action generated with PyAction. For a more detailed example, check out the [Hello-world demo](demo.md).
+
+=== "main.py"
+
+    ``` py
+    import os
+    import sys
+    from typing import List
+
+    from actions import io
+
+
+    def main(args: List[str]) -> None:
+        """main function
+
+        Args:
+            args (list[str]): STDIN arguments
+        """
+
+        name = os.environ["INPUT_NAME"] #(1)
+
+        io.write_to_output(
+          {
+            "phrase": f"Hi {name}!" #(2)
+          }
+        )
+
+
+    if __name__ == "__main__":
+        main(sys.argv[1:])
     ```
 
-    !!! Warning
-        Keep in mind that you have to update the `action.yml` file in order to support receiving the `name` variable from the users respectively.
+    1.  This is how we read the input parameters from `with` statement in `.github/workflows/main.yml`:
 
-2.  Here is how you can return data to the workflow, store it, and use it as inputs for other steps inside your workflow. To retrieve `message`, give an `id` to your action execution step and then access the value via `${{ steps.<id>.outputs.message }}`.
+        ```yaml hl_lines="4" title=".github/workflows/main.yml" linenums="1"
+        steps:
+          - uses: you/your-action
+            with:
+              name: John
+        ```
 
-    ```yaml hl_lines="2 6 10" title=".github/workflows/main.yml"
-    steps:
-      - id: greetings
-        name: Using your-action
-        uses: you/your-action@v0.1.0
-        with:
-          name: John
+    2.  Here is how we return data to the workflow, store it as an environment variable, and use it as input for other steps of the workflow.
 
-      - name: Echo message
-        run: |
-          echo ${{ steps.greetings.outputs.message }}
+        ```yaml hl_lines="2 6 10" title=".github/workflows/main.yml" linenums="1"
+        steps:
+          - id: greetings
+            name: Using your-action
+            uses: you/your-action
+            with:
+              name: John
 
+          - name: Echo message
+            run: |
+              echo ${{ steps.greetings.outputs.phrase }}
+        ```
+
+=== "action.yml"
+
+    ``` yaml
+    name: Greetings Action
+    description: This action greets whoever runs it
+    author: John Doe
+
+    branding:
+      icon: check
+      color: blue
+
+    runs:
+      using: docker
+      image: Dockerfile
+
+    # == inputs and outputs ==
+
+    inputs:
+      name:
+        required: false
+        description: the person/thing you want to greet
+        default: World
+
+    outputs:
+      phrase:
+        description: output variable
     ```
 
-## In Theory
-Custom GitHub Actions can be developed in three ways.
 
-* Docker-based Actions
-* Javascript Actions
-* Composite Actions
 
-PyAction is based on the Dockerfile implementation that GitHub recommends and has some workflow-related features that allow you to have access to the variables and data transferring during your workflow run.
+## How It Works
+Custom GitHub Actions can be developed in different ways. PyAction uses the [Docker Container](https://docs.github.com/en/actions/creating-actions/about-custom-actions#docker-container-actions) method which is highly stable with different Python environments. This way, you'll be able to specify the requirements for your actions and run them inside a lightweight isolated container with all the dependencies installed.
 
-## Installation
-The first step is to install the `cookiecutter` package on your machine.
+## Passion
+As a Python developer, I always wanted to help the community and be impactful in its growth. Watching that GitHub supports JavaScript as an official method for creating actions, made me think of inventing a way for Python developers to help the community be able to write actions in Python and benefit from the powerful packages and tools from Python's world.
 
-```bash
-pip install -U cookiecutter
-```
+Months before PyAction, I had lots of ideas to develop and publish as actions. Since most of them were quite dependent on Python packages, I had no choice but to implement the whole thing and provide a Python environment for my action to be able to make use of those packages.
 
-To ensure that the installation process was successful, check out the installed version with the `-V` flag.
+<figure markdown="span">
+  ![Image title](img/comment.png){ width="550" }
+  <figcaption><a href="https://www.linkedin.com/in/robert-arthur-johnstone/">@Robert-Johnstone</a> on LinkedIn</figcaption>
+</figure>
 
-```bash
-cookiecutter -V
-```
+Sharing the idea on the socials like LinkedIn and receiving lovely supportive messages like Robert's, truly cheered me up and was quite a motivation for me. :orange_heart:
 
-## Usage
-Now, it's time to generate a template. Easily do this via the following command and after a few promptings, you'll have your action created!
+After some trials and errors, I came up with a structure that was working fine. It was able to interact with my workflow pipeline, write to it, and retrieve data from it.
 
-```
-cookiecutter gh:lnxpy/cookiecutter-pyaction
-```
+I put it to test and implemented some real-world actions to test its limits and functionalities. Finally, some developments passed by and the template was ready to be publicly used by others.
 
-In the next section, we'll be taking a look over each question that's being asked and the proper answers you can give to each one.
+## Next Steps
+I'm planning to expand PyAction's features and availability in other languages. Also trying to keep it up to date with the official changes that GitHub fellows make over on the GitHub Actions infrastructure.
 
-## Promting
-These are the questions that by answering them, you'll have the most suited action for your case.
-
-#### `action_name`
-The name that you choose from your action.
-
-!!! Warning "If you want to publish to the marketplace.."
-    Make sure that the _slugged_ version of your action name is unique. To check if it's unique, all the following URLs should lead you to a _404 page_.
-
-    * https://github.com/marketplace/actions/[slugged-action-name]
-    * https://github.com/[slugged-action-name]
-    * https://github.com/orgs/[slugged-action-name]
-
-#### `action_slug`
-Slugged version of your action name. The best option is to leave it as how it is by default.
-
-#### `description`
-A short description for your action. GitHub will use this description to showcase your action on their [action explore](https://github.com/marketplace/actions/) page.
-
-#### `auther_name`
-The action author's name. You can put your both first and last name together.
-
-#### `open_source_license`
-Choose an open-source license or `notopensource` if your action is not open-source.
-
-#### `python_version`
-The Python version that you want to use in your action. Both Python3.X and Python2.X are supported.
-
-#### `include_dependencies`
-Answer `y` if your action has some additional dependencies. This option creates a `requirements.txt` file and adds a new Dockerfile layer before your action execution whereas it ensures that all your action dependencies are installed.
-
-#### `include_cicd_testing`
-Creats a `.github/workflows/test.yml` basic configuration for self-testing your action.
+If you're interested in the idea, your contribution is welcome as always. Check out the [Contribution Guide](contributing.md) for more information.
