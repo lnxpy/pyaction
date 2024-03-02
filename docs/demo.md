@@ -119,7 +119,6 @@ outputs:
 This is the main file of our action. In this file, we have access to all the inputs that users have passed to us as well as the outputs that we can send back to the workflow. All we need to do is to retrieve the `name` and return the `phrase` that contains the greeting message.
 
 ```python title="pyaction-hello-world/main.py" linenums="1"
-import os
 import sys
 from typing import List
 
@@ -134,11 +133,11 @@ def main(args: List[str]) -> None:
     """
 
     # reading the name variable from `with`
-    name = os.environ["INPUT_NAME"]
+    name = io.read("name")
     message = f"Hello {name}!"
 
     # writing to the buffer
-    io.write_to_output({"phrase": message})
+    io.write({"phrase": message})
 
     # now, people can $echo `phrase`
 

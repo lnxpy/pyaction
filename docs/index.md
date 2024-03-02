@@ -25,7 +25,6 @@ Here you can see a very basic hello-world example action generated with PyAction
 === "main.py"
 
     ``` py
-    import os
     import sys
     from typing import List
 
@@ -39,9 +38,9 @@ Here you can see a very basic hello-world example action generated with PyAction
             args (list[str]): STDIN arguments
         """
 
-        name = os.environ["INPUT_NAME"] #(1)
+        name = io.read("name") #(1)
 
-        io.write_to_output(
+        io.write(
           {
             "phrase": f"Hi {name}!" #(2)
           }
