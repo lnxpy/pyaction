@@ -1,4 +1,3 @@
-import os
 import sys
 from typing import List
 
@@ -12,11 +11,8 @@ def main(args: List[str]) -> None:
         args: STDIN arguments
     """
 
-    # now you can access the inputs like:
-    #    f"Hello {os.environ["INPUT_NAME"]}"
-
-    # you can write to output like:
-    #   io.write_to_output({var: val, ...})
+    # Visit if you need help on how you can get started:
+    # https://pyaction.imsadra.me/demo
 
     pass
 
