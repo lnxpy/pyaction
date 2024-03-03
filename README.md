@@ -1,7 +1,8 @@
-## PyAction [![docs ci](https://github.com/lnxpy/pyaction/actions/workflows/docs.yml/badge.svg?branch=main)](https://github.com/lnxpy/pyaction/actions/workflows/docs.yml) [![main](https://github.com/lnxpy/pyaction/actions/workflows/main.yml/badge.svg)](https://github.com/lnxpy/pyaction/actions/workflows/main.yml) ![GitHub tag (with filter)](https://img.shields.io/github/v/tag/lnxpy/pyaction?label=Version)
+## PyAction [![docs ci](https://github.com/lnxpy/pyaction/actions/workflows/docs.yml/badge.svg?branch=main)](https://github.com/lnxpy/pyaction/actions/workflows/docs.yml) [![main](https://github.com/lnxpy/pyaction/actions/workflows/main.yml/badge.svg)](https://github.com/lnxpy/pyaction/actions/workflows/main.yml) ![version)](https://img.shields.io/github/v/tag/lnxpy/pyaction?label=Version)
 
 
-PyAction is a [Cookiecutter](https://cookiecutter.io) template that allows you to develop custom [GitHub Actions](https://docs.github.com/en/actions) using [Python](https://python.org/).
+
+PyAction is a [Cookiecutter](https://cookiecutter.io) template that allows you to develop custom [GitHub Actions](https://docs.github.com/en/actions) using [Python3](https://python.org/).
 
 <!-- > [!NOTE]
 > Read ["Writing GitHub Actions in Python"](https://imsadra.me/writing-github-actions-in-python) article that walks you through a hello-world example. -->

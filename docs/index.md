@@ -106,7 +106,7 @@ Here you can see a very basic hello-world example action generated with PyAction
 
 
 ## How It Works
-Custom GitHub Actions can be developed in different ways. PyAction uses the [Docker Container](https://docs.github.com/en/actions/creating-actions/about-custom-actions#docker-container-actions) method which is highly stable with different Python environments. This way, you'll be able to specify the requirements for your actions and run them inside a lightweight isolated container with all the dependencies installed.
+Custom GitHub Actions can be developed in different ways. PyAction uses the [Docker Container](https://docs.github.com/en/actions/creating-actions/about-custom-actions#docker-container-actions) method which is highly stable with Python environments. This way, you'll be able to specify the requirements for your actions and run them inside a lightweight isolated container with all the dependencies installed.
 
 ## Passion
 As a Python developer, I always wanted to help the community and be impactful in its growth. Watching that GitHub supports JavaScript as an official method for creating actions, made me think of inventing a way for Python developers to help the community be able to write actions in Python and benefit from the powerful packages and tools from Python's world.

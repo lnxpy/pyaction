@@ -10,10 +10,6 @@
         "gplv3",
         "notopensource"
     ],
-    "python_version": [
-        "3",
-        "2"
-    ],
     "include_dependencies": "n",
     "include_cicd_testing": "n"
 }

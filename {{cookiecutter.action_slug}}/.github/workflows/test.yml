@@ -16,4 +16,4 @@ jobs:
       - name: Run action
         uses: ./
         with:
-          name: 'John'
+          name: John
