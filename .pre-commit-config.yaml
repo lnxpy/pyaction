@@ -7,20 +7,11 @@ repos:
       - id: trailing-whitespace
       - id: end-of-file-fixer
       - id: check-added-large-files
-  - repo: "https://github.com/psf/black"
-    rev: 23.7.0
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.3.0
     hooks:
-      - id: black
-  - repo: "https://github.com/PyCQA/flake8"
-    rev: 6.0.0
-    hooks:
-      - id: flake8
-        args: ["--ignore=E203,E501,W503"]
-  - repo: "https://github.com/pre-commit/mirrors-mypy"
-    rev: v1.4.1
-    hooks:
-      - id: mypy
-        args: ["--cache-dir=/dev/null", "--ignore-missing-imports"]
+      - id: ruff
+      - id: ruff-format
   - repo: https://github.com/asottile/pyupgrade
     rev: v3.10.1
     hooks:
