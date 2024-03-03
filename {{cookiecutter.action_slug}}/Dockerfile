@@ -1,5 +1,5 @@
 # setting the base-image to alpine
-FROM python:{{ cookiecutter.python_version }}-slim
+FROM python:3-slim
 
 # importing the action
 COPY . /action

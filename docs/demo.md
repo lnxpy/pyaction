@@ -20,23 +20,19 @@ cookiecutter gh:lnxpy/pyaction
 And here would be the prompting for my action called "PyAction Hello World".
 
 ``` { .plaintext .no-copy }
-[1/8] action_name (My Awesome Action): PyAction Hello World
-[2/8] action_slug (pyaction-hello-world):
-[3/8] description (A short description..): This actions says Hello to you!
-[4/8] author_name (John Doe):
-[5/8] Select open_source_license
+[1/7] action_name (My Awesome Action): PyAction Hello World
+[2/7] action_slug (pyaction-hello-world):
+[3/7] description (A short description..): This actions says Hello to you!
+[4/7] author_name (John Doe):
+[5/7] Select open_source_license
   1 - mit
   2 - bsd
   3 - apache
   4 - gplv3
   5 - notopensource
   Choose from [1/2/3/4/5] (1):
-[6/8] Select python_version
-  1 - 3
-  2 - 2
-  Choose from [1/2] (1):
-[7/8] include_dependencies (n):
-[8/8] include_cicd_testing (n):
+[6/7] include_dependencies (n):
+[7/7] include_cicd_testing (n):
 pyaction-hello-world is created successfully! ✅
 ```
 
@@ -47,7 +43,6 @@ pyaction-hello-world is created successfully! ✅
 | `description`          | Action description                | `This actions says Hello to you!` |
 | `author_name`          | Your name                         | `John Doe`                        |
 | `open_source_license`  | OS license                        | `1` = (mit)                       |
-| `python_version`       | Python version                    | `1` = (3)                         |
 | `include_dependencies` | Using `requirements.txt`          | `y` = (action has requirements)   |
 | `include_cicd_testing` | A workflow for testing the action | `n`                               |
 
