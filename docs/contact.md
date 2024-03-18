@@ -18,4 +18,4 @@ I'm Sadra, the creator of PyAction. If you have any questions, need any help, or
 
 </div>
 
-You can also subscribe to [my newsletter](https://imsadra.me) and enjoy my technical articles. As a Python developer, I mainly write about science, tech, and software.
+You can also subscribe to [my newsletter](https://blog.imsadra.me) and enjoy my technical articles. As a Python developer, I mainly write about science, tech, and software.
