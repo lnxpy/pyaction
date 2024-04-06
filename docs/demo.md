@@ -186,7 +186,7 @@ def main(args: List[str]) -> None:
 In order to test the action, run the following command and you'll see the content of `message`.
 
 ```bash
-env $(cat .env | xargs) python main.py
+make
 ```
 
 ```plaintext

@@ -1,5 +1,5 @@
 # Ignore all files and folders that start with a dot.
-**/*.
+.*
 
 # Ignore all virtual envs'
 venv/
@@ -21,7 +21,4 @@ CONTRIBUTING.md
 CHANGELOG.md
 LICENSE
 Dockerfile
-.env
-.github/
-
-.git/
+Makefile
