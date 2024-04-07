@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "py_action"
+version = "0.4.1"
+description = "Create GitHub Actions in Python"
+authors = [{ name = "Sadra Yahyapour", email = "lnxpylnxpy@gmail.com" }]
+requires-python = ">=3.8"
+dependencies = ["copier >= 9.2", "click >= 8.1"]
+readme = { file = "README.md", content-type = "text/markdown" }
+license = { file = "LICENSE" }
+
+[project.scripts]
+pyaction = "pyaction.cli:cli"
+
+[project.optional-dependencies]
+dev = ["coverage", "pytest-cookies"]
+docs = ["mkdocs-material", "cairosvg", "pillow"]
+
+[project.urls]
+Documentation = "https://pyaction.imsadra.me"
+Repository = "https://github.com/lnxpy/pyaction"
+
+[tool.bumpversion]
+current_version = "0.4.1"
+commit = "true"
+tag = "true"
+
+[[tool.bumpversion.files]]
+filename = "pyproject.toml"
+
+[[tool.bumpversion.files]]
+filename = "pyaction/__init__.py"

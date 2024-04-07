@@ -26,15 +26,15 @@ theme:
     - announce.dismiss
   palette:
     - scheme: default
-      primary: deep orange
-      accent: deep orange
+      primary: deep purple
+      accent: deep purple
       toggle:
         icon: material/sunglasses
         name: Switch to dark mode
 
     - scheme: slate
-      primary: deep orange
-      accent: deep orange
+      primary: deep purple
+      accent: deep purple
       toggle:
         icon: material/glasses
         name: Switch to light mode
@@ -44,7 +44,7 @@ theme:
 plugins:
   - social:
       cards_layout_options:
-        background_color: "#F95428"
+        background_color: "#7b4dff"
         color: white
         font_family: Montserrat
   - search:

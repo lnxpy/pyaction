@@ -16,7 +16,8 @@
 }
 
 .md-banner{
-    background-color: #F95428;
+    background: rgb(144,2,255);
+    background: linear-gradient(90deg, rgba(144,2,255,1) 0%, rgba(121,76,254,1) 100%);
 }
 
 .md-banner a{

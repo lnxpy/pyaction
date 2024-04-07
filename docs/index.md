@@ -3,81 +3,87 @@ description: Create Github Actions in Python
 title: Introduction
 ---
 
-PyAction is a [:simple-cookiecutter: Cookiecutter](https://cookiecutter.io) template that allows you to develop custom [:simple-githubactions: GitHub Actions](https://docs.github.com/en/actions) using [:simple-python: Python](https://python.org/). This documentation covers the basics and a [Hello-world demo](demo.md) example action.
+![Python Versions](https://img.shields.io/pypi/py_action/copier?color=9002FF)
+![PyPI - Version](https://img.shields.io/pypi/v/py_action?color=9002FF)
 
+![banner](img/banner.svg)
+
+**PyAction** is a tool that allows you to develop custom GitHub Actions using Python. This documentation covers the basics and a [Hello-world demo](demo.md) example action.
 
 ## Easy to Setup
-Make sure you have `pip` installed on your machine and install the `cookiecutter` package.
+Make sure you have `pip` and `python>=3.8` installed on your machine and install `py_action`.
 
 ```
-pip install cookiecutter
+pip install -U py_action
 ```
 
-Now, execute the following command and initialize a basic action template.
+Now, execute the following command to see all the subcommands and options.
 ```
-cookiecutter gh:lnxpy/pyaction
+pyaction --help
 ```
 
-Follow the prompting and provide yourself a nicely put-to-gether action template.
+!!! Example "I highly recommend to.."
+    Run `pyaction init` and provide yourself a nicely put-to-gether action template for starting.
 
-Here you can see a very basic hello-world example action generated with PyAction. For a more detailed example, check out the [Hello-world demo](demo.md).
+Here you can see a very basic hello-world example action generated with `pyaction init`. For a more detailed example, check out the [Hello-world demo](demo.md).
 
-=== "main.py"
+=== ":simple-python: main.py"
 
-    ``` py
+    ```py
     import sys
     from typing import List
 
-    from actions import io
+    from pyaction import io
 
 
     def main(args: List[str]) -> None:
         """main function
 
         Args:
-            args (list[str]): STDIN arguments
+            args: STDIN arguments
         """
 
         name = io.read("name") #(1)
 
         io.write(
-          {
-            "phrase": f"Hi {name}!" #(2)
-          }
+            {
+              "phrase": f"Hi {name}!" #(2)
+            }
         )
 
 
     if __name__ == "__main__":
         main(sys.argv[1:])
+
     ```
 
     1.  This is how we read the input parameters from `with` statement in `.github/workflows/main.yml`:
 
-        ```yaml hl_lines="4" title=".github/workflows/main.yml" linenums="1"
+        ```yaml title=".github/workflows/main.yml" hl_lines="4" linenums="1"
         steps:
           - uses: you/your-action
             with:
-              name: John
+              name: Sadra
         ```
 
     2.  Here is how we return data to the workflow, store it as an environment variable, and use it as input for other steps of the workflow.
 
-        ```yaml hl_lines="2 6 10" title=".github/workflows/main.yml" linenums="1"
+        ```yaml title=".github/workflows/main.yml" hl_lines="2 6 10" linenums="1"
         steps:
           - id: greetings
             name: Using your-action
             uses: you/your-action
             with:
-              name: John
+              name: Sadra
 
           - name: Echo message
             run: |
               echo ${{ steps.greetings.outputs.phrase }}
         ```
 
-=== "action.yml"
+=== ":simple-yaml: action.yml"
 
-    ``` yaml
+    ```yaml
     name: Greetings Action
     description: This action greets whoever runs it
     author: John Doe
@@ -90,8 +96,6 @@ Here you can see a very basic hello-world example action generated with PyAction
       using: docker
       image: Dockerfile
 
-    # == inputs and outputs ==
-
     inputs:
       name:
         required: false
@@ -103,26 +107,14 @@ Here you can see a very basic hello-world example action generated with PyAction
         description: output variable
     ```
 
+```plaintext title="Result"
+Hi Sadra!
+```
 
+Since `pyaction` is part of your action's dependencies, you have access to utilities that enable you to work with the repository/workflow information.
 
 ## How It Works
 Custom GitHub Actions can be developed in different ways. PyAction uses the [Docker Container](https://docs.github.com/en/actions/creating-actions/about-custom-actions#docker-container-actions) method which is highly stable with Python environments. This way, you'll be able to specify the requirements for your actions and run them inside a lightweight isolated container with all the dependencies installed.
-
-## Passion
-As a Python developer, I always wanted to help the community and be impactful in its growth. Watching that GitHub supports JavaScript as an official method for creating actions, made me think of inventing a way for Python developers to help the community be able to write actions in Python and benefit from the powerful packages and tools from Python's world.
-
-Months before PyAction, I had lots of ideas to develop and publish as actions. Since most of them were quite dependent on Python packages, I had no choice but to implement the whole thing and provide a Python environment for my action to be able to make use of those packages.
-
-<figure markdown="span">
-  ![Image title](img/comment.png){ width="550" }
-  <figcaption><a href="https://www.linkedin.com/in/robert-arthur-johnstone/">@Robert-Johnstone</a> on LinkedIn</figcaption>
-</figure>
-
-Sharing the idea on the socials like LinkedIn and receiving lovely supportive messages like Robert's, truly cheered me up and was quite a motivation for me. :orange_heart:
-
-After some trials and errors, I came up with a structure that was working fine. It was able to interact with my workflow pipeline, write to it, and retrieve data from it.
-
-I put it to test and implemented some real-world actions to test its limits and functionalities. Finally, some developments passed by and the template was ready to be publicly used by others.
 
 ## Next Steps
 I'm planning to expand PyAction's features and availability in other languages. Also trying to keep it up to date with the official changes that GitHub fellows make over on the GitHub Actions infrastructure.

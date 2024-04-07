@@ -5,8 +5,6 @@ hide:
   - navigation
 ---
 
-![Avatar](img/avatar.png){ align=right .avatar }
-
 I'm Sadra, the creator of PyAction. If you have any questions, need any help, or have a change request, feel free to reach out to me on the following platforms. I'll try my best to respond back as soon as I can. :beers:
 
 <div class="grid cards" markdown>

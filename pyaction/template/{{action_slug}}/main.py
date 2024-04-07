@@ -1,7 +1,7 @@
 import sys
 from typing import List
 
-from actions import io
+from pyaction import io
 
 
 def main(args: List[str]) -> None:
@@ -10,9 +10,6 @@ def main(args: List[str]) -> None:
     Args:
         args: STDIN arguments
     """
-
-    # Visit if you need help on how you can get started:
-    # https://pyaction.imsadra.me/demo
 
     pass
 
