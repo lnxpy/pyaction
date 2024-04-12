@@ -1,6 +1,6 @@
 ## PyAction [![docs ci](https://github.com/lnxpy/pyaction/actions/workflows/docs.yml/badge.svg?branch=main)](https://github.com/lnxpy/pyaction/actions/workflows/docs.yml) [![main](https://github.com/lnxpy/pyaction/actions/workflows/main.yml/badge.svg)](https://github.com/lnxpy/pyaction/actions/workflows/main.yml) ![version)](https://img.shields.io/github/v/tag/lnxpy/pyaction?label=Version)
 
-
+> This is the old stable template-only release of PyAction and not being updated anymore. I offer the latest updated release instead.
 
 PyAction is a [Cookiecutter](https://cookiecutter.io) template that allows you to develop custom [GitHub Actions](https://docs.github.com/en/actions) using [Python3](https://python.org/).
 
@@ -18,7 +18,7 @@ pip install -U cookiecutter
 In order to create the template, run the following command.
 
 ```sh
-cookiecutter gh:lnxpy/pyaction
+cookiecutter gh:lnxpy/pyaction -c template
 ```
 
 Answer the prompts and your template will be generated.
