@@ -1,7 +1,8 @@
 import sys
 from typing import List
 
-from pyaction import io
+from pyaction import io, Auth
+from pyaction.issues import IssueForm
 
 
 def main(args: List[str]) -> None:
