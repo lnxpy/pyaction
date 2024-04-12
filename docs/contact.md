@@ -5,7 +5,7 @@ hide:
   - navigation
 ---
 
-I'm Sadra, the creator of PyAction. If you have any questions, need any help, or have a change request, feel free to reach out to me on the following platforms. I'll try my best to respond back as soon as I can. :beers:
+I'm Sadra, the creator of PyAction. If you have any questions, need any help, or have a change request, feel free to reach out to me on the following platforms. I'll try my best to respond as soon as I can. :beers:
 
 <div class="grid cards" markdown>
 
@@ -16,4 +16,4 @@ I'm Sadra, the creator of PyAction. If you have any questions, need any help, or
 
 </div>
 
-You can also subscribe to [my newsletter](https://blog.imsadra.me) and enjoy my technical articles. As a Python developer, I mainly write about science, tech, and software.
+You can also subscribe to [my newsletter](https://blog.imsadra.me) and enjoy my technical articles. As a Python developer, I mainly write about science, tech, and software. :writing_hand:

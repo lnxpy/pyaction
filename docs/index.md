@@ -3,18 +3,18 @@ description: Create Github Actions in Python
 title: Introduction
 ---
 
-![Python Versions](https://img.shields.io/pypi/py_action/copier?color=9002FF)
-![PyPI - Version](https://img.shields.io/pypi/v/py_action?color=9002FF)
+# Welcome to PyAction!
 
-![banner](img/banner.svg)
+![Python Versions](https://img.shields.io/pypi/pyversions/pyaction?color=4E2DB7)
+![PyPI - Version](https://img.shields.io/pypi/v/pyaction?color=4E2DB7&label=version)
 
-**PyAction** is a tool that allows you to develop custom GitHub Actions using Python. This documentation covers the basics and a [Hello-world demo](demo.md) example action.
+PyAction helps you to develop custom GitHub Actions using Python. This documentation covers a tutorial and a demo hello-world action. Head to [Quickstart](quickstart.md) to see the demo project and create an action in a flash. :zap:
 
 ## Easy to Setup
-Make sure you have `pip` and `python>=3.8` installed on your machine and install `py_action`.
+Make sure you have `pip` and `python>=3.8` installed on your machine and install `pyaction`.
 
 ```
-pip install -U py_action
+pip install -U pyaction
 ```
 
 Now, execute the following command to see all the subcommands and options.
@@ -22,12 +22,16 @@ Now, execute the following command to see all the subcommands and options.
 pyaction --help
 ```
 
-!!! Example "I highly recommend to.."
-    Run `pyaction init` and provide yourself a nicely put-to-gether action template for starting.
+!!! Example "It's recommended to.."
+    Initialize a basic template and provide yourself a nicely put-to-gether action structure for starting.
 
-Here you can see a very basic hello-world example action generated with `pyaction init`. For a more detailed example, check out the [Hello-world demo](demo.md).
+    ```
+    pyaction init
+    ```
 
-=== ":simple-python: main.py"
+Here you can see a very basic greeting action example that prints a greeting message when someone calls it with a `name` input parameter.
+
+=== ":simple-python: your-action/main.py"
 
     ```py
     import sys
@@ -43,11 +47,11 @@ Here you can see a very basic hello-world example action generated with `pyactio
             args: STDIN arguments
         """
 
-        name = io.read("name") #(1)
+        name = io.read("name")
 
         io.write(
             {
-              "phrase": f"Hi {name}!" #(2)
+              "phrase": f"Hi {name}!"
             }
         )
 
@@ -57,66 +61,40 @@ Here you can see a very basic hello-world example action generated with `pyactio
 
     ```
 
-    1.  This is how we read the input parameters from `with` statement in `.github/workflows/main.yml`:
+=== ":simple-github: .github/workflows/ci.yml"
 
-        ```yaml title=".github/workflows/main.yml" hl_lines="4" linenums="1"
+    ```yaml hl_lines="16-18 21"
+    name: Greeting Action
+
+    on:
+      push:
+        branches:
+          - main
+
+    jobs:
+      build:
+        runs-on: ubuntu-latest
+
+        name: Running the action
         steps:
-          - uses: you/your-action
-            with:
-              name: Sadra
-        ```
-
-    2.  Here is how we return data to the workflow, store it as an environment variable, and use it as input for other steps of the workflow.
-
-        ```yaml title=".github/workflows/main.yml" hl_lines="2 6 10" linenums="1"
-        steps:
-          - id: greetings
-            name: Using your-action
+          - name: Greetings
+            id: greetings
             uses: you/your-action
             with:
               name: Sadra
 
-          - name: Echo message
-            run: |
-              echo ${{ steps.greetings.outputs.phrase }}
-        ```
-
-=== ":simple-yaml: action.yml"
-
-    ```yaml
-    name: Greetings Action
-    description: This action greets whoever runs it
-    author: John Doe
-
-    branding:
-      icon: check
-      color: blue
-
-    runs:
-      using: docker
-      image: Dockerfile
-
-    inputs:
-      name:
-        required: false
-        description: the person/thing you want to greet
-        default: World
-
-    outputs:
-      phrase:
-        description: output variable
+          - name: Output
+            run: echo ${{ steps.greetings.outputs.phrase }}
     ```
 
-```plaintext title="Result"
+```plaintext title="Output" linenums="1"
+▶ Run echo Hi Sadra!
 Hi Sadra!
 ```
 
-Since `pyaction` is part of your action's dependencies, you have access to utilities that enable you to work with the repository/workflow information.
+Since `pyaction` is part of your action's dependencies, you have access to utilities that enable you to work with the repository/workflow information. You can find out more about these utils on the [Tutorial](tutorial.md) page.
 
 ## How It Works
 Custom GitHub Actions can be developed in different ways. PyAction uses the [Docker Container](https://docs.github.com/en/actions/creating-actions/about-custom-actions#docker-container-actions) method which is highly stable with Python environments. This way, you'll be able to specify the requirements for your actions and run them inside a lightweight isolated container with all the dependencies installed.
 
-## Next Steps
-I'm planning to expand PyAction's features and availability in other languages. Also trying to keep it up to date with the official changes that GitHub fellows make over on the GitHub Actions infrastructure.
-
-If you're interested in the idea, your contribution is welcome as always. Check out the [Contribution Guide](contributing.md) for more information.
+If you're interested in the idea and want to help, your contribution is welcome as always. Check out the [Contribution Guide](contributing.md) for more information.

@@ -1,10 +1,14 @@
 .md-header {
-    background-color: black;
+    background-color: #0B0113;
     box-shadow: none;
 }
 
 .md-tabs{
-    background-color: black;
+    background-color: #0B0113;
+}
+
+.md-main .rounded {
+    border-radius: 10px;
 }
 
 .md-footer{
@@ -12,12 +16,12 @@
 }
 
 .md-footer-meta{
-    background-color: black;
+    background-color: #0B0113;
 }
 
 .md-banner{
-    background: rgb(144,2,255);
-    background: linear-gradient(90deg, rgba(144,2,255,1) 0%, rgba(121,76,254,1) 100%);
+    background: rgb(30,24,91);
+    background: linear-gradient(90deg, rgba(30,24,91,1) 0%, rgba(44,59,150,1) 15%, rgba(144,2,255,1) 100%);
 }
 
 .md-banner a{
