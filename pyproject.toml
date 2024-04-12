@@ -3,12 +3,17 @@ requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "py_action"
+name = "pyaction"
 version = "0.4.1"
 description = "Create GitHub Actions in Python"
 authors = [{ name = "Sadra Yahyapour", email = "lnxpylnxpy@gmail.com" }]
 requires-python = ">=3.8"
-dependencies = ["copier >= 9.2", "click >= 8.1"]
+dependencies = [
+    "copier >= 9.2",
+    "click >= 8.1",
+    "pygithub >= 2.3.0",
+    "markdown-to-json == 2.1.0",
+]
 readme = { file = "README.md", content-type = "text/markdown" }
 license = { file = "LICENSE" }
 
