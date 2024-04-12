@@ -7,10 +7,6 @@
     background-color: #0B0113;
 }
 
-.md-main .rounded {
-    border-radius: 10px;
-}
-
 .md-footer{
     background-color: #14161b;
 }
@@ -27,4 +23,8 @@
 .md-banner a{
     color: white !important;
     text-decoration: underline;
+}
+
+.rounded {
+    border-radius: 10px;
 }
