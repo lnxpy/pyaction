@@ -1,2 +1,2 @@
-from pyaction.issues.connector import IssueForm
-from pyaction.issues.rendering import Template
+from pyaction.issues.connector import IssueForm  # noqa
+from pyaction.issues.rendering import IssueTemplate  # noqa
