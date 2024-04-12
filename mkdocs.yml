@@ -5,7 +5,8 @@ site_url: https://pyaction.imsadra.me/
 
 nav:
   - Introduction: index.md
-  - Demo: demo.md
+  - Quickstart: quickstart.md
+  - Tutorial: tutorial.md
   - Contributing: contributing.md
   - License: license.md
   - Contact: contact.md
@@ -40,11 +41,12 @@ theme:
         name: Switch to light mode
   icon:
     repo: fontawesome/brands/github
+    annotation: material/star-four-points-circle-outline
 
 plugins:
   - social:
       cards_layout_options:
-        background_color: "#7b4dff"
+        background_color: "#8F02FF"
         color: white
         font_family: Montserrat
   - search:
