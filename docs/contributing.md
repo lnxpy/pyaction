@@ -5,9 +5,9 @@ hide:
   - navigation
 ---
 
-Thanks for heading over to this index. I assume you're looking for a way to contributing to this project and as always, all your helps are welcome. Follow the instructions and enjoy contributing!
+Thanks for heading over to this page. I assume you're looking for a way to contribute to this project and as always, all your helps are welcome. Follow the instructions and enjoy contributing!
 
-!!! Note "Open an issue first please.."
+!!! Info "Open an issue first please.."
     I highly recommend you [open an issue](https://github.com/lnxpy/pyaction/issues/new/choose) first. Once we agree on the on-going conversation, then feel free to start working. :beers:
 
 ### Fork & Install
@@ -19,14 +19,14 @@ pip install pre-commit tox && pre-commit install
 
 Once you're all set and need to test your changes in the supported environments, simply run `tox` and it'll grab your changes and puts them into test.
 
-If you've changed the docs and want to see the results, run the following command and it'll serve your docs on [http://localhost:8000](http://localhost:8000).
+If you've changed the docs and want to see the results, run the following command and it'll serve the docs on [localhost:8000](http://localhost:8000).
 
 ```bash
-tox -e docs -- serve
+tox -e docs
 ```
 
 ??? Note "Access the `venv` that `tox` has created.."
-    If you need to access an environment with all the dev dependencies installed, run the following command and it'll create a virtualenv with all the requiremenets installed in it.
+    If you need to access an environment with all the dev dependencies installed, run the following command and it'll create a virtualenv with all the requirements installed in it.
 
     ```bash
     tox --devenv venv

@@ -5,7 +5,8 @@ site_url: https://pyaction.imsadra.me/
 
 nav:
   - Introduction: index.md
-  - Demo: demo.md
+  - Quickstart: quickstart.md
+  - Tutorial: tutorial.md
   - Contributing: contributing.md
   - License: license.md
   - Contact: contact.md
@@ -26,25 +27,26 @@ theme:
     - announce.dismiss
   palette:
     - scheme: default
-      primary: deep orange
-      accent: deep orange
+      primary: deep purple
+      accent: deep purple
       toggle:
         icon: material/sunglasses
         name: Switch to dark mode
 
     - scheme: slate
-      primary: deep orange
-      accent: deep orange
+      primary: deep purple
+      accent: deep purple
       toggle:
         icon: material/glasses
         name: Switch to light mode
   icon:
     repo: fontawesome/brands/github
+    annotation: material/star-four-points-circle-outline
 
 plugins:
   - social:
       cards_layout_options:
-        background_color: "#F95428"
+        background_color: "#8F02FF"
         color: white
         font_family: Montserrat
   - search:
@@ -90,3 +92,4 @@ markdown_extensions:
   - pymdownx.tabbed:
       alternate_style: true
   - tables
+  - pymdownx.mark

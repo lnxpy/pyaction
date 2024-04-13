@@ -1,0 +1,28 @@
+action_name:
+  type: str
+  help: Action name
+  placeholder: My Awesome Action
+
+action_slug:
+  type: str
+  help: Action's slug
+  default: "{{ action_name.lower().replace(' ', '-') }}"
+
+description:
+  type: str
+  help: Short description
+  placeholder: A short description..
+
+author_name:
+  type: str
+  help: Author's name
+  placeholder: John Doe
+
+include_cicd_testing:
+  type: bool
+  help: Include workflow testing pipeline
+  default: true
+
+_message_after_copy: |
+  ✨ Your action `{{ action_slug }}` has been created successfully!
+  🔗 Visit https://pyaction.imsadra.me/quickstart for a quick demonstration.

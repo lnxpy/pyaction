@@ -1,0 +1,22 @@
+name: {{ action_name }}
+description: {{ description }}
+author: {{ author_name }}
+
+branding:
+  icon: check
+  color: blue
+
+runs:
+  using: docker
+  image: Dockerfile
+
+inputs:
+  github_token:
+    description: The GitHub auth token
+    default: {{ "${{ github.token }}" }}
+    required: true
+
+  repository:
+    description: The repository name in the form of "<owner>/<repo>"
+    default: {{ "${{ github.repository }}" }}
+    required: true
