@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oooh+Baby&display=swap');
 
 .md-header {
     background-color: #0E1016;
@@ -55,6 +56,9 @@
     margin-top: 13px;
     font-style: italic;
     color: #b45dfa;
+    font-family: "Oooh Baby", cursive;
+    font-size: 22px;
+    font-weight: 700;
 }
 
 .md-main blockquote mark::before {

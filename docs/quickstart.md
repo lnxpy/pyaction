@@ -6,7 +6,7 @@ description: Hello-world Action Demo
 In this demo tutorial, we'll get our hands on a simple hello-world action.
 
 ## Initialization
-Let's generate our action and name it something unique so that we can [publish it to the marketplace](tutorial.md#publishing).
+Let's generate our action and name it something unique so that we can [publish it to the marketplace](tutorial.md#publishing-in-the-marketplace).
 
 To begin with, once you've installed `pyaction`, generate a base template for the action.
 
@@ -201,4 +201,4 @@ If you want to self-test your action on each `git push` event, you simply need t
     The `pyaction-hello-world` implementation in this tutorial is available [here](https://github.com/lnxpy/pyaction-hello-world). Feel free to look over it.
 
 ## Publish to Marketplace
-For more information about how you can ship your actions to the GitHub Marketplace, refer to the [publishing tutorial](tutorial.md#publishing) page section.
+For more information about how you can ship your actions to the GitHub Marketplace, refer to the [publishing tutorial](tutorial.md#publishing-in-the-marketplace) page section.

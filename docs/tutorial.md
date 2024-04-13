@@ -17,7 +17,7 @@ inputs:
 
 In a workflow, you may want your action to accept some data to work on. It can be done using the `pyaction.io.read()` function. It takes the variable name and looks inside the environment to find the corresponding value.
 
-In the following job step showcase, we're sending an API endpoint URL to our action and receiving it from that other side.
+In the following job step showcase, we're sending an API endpoint URL to our action and receiving it from the other side.
 
 ```yaml title=".github/workflows/ci.yml"
 steps:
@@ -80,7 +80,11 @@ In general, it would take three major steps to implement IO interactions inside 
 - Sending/receiving the parameters within the workflow.
 
 ## IssueForm
-Issue form templates allow developers to create specific structures for those who want to open issues on their repositories. As GitHub says, you can define different input types, validations, default assignees, and default labels for your issue forms. This capability makes it easier to use Issue Forms as the UI side of your services with the help of GitHub Actions.
+Issue form templates allow developers to create specific structures for those who want to open issues on their repositories.
+
+> You can define different input types, validations, default assignees, and default labels for your issue forms. ==GitHub Inc.==
+
+This capability makes it easier to use Issue Forms as the UI side of your services with the help of GitHub Actions.
 
 In PyAction, you are able to parse the issues that are created with issue forms and use the data inside them.
 

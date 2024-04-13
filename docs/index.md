@@ -9,7 +9,7 @@ title: Introduction
 
 ![version)](https://img.shields.io/github/v/tag/lnxpy/pyaction?label=Version&color=4E2DB7) [![Package Testing](https://github.com/lnxpy/pyaction/actions/workflows/testing.yml/badge.svg)](https://github.com/lnxpy/pyaction/actions/workflows/testing.yml) [![docs ci](https://github.com/lnxpy/pyaction/actions/workflows/docs.yml/badge.svg?branch=main)](https://github.com/lnxpy/pyaction/actions/workflows/docs.yml)
 
-PyAction helps you to create develop custom GitHub Actions using Python.
+PyAction helps you to create and develop custom GitHub Actions using Python.
 
 > Actions are individual tasks that you can combine to create jobs and customize your workflow. You can create your own actions, or use and customize actions shared by the GitHub community. ==GitHub Inc.==
 
