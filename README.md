@@ -1,4 +1,4 @@
-## PyAction [![docs ci](https://github.com/lnxpy/pyaction/actions/workflows/docs.yml/badge.svg?branch=main)](https://github.com/lnxpy/pyaction/actions/workflows/docs.yml) [![main](https://github.com/lnxpy/pyaction/actions/workflows/main.yml/badge.svg)](https://github.com/lnxpy/pyaction/actions/workflows/main.yml) ![version)](https://img.shields.io/github/v/tag/lnxpy/pyaction?label=Version)
+## PyAction ![version)](https://img.shields.io/github/v/tag/lnxpy/pyaction?label=Version) [![Package Testing](https://github.com/lnxpy/pyaction/actions/workflows/testing.yml/badge.svg)](https://github.com/lnxpy/pyaction/actions/workflows/testing.yml) [![docs ci](https://github.com/lnxpy/pyaction/actions/workflows/docs.yml/badge.svg?branch=main)](https://github.com/lnxpy/pyaction/actions/workflows/docs.yml)
 
 PyAction helps you to develop [GitHub Actions](https://docs.github.com/en/actions) using Python. It's delivered as an installable package with the ability to test the action locally before any deployment.
 

@@ -6,10 +6,7 @@ title: Introduction
 
 # Welcome to PyAction!
 
-![header](img/header.svg){ .rounded }
-
-![Python Versions](https://img.shields.io/pypi/pyversions/pyaction?color=4E2DB7)
-![PyPI - Version](https://img.shields.io/pypi/v/pyaction?color=4E2DB7&label=version)
+![version)](https://img.shields.io/github/v/tag/lnxpy/pyaction?label=Version&color=4E2DB7) [![Package Testing](https://github.com/lnxpy/pyaction/actions/workflows/testing.yml/badge.svg)](https://github.com/lnxpy/pyaction/actions/workflows/testing.yml) [![docs ci](https://github.com/lnxpy/pyaction/actions/workflows/docs.yml/badge.svg?branch=main)](https://github.com/lnxpy/pyaction/actions/workflows/docs.yml)
 
 PyAction helps you to create develop custom GitHub Actions using Python.
 
