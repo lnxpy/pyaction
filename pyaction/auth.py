@@ -24,7 +24,7 @@ class Auth:
             BrokenToken: if the `token` is broken or not valid
         """
         try:
-            _ = self.github.get_user().login
+            # _ = self.github.get_user().login
             self.is_authenticated = True
         except BadCredentialsException:
             raise BrokenToken(
