@@ -91,7 +91,7 @@ In PyAction, you are able to parse the issues that are created with issue forms 
 
 Consider the following issue form configuration. It contains two fields. A `textarea` named `Text` and a `dropdown` field that contains a few numeric values named `Sentences`.
 
-```yaml title=".github/ISSUE_TEMPlATE/text_summarize.yml"
+```yaml title=".github/ISSUE_TEMPLATE/text_summarize.yml"
 name: Text Summarization
 description: Summarize tens of paragraphs into a smaller amount of sections
 title: "AI: Text Summarization"
@@ -184,7 +184,7 @@ def main():
     auth.authenticate()
 
     repo = auth.github.get_repo(io.read("repository"))
-    user_input = IssueForm(repo=repo, number=io.read("issue_number")).render()
+    user_input = IssueForm(repo=repo, number=int(io.read("issue_number"))).render()
 
     # user_input = {
     #   "Text": "While many quantum experiments examine very small..",
