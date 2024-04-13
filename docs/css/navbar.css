@@ -1,10 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
+
 .md-header {
-    background-color: #0B0113;
+    background-color: #0E1016;
     box-shadow: none;
 }
 
 .md-tabs{
-    background-color: #0B0113;
+    background-color: #0E1016;
 }
 
 .md-footer{
@@ -12,7 +14,7 @@
 }
 
 .md-footer-meta{
-    background-color: #0B0113;
+    background-color: #0E1016;
 }
 
 .md-banner{
@@ -27,4 +29,36 @@
 
 .rounded {
     border-radius: 10px;
+}
+
+.md-main blockquote {
+  border-left: unset !important;
+  padding: 20px 0 20px 0;
+}
+.md-main blockquote:before {
+  opacity: 0.15;
+  z-index: -1;
+  content: open-quote;
+  font-family: manrope;
+  font-size: 11em;
+  line-height: 0.5em;
+  margin-left: -30px;
+  position: absolute;
+}
+.md-main blockquote p {
+  display: inline;
+}
+
+.md-main blockquote mark {
+    display: block;
+    background-color: unset;
+    margin-top: 13px;
+    font-style: italic;
+    color: #b45dfa;
+}
+
+.md-main blockquote mark::before {
+    color: #757575;
+    content: "—";
+    margin-right: 5px;
 }

@@ -3,7 +3,81 @@ description: Features and Implementations
 title: Tutorial
 ---
 
-This page contains the features and different implementations that you can have with the help of PyAction within your Python actions.
+This page contains the features and implementations that you can have within your Python actions.
+
+## Action Inputs & Outputs
+Action inputs and outputs must be defined inside the `your-action/action.yml` file first. The following example shows that our action only receives an input variable named `endpoint`.
+
+```yaml title="your-action/action.yml"
+inputs:
+  endpoint:
+    description: 'API Endpoint URL'
+    required: true
+```
+
+In a workflow, you may want your action to accept some data to work on. It can be done using the `pyaction.io.read()` function. It takes the variable name and looks inside the environment to find the corresponding value.
+
+In the following job step showcase, we're sending an API endpoint URL to our action and receiving it from that other side.
+
+```yaml title=".github/workflows/ci.yml"
+steps:
+  - name: Requesting
+    uses: you/your-action
+    with:
+      endpoint: somewhere.com/api/endpoint
+```
+
+```py title="your-action/main.py"
+from pyaction import io
+
+def main():
+  url = io.read("endpoint")
+  # url = "somewhere.com/api/endpoint"
+```
+
+Writing a value into the workflow is as easy as reading it. Use the `pyaction.io.write()` function to write as many variables as you want and access them within the workflow. Don't forget to define the output variables inside your `action.yml` file.
+
+```yaml title="your-action/action.yml"
+outputs:
+  first_name:
+    description: 'First Name'
+  last_name:
+    description: 'Last Name'
+  age:
+    description: 'Age'
+```
+
+```py title="your-action/main.py"
+from pyaction import io
+
+def main():
+  io.write(
+    {
+      "first_name": "John",
+      "last_name": "Doe",
+      "age": 20,
+    }
+  )
+```
+
+```yaml title=".github/workflows/ci.yml"
+steps:
+  - name: Providing variables
+    id: provider
+    uses: you/your-action
+
+  - name: Echoing variables
+    run: |
+      echo ${{ steps.provider.outputs.first_name }}
+      echo ${{ steps.provider.outputs.last_name }}
+      echo ${{ steps.provider.outputs.age }}
+```
+
+In general, it would take three major steps to implement IO interactions inside actions.
+
+- Defining the inputs/outputs inside the `action.yml` file.
+- Using `pyaction.io` to read/write the variable(s).
+- Sending/receiving the parameters within the workflow.
 
 ## IssueForm
 Issue form templates allow developers to create specific structures for those who want to open issues on their repositories. As GitHub says, you can define different input types, validations, default assignees, and default labels for your issue forms. This capability makes it easier to use Issue Forms as the UI side of your services with the help of GitHub Actions.

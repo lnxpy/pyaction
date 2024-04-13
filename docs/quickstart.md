@@ -19,7 +19,7 @@ And here would be the prompting for our action called "PyAction Hello World".
 ``` { .plaintext .no-copy }
 🎤 Action name
    PyAction Hello World
-🎤 c
+🎤 Action's slug
    pyaction-hello-world
 🎤 Short description
    This actions says Hello to you!
@@ -40,6 +40,7 @@ Copying from template version None
     create  pyaction-hello-world/main.py
 
 ✨ Your action `pyaction-hello-world` has been created successfully!
+🔗 Visit https://pyaction.imsadra.me/quickstart for a quick demonstration.
 ```
 
 Change your current directory to `pyaction-hello-world` to begin the development.
@@ -98,7 +99,7 @@ outputs:
     description: output message
 ```
 
-### Main Python File (`main.py`)
+### Main Executing File (`main.py`)
 This is the main Python file that gets executed when the workflow container gets triggered. In this file, we have access to all the input parameters that users have passed to us via `io.read()`. All we need to do is to retrieve the `name` and return the `phrase` that contains the greeting message.
 
 ```python title="pyaction-hello-world/main.py" linenums="1"

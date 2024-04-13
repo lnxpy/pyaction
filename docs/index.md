@@ -1,14 +1,21 @@
 ---
-description: Create Github Actions in Python
+description: Create Github Actions using Python
 title: Introduction
 ---
 
+
 # Welcome to PyAction!
+
+![header](img/header.svg){ .rounded }
 
 ![Python Versions](https://img.shields.io/pypi/pyversions/pyaction?color=4E2DB7)
 ![PyPI - Version](https://img.shields.io/pypi/v/pyaction?color=4E2DB7&label=version)
 
-PyAction helps you to develop custom GitHub Actions using Python. This documentation covers a tutorial and a demo hello-world action. Head to [Quickstart](quickstart.md) to see the demo project and create an action in a flash. :zap:
+PyAction helps you to create develop custom GitHub Actions using Python.
+
+> Actions are individual tasks that you can combine to create jobs and customize your workflow. You can create your own actions, or use and customize actions shared by the GitHub community. ==GitHub Inc.==
+
+This documentation covers a tutorial and a demo hello-world action. Head to [Quickstart](quickstart.md) to see the demo project and create an action in a flash. :zap:
 
 ## Easy to Setup
 Make sure you have `pip` and `python>=3.8` installed on your machine and install `pyaction`.
