@@ -175,7 +175,6 @@ steps:
 Now, to serialize the issue data coming from the workflow, we have to use `Auth` and `IssueForm` classes.
 
 ```py title="your-action/main.py"
-
 from pyaction.auth import Auth
 from pyaction.issues import IssueForm
 
@@ -185,7 +184,6 @@ from pyaction import io
 
 def main():
     auth = Auth(token=io.read("github_token"))
-    auth.authenticate()
 
     repo = auth.github.get_repo(io.read("repository"))
     user_input = IssueForm(repo=repo, number=int(io.read("issue_number"))).render()
