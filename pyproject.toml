@@ -38,3 +38,6 @@ filename = "pyproject.toml"
 
 [[tool.bumpversion.files]]
 filename = "pyaction/__init__.py"
+
+[[tool.bumpversion.files]]
+filename = "pyaction/template/{{action_slug}}/requirements.txt"
