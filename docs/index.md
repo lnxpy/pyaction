@@ -3,11 +3,9 @@ description: Create Github Actions using Python
 title: Introduction
 ---
 
-# Welcome to PyAction!
+# Welcome to PyAction! ![PyPI - Version](https://img.shields.io/pypi/v/pyaction?logo=pypi&logoColor=949DA5&label=Version&labelColor=2A3035&color=652DC7) [![Package Testing](https://github.com/lnxpy/pyaction/actions/workflows/testing.yml/badge.svg)](https://github.com/lnxpy/pyaction/actions/workflows/testing.yml) [![docs ci](https://github.com/lnxpy/pyaction/actions/workflows/docs.yml/badge.svg?branch=main)](https://github.com/lnxpy/pyaction/actions/workflows/docs.yml)
 
 ![header](img/header.svg){ .rounded }
-
-![version)](https://img.shields.io/github/v/tag/lnxpy/pyaction?label=Version&color=4E2DB7) [![Package Testing](https://github.com/lnxpy/pyaction/actions/workflows/testing.yml/badge.svg)](https://github.com/lnxpy/pyaction/actions/workflows/testing.yml) [![docs ci](https://github.com/lnxpy/pyaction/actions/workflows/docs.yml/badge.svg?branch=main)](https://github.com/lnxpy/pyaction/actions/workflows/docs.yml)
 
 PyAction helps you to create and develop custom GitHub Actions using Python.
 
