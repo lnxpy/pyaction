@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Oooh+Baby&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Handlee&display=swap');
 
 .md-header {
     background-color: #0E1016;
@@ -55,9 +55,9 @@
     background-color: unset;
     margin-top: 13px;
     font-style: italic;
-    color: #b45dfa;
-    font-family: "Oooh Baby", cursive;
-    font-size: 22px;
+    color: #b35dfab2;
+    font-family: "Handlee", cursive;
+    font-size: 19px;
     font-weight: 700;
 }
 
