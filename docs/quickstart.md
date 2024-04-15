@@ -153,7 +153,7 @@ pip freeze >> requirements.txt
 ```
 
 ## Testing Locally
-To test our action locally, we need to create a `.env` file in the root path of our action directory. We have to add the `INPUT_NAME` environment variable into it. To make sure that `message` has the exact content that we want, I simply add a temporary `print(message)` line at the end of the `main()` function and delete it after testing my action.
+To [test our action locally](tutorial.md#local-testing), we need to create a `.env` file in the root path of our action directory. We have to add the `INPUT_NAME` environment variable into it. To make sure that `message` has the exact content that we want, I simply add a temporary `print(message)` line at the end of the `main()` function and delete it after testing my action.
 
 ```bash
 touch .env

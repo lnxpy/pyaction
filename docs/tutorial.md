@@ -79,6 +79,51 @@ In general, it would take three major steps to implement IO interactions inside 
 - Using `pyaction.io` to read/write the variable(s).
 - Sending/receiving the parameters within the workflow.
 
+## Local Testing
+There is a `run` command that runs the `main.py` file in your action based on the variables defined within the `.env` file in the root path of your action (next to the `main.py`).
+
+!!! Note "If you don't have the `.env` file.."
+    Feel free to create a `.env` file inside your action directory if it doesn't exist.
+
+    ```bash
+    touch .env
+    ```
+
+Consider the following `action.yml`.
+
+```yaml title="your-action/action.yml"
+inputs:
+  name:
+    description: Full name
+    required: true
+  home_town:
+    description: Hometown address
+    required: true
+```
+
+Variables defined in the `.env` file are supposed to be the inputs of your action. Thus, they all have to be uppercase and start with `INPUT_`.  If you want to test an action with those inputs, then the `.env` file would look like this.
+
+```bash title="your-action/.env" linenums="1"
+INPUT_NAME=Sadra
+INPUT_HOME_TOWN=Shiraz
+```
+
+Use print statements inside the `main.py` file to ensure your action is working fine.
+
+```python title="your-action/main.py"
+...
+
+def main():
+  ...
+  print(io.read("name")) # --> Sadra
+```
+
+Now, test your action with the following command.
+
+```
+pyaction run
+```
+
 ## IssueForm
 Issue form templates allow developers to create specific structures for those who want to open issues on their repositories.
 
@@ -86,16 +131,16 @@ Issue form templates allow developers to create specific structures for those wh
 
 This capability makes it easier to use Issue Forms as the UI side of your services with the help of GitHub Actions.
 
-In PyAction, you are able to parse the issues that are created with issue forms and use the data inside them.
+In PyAction, you are able to parse the issues that are created with Issue Forms and use the data inside them.
 
 ### Creating an issue form
 
 !!! Note "If you want to start using GitHub Issue Forms.."
-    Check out this [official tutorial](https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests/syntax-for-issue-forms) on how you can make issue forms, different types, and validations for your repository.
+    Check out this [official tutorial](https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests/syntax-for-issue-forms) on how you can make Issue Forms, different types, and validations for your repository.
 
-Consider the following issue form configuration. It contains two fields. A `textarea` named `Text` and a `dropdown` field that contains a few numeric values named `Sentences`.
+Consider the following Issue Form configuration. It contains two fields. A `textarea` named `Text` and a `dropdown` field that contains a few numeric values named `Sentences`.
 
-```yaml title=".github/ISSUE_TEMPLATE/text_summarize.yml"
+```yaml title=".github/ISSUE_TEMPLATE/text_summarize.yml" linenums="1"
 name: Text Summarization
 description: Summarize tens of paragraphs into a smaller amount of sections
 title: "AI: Text Summarization"
@@ -194,6 +239,17 @@ def main():
     # }
 ```
 
+### Testing
+To test an action that uses Issue Forms, you should have the following three input variables inside your `.env` file.
+
+```env title="your-action/.env"
+INPUT_GITHUB_TOKEN=<token>
+INPUT_ISSUE_NUMBER=<number>
+INPUT_REPOSITORY=<repo>
+...
+```
+
+You have to generate a [Personal GitHub Access Token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens) as `INPUT_GITHUB_TOKEN` with the proper permissions. The `INPUT_ISSUE_NUMBER` is the ID/number of an example issue that you want your action to work on. Probably an issue that is created via Issue Forms.
 
 ## Publishing in the Marketplace
 [GitHub Marketplace](https://github.com/marketplace) is a platform where tens of actions and GitHub Apps are being hosted and developed. You can also publish your own actions and third-party applications there too.
