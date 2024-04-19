@@ -79,6 +79,12 @@ In general, it would take three major steps to implement IO interactions inside 
 - Using `pyaction.io` to read/write the variable(s).
 - Sending/receiving the parameters within the workflow.
 
+## Dependency Management
+If your action is powered by some Python packages, simply add them inside the `requirements.txt` file.
+
+!!! Danger "Keep in mind.."
+    Do not remove the `pyaction` dependency from the `requirements.txt` file as it is the initial package that your action requires to run.
+
 ## Running Additional Commands
 If your action requires some additional system dependencies or you want to execute some bash commands inside the action container, include them inside a `script.sh` file in the root path of your action. It'll be executed before the `requirements.txt` installation.
 
