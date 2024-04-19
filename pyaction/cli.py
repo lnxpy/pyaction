@@ -5,17 +5,17 @@ import click
 from copier import run_copy
 
 from pyaction import __version__
-
-TEMPLATE_PATH = os.path.join(os.path.dirname(__file__), "template")
+from pyaction.consts import TEMPLATE_PATH, PROJECT_NAME
 
 
 @click.version_option(
     __version__,
-    prog_name="PyAction",
-    message="%(prog)s ~ version %(version)s",
+    prog_name=PROJECT_NAME,
+    message="%(prog)s - v%(version)s",
 )
 @click.group()
 def cli():
+    """Create GitHub Actions Using Python"""
     pass
 
 
@@ -27,14 +27,9 @@ def init(path: str = ".") -> None:
 
 @cli.command("run", help="uses .env to run the action locally")
 def run() -> None:
-    try:
-        subprocess.check_call(
-            "env $(cat .env | xargs) python main.py",
-            shell=True,
-            stderr=subprocess.DEVNULL,
+    if not os.path.isfile(".env"):
+        raise FileNotFoundError(
+            "Make sure you have the `.env` file inside the root path of your action directory."
         )
-    except subprocess.CalledProcessError:
-        click.echo(
-            "Make sure the `.env` file is properly configured based on `action.yml`.",
-            err=True,
-        )
+
+    subprocess.check_call("env $(cat .env | xargs) python main.py", shell=True)
