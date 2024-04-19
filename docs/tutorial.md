@@ -79,6 +79,9 @@ In general, it would take three major steps to implement IO interactions inside 
 - Using `pyaction.io` to read/write the variable(s).
 - Sending/receiving the parameters within the workflow.
 
+## Running Additional Commands
+If your action requires some additional system dependencies or you want to execute some bash commands inside the action container, include them inside a `script.sh` file in the root path of your action. It'll be executed before the `requirements.txt` installation.
+
 ## Local Testing
 There is a `run` command that runs the `main.py` file in your action based on the variables defined within the `.env` file in the root path of your action (next to the `main.py`).
 
