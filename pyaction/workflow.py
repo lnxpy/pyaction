@@ -1,5 +1,6 @@
-import inspect
-from typing import Callable, Dict
+from typing import Callable, Dict, get_type_hints
+
+from pydantic import TypeAdapter
 
 from pyaction import io
 
@@ -19,17 +20,25 @@ class PyAction:
             >>> @workflow.action
             >>> def my_action(...): ...
 
-            Define your action input parameters as the `my_action` arguments.
+            Define your action input parameters as the action function arguments.
 
             >>> ...
             >>> def my_action(name: str, age: int): ...
         """
 
         def wrapper():
-            sig = inspect.signature(func)
-            param_names = list(sig.parameters.keys())
-            param_values = [io.read(param) for param in param_names]
-            return func(*param_values)
+            params = {
+                key: (type_, io.read(key))
+                for key, type_ in get_type_hints(func).items()
+                if key != "return"
+            }
+
+            retyped_params = {}
+
+            for key, item in params.items():
+                retyped_params[key] = TypeAdapter(item[0]).validate_python(item[1])
+
+            return func(**retyped_params)
 
         return wrapper()
 
