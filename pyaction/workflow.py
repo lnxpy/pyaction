@@ -3,6 +3,7 @@ from typing import Callable, Dict, get_type_hints
 from pydantic import TypeAdapter
 
 from pyaction import io
+from pyaction.utils import check_parameters
 
 
 class PyAction:
@@ -20,11 +21,13 @@ class PyAction:
             >>> @workflow.action
             >>> def my_action(...): ...
 
-            Define your action input parameters as the action function arguments.
+            Define your action input parameters as the annotated action function arguments.
 
             >>> ...
             >>> def my_action(name: str, age: int): ...
         """
+
+        check_parameters(func)
 
         def wrapper():
             params = {
