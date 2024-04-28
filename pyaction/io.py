@@ -1,11 +1,12 @@
+from __future__ import annotations
+
 import os
-from typing import Dict
 
 from pyaction.consts import GITHUB_OUTPUT
 from pyaction.exceptions import WorkflowParameterNotFound
 
 
-def write(context: Dict[str, str]) -> None:
+def write(context: dict[str, str]) -> None:
     """writes the key(s) (as variables) and value(s) (as values) to the output env variable
 
     Args:
