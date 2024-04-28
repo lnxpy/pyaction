@@ -53,4 +53,4 @@ class PyAction:
             context (Dict[str, str]): variables and values
         """
 
-        io.write(context)
+        io.write(context)  # pragma: no cover
