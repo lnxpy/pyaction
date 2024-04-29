@@ -6,23 +6,24 @@ from pyaction.consts import GITHUB_OUTPUT
 from pyaction.exceptions import WorkflowParameterNotFound
 
 
-def write(context: dict[str, str]) -> None:
+def write(context: dict[str, str], stream: str = GITHUB_OUTPUT) -> None:
     """writes the key(s) (as variables) and value(s) (as values) to the output env variable
 
     Args:
-        context: variables and values
+        context (dict[str, str]): variables and values
+        stream (str, optional): output stream. Defaults to GITHUB_OUTPUT.
 
     Examples:
         In your project, use this function like:
 
         >>> write({"name": "John", "age": 20, ...})
 
-        `name` will be the variable name and `John` is the value.
+        `name` and `age` are the variables and `John` and `20` are the values.
     """
 
-    with open(GITHUB_OUTPUT, "a") as _env:
+    with open(stream, "w+") as streamline:
         for var, val in context.items():
-            _env.write(f"{var}={val}\r\n")
+            streamline.write(f"{var}={val}\r\n")
 
 
 def read(param: str) -> str | int | bool | None:
@@ -31,8 +32,11 @@ def read(param: str) -> str | int | bool | None:
     Args:
         param (str): parameter name
 
+    Raises:
+        WorkflowParameterNotFound: if the `param` is missing
+
     Returns:
-        str | int | bool: value of `param`
+        str | int | bool | None: value of `param`
     """
 
     prefix = "INPUT_"
