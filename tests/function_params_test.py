@@ -1,10 +1,9 @@
 import pytest
 
-from pyaction.utils import check_parameters
 from pyaction.exceptions import NotAnnotated
+from pyaction.utils import check_parameters
 
 from .test_objects import action_functions
-
 
 test_annotation_objects = [
     (action_functions.not_annotated, False),

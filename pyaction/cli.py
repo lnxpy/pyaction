@@ -5,7 +5,7 @@ import click
 from copier import run_copy
 
 from pyaction import __version__
-from pyaction.consts import TEMPLATE_PATH, PROJECT_NAME
+from pyaction.consts import PROJECT_NAME, TEMPLATE_PATH
 
 
 @click.version_option(

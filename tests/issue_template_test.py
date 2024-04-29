@@ -2,7 +2,6 @@ import pytest
 
 from pyaction.issues.rendering import IssueTemplate
 
-
 test_data = [
     (
         "tests/test_data/issue_template_1.md",
