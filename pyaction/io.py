@@ -2,16 +2,15 @@ from __future__ import annotations
 
 import os
 
-from pyaction.consts import GITHUB_OUTPUT
 from pyaction.exceptions import WorkflowParameterNotFound
 
 
-def write(context: dict[str, str], stream: str = GITHUB_OUTPUT) -> None:
+def write(context: dict[str, str], stream: str) -> None:
     """writes the key(s) (as variables) and value(s) (as values) to the output env variable
 
     Args:
         context (dict[str, str]): variables and values
-        stream (str, optional): output stream. Defaults to GITHUB_OUTPUT.
+        stream (str, optional): output stream
 
     Examples:
         In your project, use this function like:
