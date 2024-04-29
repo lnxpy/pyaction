@@ -6,14 +6,14 @@ from pyaction.exceptions import NotAnnotated
 from .test_objects import action_functions
 
 
-annotation_test_objects = [
+test_annotation_objects = [
     (action_functions.not_annotated, False),
     (action_functions.poorly_annotated, False),
     (action_functions.well_annotated, True),
 ]
 
 
-@pytest.mark.parametrize("function,valid", annotation_test_objects)
+@pytest.mark.parametrize("function,valid", test_annotation_objects)
 def test_function_params_annotation(function, valid):
     if not valid:
         with pytest.raises(NotAnnotated):
