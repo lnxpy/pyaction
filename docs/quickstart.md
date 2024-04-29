@@ -26,12 +26,15 @@ And here would be the prompting for our action called "PyAction Hello World".
 🎤 Author's name
    John Doe
 🎤 Include workflow testing pipeline
-   No
+   Yes
 
 Copying from template version None
  identical  .
     create  pyaction-hello-world
     create  pyaction-hello-world/requirements.txt
+    create  pyaction-hello-world/.github
+    create  pyaction-hello-world/.github/workflows
+    create  pyaction-hello-world/.github/workflows/test.yml
     create  pyaction-hello-world/README.md
     create  pyaction-hello-world/action.yml
     create  pyaction-hello-world/Dockerfile
@@ -100,88 +103,56 @@ outputs:
 ```
 
 ### Main Executing File (`main.py`)
-This is the main Python file that gets executed when the workflow container gets triggered. In this file, we have access to all the input parameters that users have passed to us via `io.read()`. All we need to do is to retrieve the `name` and return the `phrase` that contains the greeting message.
+This is the main Python file that gets executed when the workflow container gets triggered. In this file, we have access to all the input parameters that users have passed to us from the `my_action` parameters. All we need to do is to retrieve the `name` and return the `phrase` that contains the greeting message.
 
 ```python title="pyaction-hello-world/main.py" linenums="1"
-import sys
-from typing import List
+from pyaction import PyAction
 
-from pyaction import io
-
-
-def main(args: List[str]) -> None:
-    """main function
-
-    Args:
-        args: STDIN arguments
-    """
-
-    # reading the `name` input parameter
-    name = io.read("name")
-    message = f"Hello {name}!"
-
-    # writing the `phrase` greeting message to output
-    io.write({"phrase": message})
-
-    # Now, people can $echo `phrase`
+workflow = PyAction()
 
 
-if __name__ == "__main__":
-    main(sys.argv[1:])
-
+@workflow.action
+def my_action(name: str) -> None:
+    workflow.write(
+        {
+            "phrase": f"Hi {name}!"
+        }
+    )
 ```
 
-## Dependencies
-Follow this section if your action needs some additional packages installed in order to work.
+## Usage & Deployment
+In order to use the action within the repository, update the `test.yml` file in the following way.
 
-??? Note "Using a virtual environment"
-    This step is optional. If you want to, you can install the dependencies inside a virtualenv other than your global site-packages. Make sure that you've activated your environment.
+```yaml title="pyaction-hello-world/.github/workflow/test.yml" linenums="1"
+name: Greeting Action
 
-    ```bash
-    virtualenv venv
-    source venv/bin/activate
-    ```
+on:
+  push:
+    branches:
+      - main
 
-```bash
-pip install PACK1 PACK2==v1.2.3 PACK3
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    name: Running the action
+    steps:
+
+      - name: checkout
+        uses: actions/checkout@v4
+
+      - name: Greetings
+        id: greetings
+        uses: ./
+        with:
+          name: Jane
+
+      - name: Output
+        run: echo ${{ steps.greetings.outputs.phrase }}
 ```
 
-Finally, don't forget to update the `requirements.txt` file.
+This way, whenever a push event happens to the `main` branch, this pipeline gets triggered and tests the action with the value `Jane` as the `name` input parameter.
 
-```bash
-pip freeze >> requirements.txt
-```
-
-## Testing Locally
-To [test our action locally](tutorial.md#local-testing), we need to create a `.env` file in the root path of our action directory. We have to add the `INPUT_NAME` environment variable into it. To make sure that `message` has the exact content that we want, I simply add a temporary `print(message)` line at the end of the `main()` function and delete it after testing my action.
-
-```bash
-touch .env
-```
-
-```bash title="pyaction-hello-world/.env"
-INPUT_NAME=Armita
-```
-
-```python title="pyaction-hello-world/main.py" hl_lines="3"
-def main(args: List[str]) -> None:
-    ...
-    print(message)
-```
-
-To test the action, run the following command.
-
-```bash
-pyaction run
-```
-
-And here would be the result.
-
-``` { .bash .no-copy }
-Hello Armita!
-```
-
-## Deployment & Usage
 Stage and commit the changes that you've made.
 
 ```bash
@@ -194,8 +165,6 @@ Tag your current state and push your changes to the repository.
 git tag v0.1.0
 git push origin main --tags
 ```
-
-If you want to self-test your action on each `git push` event, you simply need to answer `y` to the `Include workflow testing pipeline` prompt so it'll create a workflow for your action. Make sure to modify it and update its inputs in `.github/workflows/test.yml`.
 
 !!! Note "This demo is also live.."
     The `pyaction-hello-world` implementation in this tutorial is available [here](https://github.com/lnxpy/pyaction-hello-world). Feel free to look over it.

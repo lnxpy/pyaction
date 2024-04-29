@@ -32,36 +32,23 @@ pyaction --help
     pyaction init
     ```
 
-Here you can see a very basic greeting action example that prints a greeting message when someone calls it with a `name` input parameter.
+Here you can see a very basic greeting action example that returns a greeting message to the workflow when someone calls it with a `name` input parameter.
 
 === ":simple-python: your-action/main.py"
 
     ```py
-    import sys
-    from typing import List
+    from pyaction import PyAction
 
-    from pyaction import io
+    workflow = PyAction()
 
 
-    def main(args: List[str]) -> None:
-        """main function
-
-        Args:
-            args: STDIN arguments
-        """
-
-        name = io.read("name")
-
-        io.write(
+    @workflow.action
+    def my_action(name: str) -> None:
+        workflow.write(
             {
-              "phrase": f"Hi {name}!"
+                "phrase": f"Hi {name}!"
             }
         )
-
-
-    if __name__ == "__main__":
-        main(sys.argv[1:])
-
     ```
 
 === ":simple-github: .github/workflows/ci.yml"
@@ -95,7 +82,7 @@ Here you can see a very basic greeting action example that prints a greeting mes
 Hi Sadra!
 ```
 
-Since `pyaction` is part of your action's dependencies, you have access to utilities that enable you to work with the repository/workflow information. You can find out more about these utils on the [Tutorial](tutorial.md) page.
+Since `pyaction` is part of your action's dependencies, you have access to utilities that enable you to work with the repository/workflow data. You can find out more about these utils on the [Tutorial](tutorial.md) page.
 
 ## How It Works
 Custom GitHub Actions can be developed in different ways. PyAction uses the [Docker Container](https://docs.github.com/en/actions/creating-actions/about-custom-actions#docker-container-actions) method which is highly stable with Python environments. This way, you'll be able to specify the requirements for your actions and run them inside a lightweight isolated container with all the dependencies installed.

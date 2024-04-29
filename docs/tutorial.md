@@ -6,7 +6,7 @@ title: Tutorial
 This page contains the features and implementations that you can have within your Python actions.
 
 ## Action Inputs & Outputs
-Action inputs and outputs must be defined inside the `your-action/action.yml` file first. The following example shows that our action only receives an input variable named `endpoint`.
+Action inputs and outputs must be defined inside the `your-action/action.yml` file first. The following example shows that our action receives only one input variable named `endpoint`.
 
 ```yaml title="your-action/action.yml"
 inputs:
@@ -15,9 +15,9 @@ inputs:
     required: true
 ```
 
-In a workflow, you may want your action to accept some data to work on. It can be done using the `pyaction.io.read()` function. It takes the variable name and looks inside the environment to find the corresponding value.
+In a workflow, you may want your action to accept some data to work on. It can be done by specifying them as the action function's parameters. They must be specified with the right annotation types.
 
-In the following job step showcase, we're sending an API endpoint URL to our action and receiving it from the other side.
+In the following job step showcase, we're sending an API endpoint URL and a SSL status to our action and receiving it from the other side.
 
 ```yaml title=".github/workflows/ci.yml"
 steps:
@@ -25,17 +25,37 @@ steps:
     uses: you/your-action
     with:
       endpoint: somewhere.com/api/endpoint
+      is_ssl: false
 ```
 
 ```py title="your-action/main.py"
-from pyaction import io
+from pyaction import PyAction
 
-def main():
-  url = io.read("endpoint")
-  # url = "somewhere.com/api/endpoint"
+
+workflow = PyAction()
+
+@workflow.action
+def my_action(endpoint: str, is_ssl: bool) -> None:
+  # endpoint (str): somewhere.com/api/endpoint
+  # is_ssl (bool): False
 ```
 
-Writing a value into the workflow is as easy as reading it. Use the `pyaction.io.write()` function to write as many variables as you want and access them within the workflow. Don't forget to define the output variables inside your `action.yml` file.
+!!! Note "PyAction uses [Pydantic](https://google.com) to.."
+    Validate and parse the input parameter values based on their annotations. You can easily notice the difference with this small change applied to the above example's `is_ssl` annotation.
+
+    ```py title="your-action/main.py"
+    from pyaction import PyAction
+
+
+    workflow = PyAction()
+
+    @workflow.action
+    def my_action(endpoint: str, is_ssl: str) -> None:
+      # endpoint (str): somewhere.com/api/endpoint
+      # is_ssl (str): false
+    ```
+
+Writing a value into the workflow is as easy as reading it. Use the `workflow.write()` method to write as many variables as you want and access them within the workflow. Don't forget to define the output variables inside your `action.yml` file.
 
 ```yaml title="your-action/action.yml"
 outputs:
@@ -48,10 +68,14 @@ outputs:
 ```
 
 ```py title="your-action/main.py"
-from pyaction import io
+from pyaction import PyAction
 
-def main():
-  io.write(
+
+workflow = PyAction()
+
+@workflow.action
+def my_action() -> None:
+  workflow.write(
     {
       "first_name": "John",
       "last_name": "Doe",
@@ -76,20 +100,30 @@ steps:
 In general, it would take three major steps to implement IO interactions inside actions.
 
 - Defining the inputs/outputs inside the `action.yml` file.
-- Using `pyaction.io` to read/write the variable(s).
-- Sending/receiving the parameters within the workflow.
+- Reading the inputs from the action function parameters.
+- Writing the values into the workflow with the `workflow.write()` method.
 
 ## Dependency Management
-If your action is powered by some Python packages, simply add them inside the `requirements.txt` file.
+If your action is powered by some Python packages, simply add them into the `your-action/requirements.txt` file.
 
 !!! Danger "Keep in mind.."
     Do not remove the `pyaction` dependency from the `requirements.txt` file as it is the initial package that your action requires to run.
 
 ## Running Additional Commands
-If your action requires some additional system dependencies or you want to execute some bash commands inside the action container, include them inside a `script.sh` file in the root path of your action. It'll be executed before the `requirements.txt` installation.
+If your action requires some additional system dependencies or you want to execute some bash commands inside the action container, include them inside a `your-action/script.sh` file. It'll be executed before the `your-action/requirements.txt` installation.
+
+``` hl_lines="5"
+your-action/
+├── Dockerfile
+├── README.md
+├── action.yml
+├── script.sh
+├── main.py
+└── requirements.txt
+```
 
 ## Local Testing
-There is a `run` command that runs the `main.py` file in your action based on the variables defined within the `.env` file in the root path of your action (next to the `main.py`).
+There is a `run` command that runs the `main.py` file in your action based on the variables defined within the `your-action/.env` file.
 
 !!! Note "If you don't have the `.env` file.."
     Feel free to create a `.env` file inside your action directory if it doesn't exist.
@@ -113,18 +147,24 @@ inputs:
 Variables defined in the `.env` file are supposed to be the inputs of your action. Thus, they all have to be uppercase and start with `INPUT_`.  If you want to test an action with those inputs, then the `.env` file would look like this.
 
 ```bash title="your-action/.env" linenums="1"
-INPUT_NAME=Sadra
-INPUT_HOME_TOWN=Shiraz
+INPUT_NAME=John
+INPUT_HOME_TOWN=Chicago
 ```
 
-Use print statements inside the `main.py` file to ensure your action is working fine.
+The `workflow.write()` tends to write the variables into the `GITHUB_OUTPUT` by default. Set a custom value for the `stream` attribute to see the results in a file or to the STDOUT.
 
-```python title="your-action/main.py"
+```python title="your-action/main.py" hl_lines="1 10"
+import sys
+
 ...
-
-def main():
-  ...
-  print(io.read("name")) # --> Sadra
+@workflow.action
+def my_action(name: str, home_town: str) -> None:
+  workflow.write(
+    {
+      "result": f"{name} lives in {home_town}!",
+    },
+    stream=sys.stdout, # or stream="output_file.txt"
+  )
 ```
 
 Now, test your action with the following command.
@@ -133,8 +173,15 @@ Now, test your action with the following command.
 pyaction run
 ```
 
+``` title="Output"
+result=John lives in Chicago!
+```
+
+!!! Danger "Don't forget to.."
+    Remove the `stream` attribute in the production.
+
 ## IssueForm
-Issue form templates allow developers to create specific structures for those who want to open issues on their repositories.
+Issue form templates allow developers to create specific structures for the users who want to open issues on their repositories.
 
 > You can define different input types, validations, default assignees, and default labels for your issue forms. ==GitHub Inc.==
 
@@ -228,28 +275,29 @@ steps:
 
 Now, to serialize the issue data coming from the workflow, we have to use `Auth` and `IssueForm` classes.
 
-```py title="your-action/main.py"
+```py title="your-action/main.py" hl_lines="2 3"
+from pyaction import PyAction
 from pyaction.auth import Auth
 from pyaction.issues import IssueForm
 
-from pyaction import io
+workflow = PyAction()
 
-...
 
-def main():
-    auth = Auth(token=io.read("github_token"))
+@workflow.action
+def my_action(github_token: str, repository: str, issue_number: int) -> None:
+    auth = Auth(token=github_token)
 
-    repo = auth.github.get_repo(io.read("repository"))
-    user_input = IssueForm(repo=repo, number=int(io.read("issue_number"))).render()
+    repo = auth.github.get_repo(repository)
+    user_input = IssueForm(repo=repo, number=issue_number).render()
 
-    # user_input = {
+    # user_input (dict): {
     #   "Text": "While many quantum experiments examine very small..",
     #   "Sentences": "2"
     # }
 ```
 
 ### Testing
-To test an action that uses Issue Forms, you should have the following three input variables inside your `.env` file.
+To test an action that uses Issue Forms, you should define the following three input variables inside your `.env` file.
 
 ```env title="your-action/.env"
 INPUT_GITHUB_TOKEN=<token>
@@ -258,7 +306,7 @@ INPUT_REPOSITORY=<repo>
 ...
 ```
 
-You have to generate a [Personal GitHub Access Token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens) as `INPUT_GITHUB_TOKEN` with the proper permissions. The `INPUT_ISSUE_NUMBER` is the ID/number of an example issue that you want your action to work on. Probably an issue that is created via Issue Forms.
+You have to generate a [Personal GitHub Access Token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens) as `INPUT_GITHUB_TOKEN` *with the proper permissions*. The `INPUT_ISSUE_NUMBER` is the ID/number of an example issue that you want your action to work on. Probably an issue that is created via Issue Forms.
 
 ## Publishing in the Marketplace
 [GitHub Marketplace](https://github.com/marketplace) is a platform where tens of actions and GitHub Apps are being hosted and developed. You can also publish your own actions and third-party applications there too.
@@ -269,4 +317,4 @@ To do so, make sure that your action's slug is a unique phrase. Thus, we have to
 * `https://github.com/orgs/<action_slug>`
 * `https://github.com/marketplace/actions/<action_slug>`
 
-For the further steps, I suggest you follow the [official docs](https://docs.github.com/en/actions/creating-actions/publishing-actions-in-github-marketplace).
+For the further few steps, I suggest you follow the [official docs](https://docs.github.com/en/actions/creating-actions/publishing-actions-in-github-marketplace).
