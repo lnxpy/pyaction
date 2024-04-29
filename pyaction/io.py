@@ -1,6 +1,9 @@
 from __future__ import annotations
 
 import os
+import sys
+from contextlib import nullcontext
+from io import TextIOWrapper
 
 from pyaction.exceptions import WorkflowParameterNotFound
 
@@ -20,7 +23,9 @@ def write(context: dict[str, str], stream: str) -> None:
         `name` and `age` are the variables and `John` and `20` are the values.
     """
 
-    with open(stream, "w+") as streamline:
+    with nullcontext(sys.stdout) if isinstance(stream, TextIOWrapper) else open(
+        stream, "w+"
+    ) as streamline:
         for var, val in context.items():
             streamline.write(f"{var}={val}\r\n")
 

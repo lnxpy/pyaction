@@ -151,7 +151,7 @@ INPUT_NAME=John
 INPUT_HOME_TOWN=Chicago
 ```
 
-The `workflow.write()` tends to write the variables into the `GITHUB_OUTPUT` by default. Set a custom value for the `stream` attribute to see the results in a file or to the STDOUT.
+The `workflow.write()` intends to write the variables into the `GITHUB_OUTPUT` by default. Set a custom value for the `stream` attribute to see the results in a file or to the STDOUT.
 
 ```python title="your-action/main.py" hl_lines="1 10"
 import sys
