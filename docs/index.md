@@ -3,7 +3,7 @@ description: Create Github Actions using Python
 title: Introduction
 ---
 
-# Welcome to PyAction! ![PyPI - Version](https://img.shields.io/pypi/v/pyaction?logo=pypi&logoColor=949DA5&label=Version&labelColor=2A3035&color=652DC7) ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/pyaction?logo=python&logoColor=949DA5&label=Python&labelColor=2A3035&color=652DC7) [![Package Testing](https://github.com/lnxpy/pyaction/actions/workflows/testing.yml/badge.svg)](https://github.com/lnxpy/pyaction/actions/workflows/testing.yml) [![docs ci](https://github.com/lnxpy/pyaction/actions/workflows/docs.yml/badge.svg?branch=main)](https://github.com/lnxpy/pyaction/actions/workflows/docs.yml)
+# Welcome to PyAction! ![Version](https://img.shields.io/pypi/v/pyaction?logo=pypi&logoColor=949DA5&label=Version&labelColor=2A3035&color=652DC7) ![Python Versions](https://img.shields.io/pypi/pyversions/pyaction?logo=python&logoColor=949DA5&label=Python&labelColor=2A3035&color=652DC7) [![codecov](https://codecov.io/gh/lnxpy/pyaction/graph/badge.svg?token=59XAONX5S1)](https://codecov.io/gh/lnxpy/pyaction) [![Package Testing](https://github.com/lnxpy/pyaction/actions/workflows/testing.yml/badge.svg)](https://github.com/lnxpy/pyaction/actions/workflows/testing.yml) [![docs ci](https://github.com/lnxpy/pyaction/actions/workflows/docs.yml/badge.svg?branch=main)](https://github.com/lnxpy/pyaction/actions/workflows/docs.yml)
 
 ![header](img/header.svg){ .rounded }
 
@@ -32,36 +32,23 @@ pyaction --help
     pyaction init
     ```
 
-Here you can see a very basic greeting action example that prints a greeting message when someone calls it with a `name` input parameter.
+Here you can see a very basic greeting action example that returns a greeting message to the workflow when someone calls it with a `name` input parameter.
 
 === ":simple-python: your-action/main.py"
 
     ```py
-    import sys
-    from typing import List
+    from pyaction import PyAction
 
-    from pyaction import io
+    workflow = PyAction()
 
 
-    def main(args: List[str]) -> None:
-        """main function
-
-        Args:
-            args: STDIN arguments
-        """
-
-        name = io.read("name")
-
-        io.write(
+    @workflow.action
+    def my_action(name: str) -> None:
+        workflow.write(
             {
-              "phrase": f"Hi {name}!"
+                "phrase": f"Hi {name}!"
             }
         )
-
-
-    if __name__ == "__main__":
-        main(sys.argv[1:])
-
     ```
 
 === ":simple-github: .github/workflows/ci.yml"
@@ -95,7 +82,7 @@ Here you can see a very basic greeting action example that prints a greeting mes
 Hi Sadra!
 ```
 
-Since `pyaction` is part of your action's dependencies, you have access to utilities that enable you to work with the repository/workflow information. You can find out more about these utils on the [Tutorial](tutorial.md) page.
+Since `pyaction` is part of your action's dependencies, you have access to utilities that enable you to work with the repository/workflow data. You can find out more about these utils on the [Tutorial](tutorial.md) page.
 
 ## How It Works
 Custom GitHub Actions can be developed in different ways. PyAction uses the [Docker Container](https://docs.github.com/en/actions/creating-actions/about-custom-actions#docker-container-actions) method which is highly stable with Python environments. This way, you'll be able to specify the requirements for your actions and run them inside a lightweight isolated container with all the dependencies installed.

@@ -1,6 +1,6 @@
-from collections import OrderedDict
+from __future__ import annotations
 
-import markdown_to_json
+import re
 
 
 class IssueTemplate:
@@ -12,12 +12,18 @@ class IssueTemplate:
         """
         self.context = context
 
-    def to_dict(self) -> OrderedDict:
+    def to_dict(self) -> dict[str, str]:
         """convering the issue body to dictionary
 
         Returns:
-            OrderedDict: issue body in form of dictionary
+            Dict[str, str]: issue body in form of dictionary
         """
 
-        result = markdown_to_json.dictify(self.context)
+        pattern = re.compile("### ([^\n]+)\n\n([^#]+)")
+        matches = pattern.findall(self.context)
+
+        result = {}
+        for match in matches:
+            result[match[0].strip()] = match[1].strip()
+
         return result

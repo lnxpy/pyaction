@@ -1,27 +1,33 @@
+from __future__ import annotations
+
 import os
-from typing import Dict
+from contextlib import nullcontext
+from io import TextIOWrapper
 
 from pyaction.consts import GITHUB_OUTPUT
 from pyaction.exceptions import WorkflowParameterNotFound
 
 
-def write(context: Dict[str, str]) -> None:
-    """writes the key(s) (as variables) and value(s) (as values) to the output env variable
+def write(context: dict[str, str], stream: str | TextIOWrapper = GITHUB_OUTPUT) -> None:
+    """writes the key(s) (as variables) and value(s) (as values) to the output stream
 
     Args:
-        context: variables and values
+        context (dict[str, str]): variables and values
+        stream (str, TextIOWrapper): output stream (set to STDOUT locally and `GITHUB_OUTPUT` on production)
 
     Examples:
-        In your project, use this function like:
+        In your action, use this function like:
 
         >>> write({"name": "John", "age": 20, ...})
 
-        `name` will be the variable name and `John` is the value.
+        `name` and `age` are the variables and `John` and `20` are the values.
     """
 
-    with open(GITHUB_OUTPUT, "a") as _env:
+    with nullcontext(stream) if isinstance(stream, TextIOWrapper) else open(
+        stream, "w+"
+    ) as streamline:
         for var, val in context.items():
-            _env.write(f"{var}={val}\r\n")
+            streamline.write(f"{var}={val}\r\n")
 
 
 def read(param: str) -> str | int | bool | None:
@@ -30,8 +36,11 @@ def read(param: str) -> str | int | bool | None:
     Args:
         param (str): parameter name
 
+    Raises:
+        WorkflowParameterNotFound: if the `param` is missing
+
     Returns:
-        str | int | bool: value of `param`
+        str | int | bool | None: value of `param`
     """
 
     prefix = "INPUT_"

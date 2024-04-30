@@ -1,4 +1,3 @@
-from collections import OrderedDict
 from unittest.mock import MagicMock
 
 import pytest
@@ -17,4 +16,4 @@ def mock_repository():
 def test_issue_form_render(mock_repository):
     issue_form = IssueForm(mock_repository, 123)
     rendered_issue = issue_form.render()
-    assert isinstance(rendered_issue, OrderedDict)
+    assert isinstance(rendered_issue, dict)

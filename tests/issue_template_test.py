@@ -2,7 +2,6 @@ import pytest
 
 from pyaction.issues.rendering import IssueTemplate
 
-
 test_data = [
     (
         "tests/test_data/issue_template_1.md",
@@ -12,7 +11,7 @@ test_data = [
     (
         "tests/test_data/issue_template_2.md",
         ["Text", "Sentences"],
-        ["```\nData..\n```", "6"],
+        ["```markdown\nData..\n```", "6"],
     ),
     (
         "tests/test_data/issue_template_3.md",
@@ -28,7 +27,7 @@ test_data = [
             "A bug happened!",
             "1.0.3 (Edge)",
             "Safari, Microsoft Edge",
-            "```\nsome data\n```",
+            "```shell\nsome data\n```",
         ],
     ),
 ]

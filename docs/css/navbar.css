@@ -33,36 +33,31 @@
 }
 
 .md-main blockquote {
-  border-left: unset !important;
+  border: unset !important;
+  border-radius: 4px;
   padding: 20px 0 20px 0;
 }
+
+.md-main blockquote p {
+  display: inline;
+}
+
 .md-main blockquote:before {
-  opacity: 0.15;
+  opacity: 0.1;
   z-index: -1;
   content: open-quote;
   font-family: manrope;
-  font-size: 11em;
-  line-height: 0.5em;
-  margin-left: -30px;
+  font-size: 14em;
+  line-height: 0.53em;
+  margin-left: -25px;
   position: absolute;
-}
-.md-main blockquote p {
-  display: inline;
 }
 
 .md-main blockquote mark {
     display: block;
     background-color: unset;
-    margin-top: 13px;
+    margin: 15px 0 0 20px;
     font-style: italic;
-    color: #b35dfab2;
-    font-family: "Handlee", cursive;
     font-size: 19px;
-    font-weight: 700;
-}
-
-.md-main blockquote mark::before {
-    color: #757575;
-    content: "—";
-    margin-right: 5px;
+    font-weight: 150;
 }
