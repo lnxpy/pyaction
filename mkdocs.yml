@@ -46,7 +46,7 @@ theme:
 plugins:
   - social:
       cards_layout_options:
-        background_color: "#8F02FF"
+        background_color: "#3C35A4"
         color: white
         font_family: Montserrat
   - search:
