@@ -3,7 +3,6 @@ from typing import Callable, Dict, get_type_hints
 from pydantic import TypeAdapter
 
 from pyaction import io
-from pyaction.consts import GITHUB_OUTPUT
 from pyaction.utils import check_parameters
 
 
@@ -47,12 +46,11 @@ class PyAction:
         return wrapper()
 
     @staticmethod
-    def write(context: Dict[str, str], stream: str = GITHUB_OUTPUT) -> None:
-        """writes the `context` env var(s) into the `stream` streamline
+    def write(context: Dict[str, str]) -> None:
+        """writes the `context` env var(s) into the streamline
 
         Args:
             context (Dict[str, str]): variables and values
-            stream (str): output stream. Defaults to GITHUB_OUTPUT.
         """
 
-        io.write(context, stream)  # pragma: no cover
+        io.write(context)  # pragma: no cover

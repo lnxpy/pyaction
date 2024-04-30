@@ -1,29 +1,29 @@
 from __future__ import annotations
 
 import os
-import sys
 from contextlib import nullcontext
 from io import TextIOWrapper
 
+from pyaction.consts import GITHUB_OUTPUT
 from pyaction.exceptions import WorkflowParameterNotFound
 
 
-def write(context: dict[str, str], stream: str) -> None:
-    """writes the key(s) (as variables) and value(s) (as values) to the output env variable
+def write(context: dict[str, str], stream: str | TextIOWrapper = GITHUB_OUTPUT) -> None:
+    """writes the key(s) (as variables) and value(s) (as values) to the output stream
 
     Args:
         context (dict[str, str]): variables and values
-        stream (str, optional): output stream
+        stream (str, TextIOWrapper): output stream (set to STDOUT locally and `GITHUB_OUTPUT` on production)
 
     Examples:
-        In your project, use this function like:
+        In your action, use this function like:
 
         >>> write({"name": "John", "age": 20, ...})
 
         `name` and `age` are the variables and `John` and `20` are the values.
     """
 
-    with nullcontext(sys.stdout) if isinstance(stream, TextIOWrapper) else open(
+    with nullcontext(stream) if isinstance(stream, TextIOWrapper) else open(
         stream, "w+"
     ) as streamline:
         for var, val in context.items():

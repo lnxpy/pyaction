@@ -1,4 +1,5 @@
 import os
+import sys
 from enum import Enum
 
 
@@ -26,4 +27,4 @@ TEMPLATE_PATH = os.path.join(BASE_URL, "template")
 
 
 # GitHub Action's workflow output environment variable
-GITHUB_OUTPUT = os.environ.get("GITHUB_OUTPUT", os.devnull)
+GITHUB_OUTPUT = os.environ.get("GITHUB_OUTPUT", sys.stdout)
