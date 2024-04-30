@@ -1,0 +1,3 @@
+ignore:
+  - "pyaction/auth.py"
+  - "pyaction/cli.py"
