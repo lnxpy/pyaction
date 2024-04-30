@@ -123,7 +123,7 @@ def my_action(name: str) -> None:
 ## Usage & Deployment
 In order to use the action within the repository, update the `test.yml` file in the following way.
 
-```yaml title="pyaction-hello-world/.github/workflow/test.yml" linenums="1"
+```yaml title="pyaction-hello-world/.github/workflows/test.yml" linenums="1"
 name: Greeting Action
 
 on:
