@@ -40,7 +40,7 @@ def my_action(endpoint: str, is_ssl: bool) -> None:
   # is_ssl (bool): False
 ```
 
-!!! Note "PyAction uses [Pydantic](https://google.com) to.."
+!!! Note "PyAction uses [Pydantic](https://pydantic.dev/) to.."
     Validate and parse the input parameter values based on their annotations. You can easily notice the difference with this small change applied to the above example's `is_ssl` annotation.
 
     ```py title="your-action/main.py" hl_lines="7 9"
