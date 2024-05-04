@@ -27,17 +27,17 @@ theme:
     - announce.dismiss
   palette:
     - scheme: default
-      primary: deep purple
-      accent: deep purple
+      primary: indigo
+      accent: indigo
       toggle:
-        icon: material/sunglasses
+        icon: octicons/sun-16
         name: Switch to dark mode
 
     - scheme: slate
-      primary: deep purple
-      accent: deep purple
+      primary: indigo
+      accent: indigo
       toggle:
-        icon: material/glasses
+        icon: octicons/moon-16
         name: Switch to light mode
   icon:
     repo: fontawesome/brands/github
@@ -64,7 +64,7 @@ extra:
       link: https://imsadra.me
 
 extra_css:
-  - css/navbar.css
+  - css/style.css
 
 markdown_extensions:
   - attr_list
