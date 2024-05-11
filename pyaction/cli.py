@@ -20,9 +20,8 @@ def cli():
 
 
 @cli.command("init", help="creates a basic action template (recommended for starting)")
-@click.argument("path", default=".")
-def init(path: str = ".") -> None:
-    run_copy(TEMPLATE_PATH, path)
+def init() -> None:
+    run_copy(TEMPLATE_PATH)
 
 
 @cli.command("run", help="uses .env to run the action locally")
