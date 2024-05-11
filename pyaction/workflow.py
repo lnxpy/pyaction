@@ -8,28 +8,27 @@ from pyaction.utils import check_parameters
 
 class PyAction:
     @staticmethod
-    def action(func: Callable):
+    def action() -> Callable:
         """action decorator
 
-        Args:
-            func (Callable): action function
-
         Examples:
-            In the `main.py` file, use this decorator to define your action like this:
+            use this action decorator in the following way:
 
             >>> workflow = PyAction()
-            >>> @workflow.action
-            >>> def my_action(...): ...
+            >>> @workflow.action()
+            >>> def your_action(): ...
 
-            Define your action input parameters as the annotated action function arguments.
+            you should define your action input parameters as the arguments of your function..
 
-            >>> ...
-            >>> def my_action(name: str, age: int): ...
+            >>> @workflow.action()
+            >>> def your_action(name: str, age: int, is_student: bool): ...
+
+        Returns:
+            Callable: the wrapper action
         """
 
-        check_parameters(func)
-
-        def wrapper():
+        def wrapper(func: Callable):
+            check_parameters(func)
             params = {
                 key: (type_, io.read(key))
                 for key, type_ in get_type_hints(func).items()
@@ -43,7 +42,7 @@ class PyAction:
 
             return func(**retyped_params)
 
-        return wrapper()
+        return wrapper
 
     @staticmethod
     def write(context: Dict[str, str]) -> None:
