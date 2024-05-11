@@ -13,7 +13,7 @@ class IssueTemplate:
         self.context = context
 
     def to_dict(self) -> dict[str, str]:
-        """convering the issue body to dictionary
+        """converting the issue body to dictionary
 
         Returns:
             Dict[str, str]: issue body in form of dictionary
