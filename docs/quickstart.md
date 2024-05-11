@@ -111,7 +111,7 @@ from pyaction import PyAction
 workflow = PyAction()
 
 
-@workflow.action
+@workflow.action()
 def my_action(name: str) -> None:
     workflow.write(
         {

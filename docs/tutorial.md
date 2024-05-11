@@ -34,7 +34,7 @@ from pyaction import PyAction
 
 workflow = PyAction()
 
-@workflow.action
+@workflow.action()
 def my_action(endpoint: str, is_ssl: bool) -> None:
   # endpoint (str): somewhere.com/api/endpoint
   # is_ssl (bool): False
@@ -49,7 +49,7 @@ def my_action(endpoint: str, is_ssl: bool) -> None:
 
     workflow = PyAction()
 
-    @workflow.action
+    @workflow.action()
     def my_action(endpoint: str, is_ssl: str) -> None:
       # endpoint (str): somewhere.com/api/endpoint
       # is_ssl (str): false
@@ -73,7 +73,7 @@ from pyaction import PyAction
 
 workflow = PyAction()
 
-@workflow.action
+@workflow.action()
 def my_action() -> None:
   workflow.write(
     {
@@ -155,7 +155,7 @@ The `workflow.write()` intends to write the variables into the [`GITHUB_OUTPUT`]
 
 ```python title="your-action/main.py"
 ...
-@workflow.action
+@workflow.action()
 def my_action(name: str, home_town: str) -> None:
   workflow.write(
     {
@@ -279,7 +279,7 @@ from pyaction.issues import IssueForm
 workflow = PyAction()
 
 
-@workflow.action
+@workflow.action()
 def my_action(github_token: str, repository: str, issue_number: int) -> None:
     auth = Auth(token=github_token)
 
