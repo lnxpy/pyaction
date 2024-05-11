@@ -9,18 +9,11 @@ from pyaction.exceptions import WorkflowParameterNotFound
 
 
 def write(context: dict[str, str], stream: str | TextIOWrapper = GITHUB_OUTPUT) -> None:
-    """writes the key(s) (as variables) and value(s) (as values) to the output stream
+    """writes the key(s) (as variables) and value(s) (as values) into the output stream
 
     Args:
         context (dict[str, str]): variables and values
-        stream (str, TextIOWrapper): output stream (set to STDOUT locally and `GITHUB_OUTPUT` on production)
-
-    Examples:
-        In your action, use this function like:
-
-        >>> write({"name": "John", "age": 20, ...})
-
-        `name` and `age` are the variables and `John` and `20` are the values.
+        stream (str, TextIOWrapper): output stream (set to STDOUT locally, but `GITHUB_OUTPUT` on production)
     """
 
     with nullcontext(stream) if isinstance(stream, TextIOWrapper) else open(
