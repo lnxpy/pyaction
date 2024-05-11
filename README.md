@@ -2,6 +2,22 @@
 
 PyAction helps you to develop [GitHub Actions](https://docs.github.com/en/actions) using Python. It's delivered as an installable package with the ability to test the action locally before any deployment.
 
+```python
+from pyaction import PyAction
+
+
+workflow = PyAction.workflow()
+
+
+@workflow.action()
+def greetings_action(name: str, age: int) -> None:
+    workflow.write(
+        {
+            "phrase": f"Hello {name}. You are {age}!"
+        }
+    )
+```
+
 Check out the [official docs](https://pyaction.imsadra.me) for more detailed information. There is also a [Quickstart](https://pyaction.imsadra.me/quickstart) demo tutorial that walks you through a simple hello-world action.
 
 ### Requirements
