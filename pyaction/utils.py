@@ -21,7 +21,7 @@ def check_parameters(func: Callable) -> None:
     for param_name, param in signature.parameters.items():
         if param.default != inspect.Parameter.empty:
             logger.warning(
-                f"Prameter `{param_name}` in the action function `{func.__name__}` has gotten the default value `{param.default}` which has no effect. "
+                f"Parameter `{param_name}` in the action function `{func.__name__}` has gotten the default value `{param.default}` which has no effect. "
                 "Set the default value(s) inside the `action.yml` instead."
             )
 
