@@ -28,3 +28,12 @@ TEMPLATE_PATH = os.path.join(BASE_URL, "template")
 
 # GitHub Action's workflow output environment variable
 GITHUB_OUTPUT = os.environ.get("GITHUB_OUTPUT", sys.stdout)
+
+# Multi-line format
+DELIMITER = "EOF"
+
+MULTILINE_OUTPUT = f"""
+{{variable}}<<{DELIMITER}
+"{{value}}"
+{DELIMITER}
+"""
