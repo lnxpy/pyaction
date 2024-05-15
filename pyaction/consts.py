@@ -34,6 +34,6 @@ DELIMITER = "EOF"
 
 MULTILINE_OUTPUT = f"""
 {{variable}}<<{DELIMITER}
-"{{value}}"
+{{value}}
 {DELIMITER}
 """
