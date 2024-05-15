@@ -1,0 +1,22 @@
+name: Testing Action
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  Testing:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Using the testing action
+        uses: ./testing_action
+        id: action
+        with:
+          test_name: TEST NAME
+          test_age: 20
+
+      - name: Show message
+        run: echo ${{ steps.action.outputs.message }}

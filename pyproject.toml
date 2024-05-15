@@ -42,6 +42,9 @@ docs = ["mkdocs-material", "cairosvg", "pillow"]
 Documentation = "https://pyaction.imsadra.me"
 Repository = "https://github.com/lnxpy/pyaction"
 
+[tool.setuptools.packages.find]
+exclude = ["test*"]
+
 [tool.bumpversion]
 current_version = "0.6.1"
 commit = "true"
