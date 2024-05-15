@@ -1,4 +1,8 @@
-exclude: "pyaction/template"
+exclude: |
+  (?x)(
+      ^pyaction/template/|
+      ^testing_action
+  )
 
 repos:
   - repo: "https://github.com/pre-commit/pre-commit-hooks"
