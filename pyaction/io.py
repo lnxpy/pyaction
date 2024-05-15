@@ -4,7 +4,7 @@ import os
 from contextlib import nullcontext
 from io import TextIOWrapper
 
-from pyaction.consts import GITHUB_OUTPUT
+from pyaction.consts import GITHUB_OUTPUT, MULTILINE_OUTPUT
 from pyaction.exceptions import WorkflowParameterNotFound
 
 
@@ -20,7 +20,10 @@ def write(context: dict[str, str], stream: str | TextIOWrapper = GITHUB_OUTPUT) 
         stream, "w+"
     ) as streamline:
         for var, val in context.items():
-            streamline.write(f"{var}={val}\r\n")
+            if "\n" in val:
+                streamline.write(MULTILINE_OUTPUT.format(variable=var, value=val))
+            else:
+                streamline.write(f"{var}={val}\r\n")
 
 
 def read(param: str) -> str | int | bool | None:
