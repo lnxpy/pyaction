@@ -1,4 +1,4 @@
-from typing import Callable, Dict, get_type_hints
+from typing import Any, Callable, Dict, get_type_hints
 
 from pydantic import TypeAdapter
 
@@ -10,18 +10,6 @@ class PyAction:
     @staticmethod
     def action() -> Callable:
         """action decorator
-
-        Examples:
-            use this action decorator in the following way:
-
-            >>> workflow = PyAction()
-            >>> @workflow.action()
-            >>> def your_action(): ...
-
-            you should define your action input parameters as the arguments of your function..
-
-            >>> @workflow.action()
-            >>> def your_action(name: str, age: int, is_student: bool): ...
 
         Returns:
             Callable: the wrapper action
@@ -45,11 +33,11 @@ class PyAction:
         return wrapper
 
     @staticmethod
-    def write(context: Dict[str, str]) -> None:
+    def write(context: Dict[str, Any]) -> None:
         """writes the `context` env var(s) into the streamline
 
         Args:
-            context (Dict[str, str]): variables and values
+            context (Dict[str, Any]): variables and values
         """
 
         io.write(context)  # pragma: no cover

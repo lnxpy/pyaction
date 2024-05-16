@@ -6,7 +6,9 @@ def test_action_decorator(monkeypatch):
     monkeypatch.setenv("INPUT_AGE", "30")
     monkeypatch.setenv("INPUT_IS_STUDENT", "false")
 
-    @PyAction.action()
+    workflow = PyAction()
+
+    @workflow.action()
     def my_action(name: str, age: int, is_student: bool):
         return (f"{name} is {age} years old", is_student)
 
