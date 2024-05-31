@@ -15,7 +15,7 @@ from pyaction.consts import PROJECT_NAME, TEMPLATE_PATH
 )
 @click.group()
 def cli():
-    """Create GitHub Actions Using Python"""
+    """Create GitHub Actions using Python"""
     pass
 
 
