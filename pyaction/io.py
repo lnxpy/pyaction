@@ -30,7 +30,7 @@ def write(context: dict[str, str], stream: str | TextIOWrapper = GITHUB_OUTPUT) 
                     var,
                     str(val),
                     str(type(val)),
-                    f"${{{{ steps.STEP-ID.outputs.{var} }}}}",
+                    f"${{{{ steps.STEP_ID.outputs.{var} }}}}",
                 )
 
         console.print(table)

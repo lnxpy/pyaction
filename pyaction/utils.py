@@ -43,7 +43,7 @@ def create_output_table() -> Table:
     table = Table(show_lines=True)
 
     table.add_column(
-        "Name",
+        "Variable",
         justify="center",
         style="blue bold",
         vertical="middle",
@@ -57,7 +57,7 @@ def create_output_table() -> Table:
     table.add_column(
         "Type",
         justify="center",
-        style="rgb(249,38,114)",
+        style="rgb(249,38,114) italic",
         vertical="middle",
     )
     table.add_column(
