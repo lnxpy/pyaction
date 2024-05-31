@@ -1,6 +1,8 @@
 import inspect
 from typing import Callable
 
+from rich.table import Table
+
 from pyaction.exceptions import NotAnnotated
 from pyaction.logger import setup_logger
 
@@ -29,3 +31,40 @@ def check_parameters(func: Callable) -> None:
             raise NotAnnotated(
                 f"Parameter `{param_name}` in the action function `{func.__name__}` is not annotated."
             )
+
+
+def create_output_table() -> Table:
+    """returns a `rich.Table` output table
+
+    Returns:
+        Table: rich table with static columns
+    """
+
+    table = Table(show_lines=True)
+
+    table.add_column(
+        "Name",
+        justify="center",
+        style="blue bold",
+        vertical="middle",
+    )
+    table.add_column(
+        "Value",
+        justify="center",
+        style="green",
+        vertical="middle",
+    )
+    table.add_column(
+        "Type",
+        justify="center",
+        style="rgb(249,38,114)",
+        vertical="middle",
+    )
+    table.add_column(
+        "Workflow Usage",
+        justify="center",
+        style="magenta",
+        vertical="middle",
+    )
+
+    return table

@@ -4,8 +4,13 @@ import os
 from contextlib import nullcontext
 from io import TextIOWrapper
 
+from rich.console import Console
+
 from pyaction.consts import GITHUB_OUTPUT, MULTILINE_OUTPUT
 from pyaction.exceptions import WorkflowParameterNotFound
+from pyaction.utils import create_output_table
+
+console = Console()
 
 
 def write(context: dict[str, str], stream: str | TextIOWrapper = GITHUB_OUTPUT) -> None:
@@ -13,17 +18,29 @@ def write(context: dict[str, str], stream: str | TextIOWrapper = GITHUB_OUTPUT) 
 
     Args:
         context (dict[str, str]): variables and values
-        stream (str, TextIOWrapper): output stream (set to STDOUT locally, but `GITHUB_OUTPUT` on production)
+        stream (str, TextIOWrapper): output stream (set to STDOUT locally, but `GITHUB_OUTPUT` on cloud)
     """
 
-    with nullcontext(stream) if isinstance(stream, TextIOWrapper) else open(
-        stream, "w+"
-    ) as streamline:
-        for var, val in context.items():
-            if "\n" in val:
-                streamline.write(MULTILINE_OUTPUT.format(variable=var, value=val))
-            else:
-                streamline.write(f"{var}={val}\r\n")
+    if isinstance(stream, TextIOWrapper):  # running locally
+        table = create_output_table()
+
+        with nullcontext(stream) as streamline:
+            for var, val in context.items():
+                table.add_row(
+                    var,
+                    str(val),
+                    str(type(val)),
+                    f"${{{{ steps.STEP-ID.outputs.{var} }}}}",
+                )
+
+        console.print(table)
+    else:  # running on GitHub Runner
+        with open(stream, "+w") as streamline:
+            for var, val in context.items():
+                if "\n" in val:
+                    streamline.write(MULTILINE_OUTPUT.format(variable=var, value=val))
+                else:
+                    streamline.write(f"{var}={val}\r\n")
 
 
 def read(param: str) -> str | int | bool | None:
