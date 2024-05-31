@@ -1,11 +1,14 @@
 import os
+import sys
 import tempfile
 
 import pytest
+from rich.console import Console
 
 from pyaction import io
 from pyaction.consts import MULTILINE_OUTPUT
 from pyaction.exceptions import WorkflowParameterNotFound
+from pyaction.utils import create_output_table
 
 test_env_vars = [
     ("INPUT_FOO", "foo", "Alice"),
@@ -67,3 +70,31 @@ def test_write_multiline_to_stream(context, expected):
         content = file.read()
 
     assert content == expected
+
+
+test_stdout_env_var_context = [
+    (
+        {"name": "Alex"},
+        ["name", "Alex", str(str), "${{ steps.STEP_ID.outputs.name }}"],
+    ),
+    (
+        {"name": "Joe"},
+        ["name", "Joe", str(str), "${{ steps.STEP_ID.outputs.name }}"],
+    ),
+]
+
+
+@pytest.mark.parametrize("vars,cells", test_stdout_env_var_context)
+def test_write_to_stdout(capsys, vars, cells):
+    table = create_output_table()
+    console = Console()
+
+    table.add_row(*cells)
+
+    io.write(vars, stream=sys.stdout)
+    result_capture = capsys.readouterr()
+
+    console.print(table)
+    expected_capture = capsys.readouterr()
+
+    assert result_capture.out == expected_capture.out
