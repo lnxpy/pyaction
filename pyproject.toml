@@ -9,8 +9,6 @@ description = "Create GitHub Actions using Python"
 authors = [{ name = "Sadra Yahyapour", email = "lnxpylnxpy@gmail.com" }]
 requires-python = ">=3.8"
 dependencies = [
-    "copier >= 9.2",
-    "click >= 8.1",
     "pydantic >= 2.7.0",
     "pygithub >= 2.3.0",
 ]
@@ -37,6 +35,11 @@ pyaction = "pyaction.cli:cli"
 [project.optional-dependencies]
 dev = ["coverage", "pytest-cookies"]
 docs = ["mkdocs-material", "cairosvg", "pillow"]
+cli = [
+    "copier >= 9.2",
+    "click >= 8.1",
+    "rich >= 13.7.1",
+]
 
 [project.urls]
 Documentation = "https://pyaction.imsadra.me"
