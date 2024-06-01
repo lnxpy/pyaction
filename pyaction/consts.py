@@ -1,11 +1,11 @@
 import os
 import sys
-from enum import StrEnum
+from enum import Enum
 from io import TextIOWrapper
 
 
 # color enum class used by loggers
-class Color(StrEnum):
+class Color(Enum):
     GREY = "\x1b[38;20m"
     YELLOW = "\x1b[33;20m"
     RED = "\x1b[31;20m"
