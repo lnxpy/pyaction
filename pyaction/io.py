@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import os
-from contextlib import nullcontext
 from io import TextIOWrapper
 
 from rich.console import Console
@@ -37,9 +36,7 @@ def write(
             )
         console.print(table)
     else:
-        with nullcontext(stream) if isinstance(stream, TextIOWrapper) else open(
-            stream, "w+"
-        ) as streamline:
+        with open(stream, "+w") as streamline:
             for var, val in context.items():
                 if "\n" in val:
                     streamline.write(MULTILINE_OUTPUT.format(variable=var, value=val))
