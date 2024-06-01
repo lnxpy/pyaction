@@ -17,7 +17,7 @@ This documentation covers a tutorial and a demo hello-world action. Head to [Qui
 Make sure you have `pip` and `python>=3.8` installed on your machine and install `pyaction`.
 
 ```
-pip install -U pyaction[cli]
+pip install -U "pyaction[cli]"
 ```
 
 Now, execute the following command to see all the subcommands and options.
