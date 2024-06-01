@@ -6,11 +6,9 @@ from io import TextIOWrapper
 
 from rich.console import Console
 
-from pyaction.consts import GITHUB_OUTPUT, MULTILINE_OUTPUT
+from pyaction.consts import DEBUG_MODE, GITHUB_OUTPUT, MULTILINE_OUTPUT
 from pyaction.exceptions import WorkflowParameterNotFound
 from pyaction.utils import create_output_table
-
-console = Console()
 
 
 def write(context: dict[str, str], stream: str | TextIOWrapper = GITHUB_OUTPUT) -> None:
@@ -21,8 +19,9 @@ def write(context: dict[str, str], stream: str | TextIOWrapper = GITHUB_OUTPUT) 
         stream (str, TextIOWrapper): output stream (set to STDOUT locally, but `GITHUB_OUTPUT` on cloud)
     """
 
-    if isinstance(stream, TextIOWrapper):  # running locally
+    if DEBUG_MODE:
         table = create_output_table()
+        console = Console()
 
         with nullcontext(stream) as streamline:
             for var, val in context.items():
@@ -34,7 +33,7 @@ def write(context: dict[str, str], stream: str | TextIOWrapper = GITHUB_OUTPUT) 
                 )
 
         console.print(table)
-    else:  # running on GitHub Runner
+    else:
         with open(stream, "+w") as streamline:
             for var, val in context.items():
                 if "\n" in val:

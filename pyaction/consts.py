@@ -25,9 +25,11 @@ BASE_URL = os.path.dirname(__file__)
 # path to the copier template
 TEMPLATE_PATH = os.path.join(BASE_URL, "template")
 
+# Debug mode (default to True)
+DEBUG_MODE = False if os.environ.get("PYACTION_DEBUG_MODE") == "false" else True
 
 # GitHub Action's workflow output environment variable
-GITHUB_OUTPUT = os.environ.get("GITHUB_OUTPUT", sys.stdout)
+GITHUB_OUTPUT = sys.stdout if DEBUG_MODE else os.environ["GITHUB_OUTPUT"]
 
 # Multi-line format
 DELIMITER = "EOF"
