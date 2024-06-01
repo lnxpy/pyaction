@@ -8,6 +8,6 @@ def testing_action(test_name: str, test_age: int) -> None:
     workflow.write(
         {
             "message": f"{test_name=} | {test_age=}",
-            "multiline_message": f"{test_name=}\n\r{test_age=}",
+            "multiline_message": f"{test_name=}\n{test_age=}",
         }
     )

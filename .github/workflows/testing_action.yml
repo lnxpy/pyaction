@@ -20,3 +20,6 @@ jobs:
 
       - name: Show message
         run: echo ${{ steps.action.outputs.message }}
+
+      - name: Show multi-line message
+        run: echo ${{ steps.action.outputs.multiline_message }}
