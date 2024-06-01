@@ -16,6 +16,13 @@ def greetings_action(name: str, age: int) -> None:
             "phrase": f"Hello {name}. You are {age}!"
         }
     )
+
+# $ pyaction run
+# ┏━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+# ┃ Variable ┃          Value          ┃     Type      ┃           Workflow Usage            ┃
+# ┡━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
+# │  phrase  │ Hello Jane. You are 20! │ <class 'str'> │ ${{ steps.STEP_ID.outputs.phrase }} │
+# └──────────┴─────────────────────────┴───────────────┴─────────────────────────────────────┘
 ```
 
 Check out the [official docs](https://pyaction.imsadra.me) for more detailed information. There is also a [Quickstart](https://pyaction.imsadra.me/quickstart) demo tutorial that walks you through a simple hello-world action.
