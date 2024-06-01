@@ -123,7 +123,7 @@ your-action/
 ```
 
 ## Local Testing
-There is a `run` command that runs the `main.py` file in your action based on the variables defined within the `your-action/.env` file.
+There is a `run` command that runs the `main.py` file in your action based on the variables defined within the `your-action/.env`. Ultimately, it shows a table filled with the variables available from the workflow.
 
 !!! Note "If you don't see the `.env` file.."
     Create one inside your action directory.
@@ -144,7 +144,7 @@ inputs:
     required: true
 ```
 
-Variables defined in the `.env` file are supposed to be the inputs of your action. Thus, they all have to be uppercase and start with `INPUT_`.  If you want to test an action with those inputs, then the `.env` file would look like this.
+Variables defined in the `.env` file are supposed to be the inputs of your action. Thus, they all have to be uppercase and start with `INPUT_`. If you want to test an action with those inputs, then the `.env` file would look like this.
 
 ```bash title="your-action/.env" linenums="1"
 INPUT_NAME=John
@@ -171,10 +171,12 @@ Now, test your action with the following command.
 pyaction run
 ```
 
-```title="Output"
-result=John lives in Chicago!
-phrase=John is also a Software Developer.
-```
+This would be the result.
+
+| Variable |  Value                               | Type            |  Workflow Usage                       |
+| :------: | :----------------------------------: | :-------------: | :-----------------------------------: |
+| `result` |  John lives in Chicago!              | `<class 'str'>` | `${{ steps.STEP_ID.outputs.result }}` |
+| `phrase` |  John is also a Software Developer.  | `<class 'str'>` | `${{ steps.STEP_ID.outputs.phrase }}` |
 
 ## IssueForm
 Issue form templates allow developers to create specific structures for the issue openers.
