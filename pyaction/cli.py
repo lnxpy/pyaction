@@ -19,12 +19,15 @@ def cli():
     pass
 
 
-@cli.command("init", help="creates a basic action template (recommended for starting)")
+@cli.command("init", help="Creates a basic action template (recommended for starting)")
 def init() -> None:
     run_copy(TEMPLATE_PATH)
 
 
-@cli.command("run", help="uses .env to run the action locally")
+@cli.command(
+    "run",
+    help="Runs the action locally based on the .env file",
+)
 def run() -> None:
     if not os.path.isfile(".env"):
         raise FileNotFoundError(
