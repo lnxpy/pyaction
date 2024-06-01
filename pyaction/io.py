@@ -1,37 +1,39 @@
 from __future__ import annotations
 
 import os
-from contextlib import nullcontext
 from io import TextIOWrapper
 
 from rich.console import Console
 
-from pyaction.consts import DEBUG_MODE, GITHUB_OUTPUT, MULTILINE_OUTPUT
+from pyaction.consts import DEBUG_MODE, MULTILINE_OUTPUT, OUTPUT_STREAM
 from pyaction.exceptions import WorkflowParameterNotFound
 from pyaction.utils import create_output_table
 
 
-def write(context: dict[str, str], stream: str | TextIOWrapper = GITHUB_OUTPUT) -> None:
+def write(
+    context: dict[str, str],
+    stream: str | TextIOWrapper = OUTPUT_STREAM,
+    debug_mode: bool = DEBUG_MODE,
+) -> None:
     """writes the key(s) (as variables) and value(s) (as values) into the output stream
 
     Args:
         context (dict[str, str]): variables and values
-        stream (str, TextIOWrapper): output stream (set to STDOUT locally, but `GITHUB_OUTPUT` on cloud)
+        stream (str | TextIOWrapper, optional): output stream
+        debug_mode (bool): set to True locally, but False on production
     """
 
-    if DEBUG_MODE:
+    if debug_mode:
         table = create_output_table()
         console = Console()
 
-        with nullcontext(stream) as streamline:
-            for var, val in context.items():
-                table.add_row(
-                    var,
-                    str(val),
-                    str(type(val)),
-                    f"${{{{ steps.STEP_ID.outputs.{var} }}}}",
-                )
-
+        for var, val in context.items():
+            table.add_row(
+                var,
+                str(val),
+                str(type(val)),
+                f"${{{{ steps.STEP_ID.outputs.{var} }}}}",
+            )
         console.print(table)
     else:
         with open(stream, "+w") as streamline:

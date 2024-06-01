@@ -17,7 +17,7 @@ test_env_vars = [
     ("INPUT_QUX", "qux", "2020.05.03"),
 ]
 
-test_stream = str(os.path.join(tempfile.tempdir, "GITHUB_OUTPUT_TEST.txt"))
+test_stream = str(os.path.join(tempfile.gettempdir(), "GITHUB_OUTPUT_TEST.txt"))
 
 
 @pytest.mark.parametrize("var,name,val", test_env_vars)
@@ -32,7 +32,10 @@ def test_io_read_missing_parameters():
 
 
 test_env_var_context = [
-    ({"foo": "Foo", "bar": "Bar"}, "foo=Foo\nbar=Bar\n"),
+    (
+        {"foo": "Foo", "bar": "Bar"},
+        "foo=Foo\nbar=Bar\n",
+    ),
     (
         {"name": "john", "age": "20", "is_student": "true"},
         "name=john\nage=20\nis_student=true\n",
@@ -42,7 +45,7 @@ test_env_var_context = [
 
 @pytest.mark.parametrize("context,expected", test_env_var_context)
 def test_write_to_stream(context, expected):
-    io.write(context, test_stream)
+    io.write(context, test_stream, debug_mode=False)
 
     with open(test_stream, "r+") as file:
         content = file.read()
@@ -64,7 +67,7 @@ test_multi_line_env_var_context = [
 
 @pytest.mark.parametrize("context,expected", test_multi_line_env_var_context)
 def test_write_multiline_to_stream(context, expected):
-    io.write(context, test_stream)
+    io.write(context, test_stream, debug_mode=False)
 
     with open(test_stream, "r+") as file:
         content = file.read()
