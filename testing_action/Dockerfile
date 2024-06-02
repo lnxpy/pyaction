@@ -1,9 +1,6 @@
 # setting the base-image
 FROM python:3-slim
 
-# setting the debug mode
-ENV PYACTION_DEBUG_MODE=false
-
 # importing the action
 COPY . /action
 
