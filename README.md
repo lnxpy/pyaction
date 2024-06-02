@@ -35,7 +35,7 @@ Check out the [official docs](https://pyaction.imsadra.me) for more detailed inf
 Run the following command in a fresh CLI tab.
 
 ```sh
-pip install -U pyaction
+pip install -U "pyaction[cli]"
 ```
 
 To make sure the installation process was successful, run the following command.
