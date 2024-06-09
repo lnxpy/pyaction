@@ -1,50 +1,29 @@
 from __future__ import annotations
 
 import os
-from io import TextIOWrapper
+from typing import Any, Dict
 
-from rich.console import Console
-
-from pyaction.consts import DEBUG_MODE, MULTILINE_OUTPUT, OUTPUT_STREAM
+from pyaction.consts import DEBUG_MODE, GITHUB_OUTPUT
 from pyaction.exceptions import WorkflowParameterNotFound
-from pyaction.utils import create_output_table
+from pyaction.workflow.stream import LocalStream, WorkflowStream
 
 
-def write(
-    context: dict[str, str],
-    stream: str | TextIOWrapper = OUTPUT_STREAM,
-    debug_mode: bool = DEBUG_MODE,
-) -> None:
+def write(context: dict[str, Any], stream: str = None) -> None:
     """writes the key(s) (as variables) and value(s) (as values) into the output stream
 
     Args:
-        context (dict[str, str]): variables and values
-        stream (str | TextIOWrapper, optional): output stream
-        debug_mode (bool): set to True locally, but False on production
+        context (Dict[str, Any]): variables and values
+        stream (str, optional): output stream Defaults to None.
+
     """
 
-    if debug_mode:
-        table = create_output_table()
-        console = Console()
-
-        for var, val in context.items():
-            table.add_row(
-                var,
-                str(val),
-                str(type(val)),
-                f"${{{{ steps.STEP_ID.outputs.{var} }}}}",
-            )
-        console.print(table)
+    if DEBUG_MODE:
+        LocalStream().put(context)
     else:
-        with open(stream, "+w") as streamline:
-            for var, val in context.items():
-                if "\n" in val:
-                    streamline.write(MULTILINE_OUTPUT.format(variable=var, value=val))
-                else:
-                    streamline.write(f"{var}={val}\r\n")
+        WorkflowStream(stream or GITHUB_OUTPUT).put(context)
 
 
-def read(param: str) -> str | int | bool | None:
+def read(param: str) -> str:
     """reads a parameter from the inputs
 
     Args:
@@ -54,7 +33,7 @@ def read(param: str) -> str | int | bool | None:
         WorkflowParameterNotFound: if the `param` is missing
 
     Returns:
-        str | int | bool | None: value of `param`
+        str: value of `param`
     """
 
     prefix = "INPUT_"
