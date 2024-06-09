@@ -23,11 +23,11 @@ BASE_URL = os.path.dirname(__file__)
 # path to the copier template
 TEMPLATE_PATH = os.path.join(BASE_URL, "template")
 
-# Output stream variable
-OUTPUT_STREAM = os.environ.get("GITHUB_OUTPUT", sys.stdout)
+# GITHUB_OUTPUT stream
+GITHUB_OUTPUT = os.environ.get("GITHUB_OUTPUT", None)
 
 # Debug mode
-DEBUG_MODE = True if isinstance(OUTPUT_STREAM, TextIOWrapper) else False
+DEBUG_MODE = False if GITHUB_OUTPUT else True
 
 # Multi-line format
 DELIMITER = "EOF"
