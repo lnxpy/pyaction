@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 from typing import Any, Dict
 
 from pyaction.consts import GITHUB_OUTPUT, MULTILINE_OUTPUT
-from pyaction.workflow.consts import LOCAL_TABLE_COLS
+from pyaction.workflow.utils import generate_param_table
 
 
 class Stream(ABC):
@@ -19,11 +19,7 @@ class LocalStream(Stream):
             context (Dict[str, Any]): context containing the variables
         """
 
-        from rich.table import Table
-
-        self.table = Table(show_lines=True)
-        for col in LOCAL_TABLE_COLS:
-            self.table.add_column(**col, justify="center", vertical="middle")
+        self.table = generate_param_table()
 
     def put(self, context: Dict[str, Any]):
         """uses `rich` to put the information into the STDOUT"""
