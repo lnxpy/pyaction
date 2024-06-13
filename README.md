@@ -36,6 +36,18 @@ Run the following command in a fresh CLI tab.
 pip install -U "pyaction[cli]"
 ```
 
+```mermaid
+flowchart TB
+   subgraph GitHub Runner
+      pyaction-->pydantic;
+      pyaction-->pygithub;
+   end
+   pc[pyaction-cli]-->pyaction;
+   pc[pyaction-cli]-->rich;
+   pc[pyaction-cli]-->copier;
+   pc[pyaction-cli]-->_[click];
+```
+
 To make sure the installation process was successful, run the following command.
 
 ```sh
