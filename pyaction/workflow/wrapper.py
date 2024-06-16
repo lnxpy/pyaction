@@ -6,16 +6,12 @@ from pyaction import io
 from pyaction.utils import check_parameters
 
 
-class PyAction:
-    @staticmethod
-    def action() -> Callable:
-        """action decorator
+class ActionDecorator:
+    def __init__(self) -> None:
+        pass
 
-        Returns:
-            Callable: the wrapper action
-        """
-
-        def wrapper(func: Callable):
+    def __call__(self, func: Callable) -> Any:
+        def wrapper():
             check_parameters(func)
             params = {
                 key: (type_, io.read(key))
@@ -30,7 +26,12 @@ class PyAction:
 
             return func(**retyped_params)
 
-        return wrapper
+        return wrapper()
+
+
+class PyAction:
+    def __init__(self) -> None:
+        self.action = ActionDecorator
 
     @staticmethod
     def write(context: Dict[str, Any]) -> None:
