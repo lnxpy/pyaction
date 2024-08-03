@@ -5,7 +5,7 @@ title: Introduction
 
 # Welcome to PyAction! ![Version](https://img.shields.io/pypi/v/pyaction?logo=pypi&logoColor=949DA5&label=Version&labelColor=2A3035&color=4539d0) ![Python Versions](https://img.shields.io/pypi/pyversions/pyaction?logo=python&logoColor=949DA5&label=Python&labelColor=2A3035&color=4539d0)
 
-![header](img/header.svg){ .rounded }
+![header](img/header.svg)
 
 PyAction helps you to create and develop custom GitHub Actions using Python.
 
