@@ -4,12 +4,19 @@
 
 PyAction helps you to develop [GitHub Actions](https://docs.github.com/en/actions) using Python. It's delivered as an installable package with the ability to test the action locally before any deployment.
 
+```yml
+- name: Using the python action
+  uses: you/your-python-action@v2
+  with:
+      name: Jane
+      age: 20
+```
+
 ```python
 from pyaction import PyAction
 
 
 workflow = PyAction.workflow()
-
 
 @workflow.action()
 def greetings_action(name: str, age: int) -> None:
@@ -36,6 +43,14 @@ Run the following command in a fresh CLI tab.
 pip install -U "pyaction[cli]"
 ```
 
+To make sure the installation process was successful, run the following command.
+
+```sh
+pyaction --version
+```
+
+The pure `pyaction` release is made to be super light which will cause your workflow to run fast.
+
 ```mermaid
 flowchart TB
    subgraph GitHub Runner
@@ -48,11 +63,7 @@ flowchart TB
    pc[pyaction-cli]-->_[click];
 ```
 
-To make sure the installation process was successful, run the following command.
-
-```sh
-pyaction --version
-```
+The `pyaction-cli` that you install under the name of `pyaction[cli]` on your local machine has some additional packages for local development.
 
 ### Usage
 It's recommended to initialize a template, then going along the development process. Thus, run the `init` command.
