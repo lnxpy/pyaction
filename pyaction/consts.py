@@ -1,7 +1,5 @@
 import os
-import sys
 from enum import Enum
-from io import TextIOWrapper
 
 
 # color enum class used by loggers
@@ -12,6 +10,9 @@ class Color(Enum):
     BOLD_RED = "\x1b[31;1m"
     RESET = "\x1b[0m"
 
+
+# GitHub API service
+GITHUB_BASE_URL = "https://api.github.com/"
 
 # package info
 PROJECT_NAME = "PyAction"
