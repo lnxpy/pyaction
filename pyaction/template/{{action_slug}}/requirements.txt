@@ -1,1 +1,1 @@
-pyaction==0.6.4
+pyaction==0.7.0
