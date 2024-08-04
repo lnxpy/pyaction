@@ -6,32 +6,27 @@ from pyaction import io
 from pyaction.utils import check_parameters
 
 
-class ActionDecorator:
-    def __init__(self) -> None:
-        pass
-
+class Action:
     def __call__(self, func: Callable) -> Any:
-        def wrapper():
-            check_parameters(func)
-            params = {
-                key: (type_, io.read(key))
-                for key, type_ in get_type_hints(func).items()
-                if key != "return"
-            }
+        check_parameters(func)
 
-            retyped_params = {}
+        params = {
+            key: (type_, io.read(key))
+            for key, type_ in get_type_hints(func).items()
+            if key != "return"
+        }
 
-            for key, item in params.items():
-                retyped_params[key] = TypeAdapter(item[0]).validate_python(item[1])
+        retyped_params = {}
 
-            return func(**retyped_params)
+        for key, item in params.items():
+            retyped_params[key] = TypeAdapter(item[0]).validate_python(item[1])
 
-        return wrapper()
+        return func(**retyped_params)
 
 
 class PyAction:
     def __init__(self) -> None:
-        self.action = ActionDecorator
+        self.action = Action
 
     @staticmethod
     def write(context: Dict[str, Any]) -> None:
