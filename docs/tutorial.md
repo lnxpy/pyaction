@@ -271,22 +271,18 @@ steps:
       issue_number: ${{ github.event.issue.number }}
 ```
 
-Now, to serialize the issue data coming from the workflow, we have to use the `Auth` and `IssueForm` classes.
+Now, to serialize the issue data coming from the workflow, we have to use the `IssueForm` class.
 
-```py title="your-action/main.py" hl_lines="2 3 10 12 13"
+```py title="your-action/main.py" hl_lines="2 9"
 from pyaction import PyAction
-from pyaction.auth import Auth
 from pyaction.issues import IssueForm
 
 workflow = PyAction()
 
 
 @workflow.action()
-def my_action(github_token: str, repository: str, issue_number: int) -> None:
-    auth = Auth(token=github_token)
-
-    repo = auth.github.get_repo(repository)
-    user_input = IssueForm(repo=repo, number=issue_number).render()
+def my_action(repository: str, issue_number: int, github_token: str) -> None:
+    user_input = IssueForm(repo=repository, number=issue_number, token=github_token).render()
 
     # user_input (dict): {
     #   "Text": "While many quantum experiments examine very small..",
@@ -304,7 +300,12 @@ INPUT_REPOSITORY=<repo>
 ...
 ```
 
-You have to generate a [Personal GitHub Access Token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens) as `INPUT_GITHUB_TOKEN` *with the proper permissions*. The `INPUT_ISSUE_NUMBER` is the ID/number of an example issue that you want your action to work on. (probably an issue that's been created via Issue Forms)
+!!! Note "`INPUT_GITHUB_TOKEN` is optional.."
+    Notice that the `INPUT_GITHUB_TOKEN` is optional. If you want to pass the request rate limit or planning to read issues on private repositories, you have to generate one and define it. Otherwise, you can ignore the `token` parameter in the `IssueForm` class when initializing an object.
+
+    - Check [Personal GitHub Access Token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens) if you want more permissions.
+
+The `INPUT_ISSUE_NUMBER` is the ID/number of an example issue that you want your action to work on. (probably an issue that's been created via Issue Forms)
 
 The `INPUT_REPOSITORY` should contain your repository name in the form of `github-username/repo`.
 
