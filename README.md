@@ -40,7 +40,7 @@ pip install -U "pyaction[cli]"
 flowchart TB
    subgraph GitHub Runner
       pyaction-->pydantic;
-      pyaction-->pygithub;
+
    end
    pc[pyaction-cli]-->pyaction;
    pc[pyaction-cli]-->rich;
