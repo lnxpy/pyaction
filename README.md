@@ -49,21 +49,7 @@ To make sure the installation process was successful, run the following command.
 pyaction --version
 ```
 
-The pure `pyaction` release is made to be super light which will cause your workflow to run fast.
-
-```mermaid
-flowchart TB
-   subgraph GitHub Runner
-      pyaction-->pydantic;
-
-   end
-   pc[pyaction-cli]-->pyaction;
-   pc[pyaction-cli]-->rich;
-   pc[pyaction-cli]-->copier;
-   pc[pyaction-cli]-->_[click];
-```
-
-The `pyaction-cli` that you install under the name of `pyaction[cli]` on your local machine has some additional packages for local development.
+The `pyaction` release is made to be super light which will make your workflow run very fast. The `pyaction[cli]` that you install on your local machine has some additional packages for local development.
 
 ### Usage
 It's recommended to initialize a template, then going along the development process. Thus, run the `init` command.
@@ -72,7 +58,7 @@ It's recommended to initialize a template, then going along the development proc
 pyaction init
 ```
 
-Answer the prompts and your template will be generated. Check out the docs for the further steps.
+Answer the prompts and your template will be generated. Check out the [docs](https://pyaction.imsadra.me) for the further steps.
 
 ### Contribution
 All your contributions and assistance are welcome. For more information about how you can contribute to the project, please follow the instructions [here](https://pyaction.imsadra.me/contributing). :sparkles:
