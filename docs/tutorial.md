@@ -178,6 +178,20 @@ This would be the result.
 | `result` |  John lives in Chicago!              | `<class 'str'>` | `${{ steps.STEP_ID.outputs.result }}` |
 | `phrase` |  John is also a Software Developer.  | `<class 'str'>` | `${{ steps.STEP_ID.outputs.phrase }}` |
 
+## Annotations
+You can use the `workflow` object to throw annotations to the workflow as well.
+
+```python title="your-action/main.py"
+...
+@workflow.action()
+def my_action(name: str, home_town: str) -> None:
+  workflow.error("...")
+  workflow.warning("...")
+  workflow.notice("...")
+```
+
+And you'll see the annotations right above the pipeline execution panel.
+
 ## IssueForm
 Issue form templates allow developers to create specific structures for the issue openers.
 
