@@ -1,7 +1,8 @@
 exclude: |
   (?x)(
       ^pyaction/template/|
-      ^testing_action
+      ^testing_action|
+      .pypi_chart/
   )
 
 repos:
