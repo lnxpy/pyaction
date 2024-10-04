@@ -179,15 +179,17 @@ This would be the result.
 | `phrase` |  John is also a Software Developer.  | `<class 'str'>` | `${{ steps.STEP_ID.outputs.phrase }}` |
 
 ## Annotations
-You can use the `workflow` object to throw annotations to the workflow as well.
+You can use `pyaction.workflow.annotations` module to throw annotations in the workflow page.
 
 ```python title="your-action/main.py"
+from pyaction.workflow import annotations
+
 ...
 @workflow.action()
 def my_action(name: str, home_town: str) -> None:
-  workflow.error("...")
-  workflow.warning("...")
-  workflow.notice("...")
+  annotations.error("...")
+  annotations.warning("...")
+  annotations.notice("...")
 ```
 
 And you'll see the annotations right above the pipeline execution panel.
