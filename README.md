@@ -1,4 +1,4 @@
-## PyAction - Create GitHub Actions Using Python! :sparkles:
+## PyAction - Create GitHub Actions Using Python! :sparkles: ![download rate](https://github.com/lnxpy/pyaction/blob/main/.pypi_chart/badge.svg)
 
 ![Version)](https://img.shields.io/github/v/tag/lnxpy/pyaction?label=Version) ![Python Versions](https://img.shields.io/pypi/pyversions/pyaction?logo=python&logoColor=949DA5&label=Python&labelColor=2A3035) [![Package Testing](https://github.com/lnxpy/pyaction/actions/workflows/testing.yml/badge.svg)](https://github.com/lnxpy/pyaction/actions/workflows/testing.yml) [![Docs CI](https://github.com/lnxpy/pyaction/actions/workflows/docs.yml/badge.svg?branch=main)](https://github.com/lnxpy/pyaction/actions/workflows/docs.yml)
 
