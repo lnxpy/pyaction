@@ -3,6 +3,7 @@ import subprocess
 
 import click
 from copier import run_copy
+from dotenv import load_dotenv
 
 from pyaction import __version__
 from pyaction.consts import PROJECT_NAME, TEMPLATE_PATH
@@ -26,12 +27,13 @@ def init() -> None:
 
 @cli.command(
     "run",
-    help="Runs the action locally based on the .env file",
+    help="Runs the action locally",
 )
 def run() -> None:
     if not os.path.isfile(".env"):
         raise FileNotFoundError(
-            "Make sure you have the `.env` file inside the root path of your action directory."
+            "Make sure you have the `.env` file in the root path of your action directory."
         )
 
-    subprocess.check_call("env $(cat .env | xargs) python main.py", shell=True)
+    load_dotenv(".env")
+    subprocess.call(["python", "main.py"])

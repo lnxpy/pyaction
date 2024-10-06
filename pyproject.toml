@@ -19,7 +19,7 @@ classifiers = [
     "Environment :: Console",
     "Intended Audience :: Developers",
     "License :: OSI Approved :: MIT License",
-    "Operating System :: OS Independent",
+    "Operating System :: POSIX",
     "Programming Language :: Python",
     "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
@@ -39,6 +39,7 @@ cli = [
     "copier >= 9.2",
     "click >= 8.1",
     "rich >= 13.7.1",
+    "python-dotenv >= 1.0.1",
 ]
 
 [project.urls]
