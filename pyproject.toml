@@ -9,8 +9,8 @@ description = "Create GitHub Actions using Python"
 authors = [{ name = "Sadra Yahyapour", email = "lnxpylnxpy@gmail.com" }]
 requires-python = ">=3.8"
 dependencies = [
-    "pydantic >= 2.7.0",
-    "requests >= 2.32.3"
+    "pydantic ~= 2.7.0",
+    "requests ~= 2.32.3"
 ]
 readme = { file = "README.md", content-type = "text/markdown" }
 license = { file = "LICENSE" }
@@ -36,10 +36,10 @@ pyaction = "pyaction.cli:cli"
 dev = ["coverage", "pytest-cookies"]
 docs = ["mkdocs-material", "cairosvg", "pillow"]
 cli = [
-    "copier >= 9.2",
-    "click >= 8.1",
-    "rich >= 13.7.1",
-    "python-dotenv >= 1.0.1",
+    "copier ~= 9.2",
+    "click ~= 8.1",
+    "rich ~= 13.7.1",
+    "python-dotenv ~= 1.0.1",
 ]
 
 [project.urls]
