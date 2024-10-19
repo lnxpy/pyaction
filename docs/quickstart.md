@@ -25,6 +25,8 @@ And here would be the prompting for our action called "PyAction Hello World".
    This actions says Hello to you!
 🎤 Author's name
    John Doe
+🎤 Python version
+   3.12
 🎤 Include workflow testing pipeline
    Yes
 

@@ -18,6 +18,11 @@ author_name:
   help: Author's name
   placeholder: John Doe
 
+python_version:
+  type: float
+  help: Python version
+  default: 3.13
+
 include_cicd_testing:
   type: bool
   help: Include workflow testing pipeline
