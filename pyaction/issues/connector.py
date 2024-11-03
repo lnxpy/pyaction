@@ -7,7 +7,7 @@ from pyaction.issues.rendering import IssueTemplate
 
 
 class IssueForm:
-    def __init__(self, repository: str, number: int, token: str = None) -> None:
+    def __init__(self, repository: str, number: int, token: str | None = None) -> None:
         """initializer
 
         Args:
@@ -20,7 +20,7 @@ class IssueForm:
         self.repository = repository
         self.number = number
 
-    def render(self) -> OrderedDict:
+    def render(self) -> dict[str, str]:
         """renders the issue body
 
         Returns:

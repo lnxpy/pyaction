@@ -6,7 +6,7 @@ from pyaction.exceptions import WorkflowParameterNotFound
 from pyaction.workflow.stream import LocalStream, WorkflowStream
 
 
-def write(context: Dict[str, Any], stream: str = None) -> None:
+def write(context: Dict[str, Any], stream: str | None = None) -> None:
     """writes the key(s) (as variables) and value(s) (as values) into the output stream
 
     Args:
