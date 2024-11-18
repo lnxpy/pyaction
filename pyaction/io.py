@@ -1,39 +1,36 @@
 import os
-from typing import Any, Dict
 
-from pyaction.consts import DEBUG_MODE, GITHUB_OUTPUT
 from pyaction.exceptions import WorkflowParameterNotFound
-from pyaction.workflow.stream import LocalStream, WorkflowStream
+from pyaction.utils import get_running_platform
+from pyaction.workflow.stream import WorkflowContext, push_to_local, push_to_runner
 
 
-def write(context: Dict[str, Any], stream: str | None = None) -> None:
-    """writes the key(s) (as variables) and value(s) (as values) into the output stream
+def write(context: WorkflowContext) -> None:
+    """
+    Writes the context to a stream based on the action running platform.
 
     Args:
-        context (Dict[str, Any]): variables and values
-        stream (str, optional): output stream Defaults to None.
-
+        context (WorkflowContext): The context to be written.
     """
-
-    if DEBUG_MODE:
-        LocalStream().put(context)
+    if platform := get_running_platform():
+        push_to_runner(context, stream=platform)
     else:
-        WorkflowStream(stream or GITHUB_OUTPUT).put(context)
+        push_to_local(context)
 
 
 def read(param: str) -> str:
-    """reads a parameter from the inputs
+    """
+    Reads a parameter from the inputs.
 
     Args:
-        param (str): parameter name
+        param (str): Parameter name
 
     Raises:
-        WorkflowParameterNotFound: if the `param` is missing
+        WorkflowParameterNotFound: If the `param` is missing.
 
     Returns:
-        str: value of `param`
+        str: Value of `param`.
     """
-
     prefix = "INPUT_"
     var_name = prefix + param.upper()
 
@@ -41,7 +38,7 @@ def read(param: str) -> str:
         value = os.environ[var_name]
     except KeyError:
         raise WorkflowParameterNotFound(
-            f"Couldn't read the `{var_name}` input parameter from your pipeline. "
+            f"unable to read the `{var_name}` parameter. "
             "Make sure it's declared properly."
         )
 
