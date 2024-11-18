@@ -21,7 +21,7 @@ author_name:
 python_version:
   type: float
   help: Python version
-  default: 3.13
+  default: 3.12
 
 include_cicd_testing:
   type: bool
