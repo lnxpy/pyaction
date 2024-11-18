@@ -18,7 +18,6 @@ classifiers = [
     "License :: OSI Approved :: MIT License",
     "Operating System :: POSIX",
     "Programming Language :: Python",
-    "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
@@ -30,7 +29,7 @@ classifiers = [
 pyaction = "pyaction.cli:cli"
 
 [project.optional-dependencies]
-dev = ["coverage", "pytest-cookies", "tox"]
+dev = ["coverage", "pytest-cookies"]
 docs = ["mkdocs-material", "cairosvg", "pillow"]
 cli = ["copier ~= 9.2", "click ~= 8.1", "python-dotenv ~= 1.0.1"]
 
