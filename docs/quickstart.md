@@ -109,17 +109,19 @@ This is the main Python file that gets executed when the workflow container gets
 
 ```python title="pyaction-hello-world/main.py" linenums="1"
 from pyaction import PyAction
+from pyaction.workflow.stream import WorkflowContext
 
 workflow = PyAction()
 
 
 @workflow.action()
 def my_action(name: str) -> None:
-    workflow.write(
+    context = WorkflowContext(
         {
-            "phrase": f"Hi {name}!"
+            "phrase": f"Hi {name}!",
         }
     )
+    workflow.write(context)
 ```
 
 ## Usage & Deployment

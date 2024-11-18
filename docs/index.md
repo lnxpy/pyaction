@@ -38,17 +38,19 @@ Here you can see a very basic greeting action example that returns a greeting me
 
     ```py
     from pyaction import PyAction
+    from pyaction.workflow.stream import WorkflowContext
 
     workflow = PyAction()
 
 
     @workflow.action()
     def my_action(name: str) -> None:
-        workflow.write(
+        context = WorkflowContext(
             {
-                "phrase": f"Hi {name}!"
+                "phrase": f"Hi {name}!",
             }
         )
+        workflow.write(context)
     ```
 
 === ":simple-github: .github/workflows/ci.yml"

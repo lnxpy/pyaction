@@ -36,8 +36,8 @@ workflow = PyAction()
 
 @workflow.action()
 def my_action(endpoint: str, is_ssl: bool) -> None:
-  # endpoint (str): somewhere.com/api/endpoint
-  # is_ssl (bool): False
+    # endpoint (str): somewhere.com/api/endpoint
+    # is_ssl (bool): False
 ```
 
 !!! Note "PyAction uses [Pydantic](https://pydantic.dev/) to.."
@@ -51,8 +51,8 @@ def my_action(endpoint: str, is_ssl: bool) -> None:
 
     @workflow.action()
     def my_action(endpoint: str, is_ssl: str) -> None:
-      # endpoint (str): somewhere.com/api/endpoint
-      # is_ssl (str): false
+        # endpoint (str): somewhere.com/api/endpoint
+        # is_ssl (str): false
     ```
 
 Writing a value into the workflow is as easy as reading it. Use the `workflow.write()` method to write as many variables as you want and access them within the workflow. Don't forget to define the output variables inside your `action.yml` file.
@@ -69,19 +69,22 @@ outputs:
 
 ```py title="your-action/main.py"
 from pyaction import PyAction
-
+from pyaction.workflow.stream import WorkflowContext
 
 workflow = PyAction()
 
+
 @workflow.action()
 def my_action() -> None:
-  workflow.write(
-    {
-      "first_name": "John",
-      "last_name": "Doe",
-      "age": 20,
-    }
-  )
+    workflow.write(
+        WorkflowContext(
+            {
+                "first_name": "John",
+                "last_name": "Doe",
+                "age": 20,
+            }
+        )
+    )
 ```
 
 ```yaml title=".github/workflows/ci.yml"
@@ -157,12 +160,14 @@ The `workflow.write()` intends to write the variables into the [`GITHUB_OUTPUT`]
 ...
 @workflow.action()
 def my_action(name: str, home_town: str) -> None:
-  workflow.write(
-    {
-      "result": f"{name} lives in {home_town}!",
-      "phrase": f"{name} is also a Software Developer.",
-    },
-  )
+    workflow.write(
+        WorkflowContext(
+            {
+                "result": f"{name} lives in {home_town}!",
+                "phrase": f"{name} is also a Software Developer.",
+            },
+        )
+    )
 ```
 
 Now, test your action with the following command.
@@ -173,23 +178,35 @@ pyaction run
 
 This would be the result.
 
-| Variable |  Value                               | Type            |  Workflow Usage                       |
-| :------: | :----------------------------------: | :-------------: | :-----------------------------------: |
-| `result` |  John lives in Chicago!              | `<class 'str'>` | `${{ steps.STEP_ID.outputs.result }}` |
-| `phrase` |  John is also a Software Developer.  | `<class 'str'>` | `${{ steps.STEP_ID.outputs.phrase }}` |
+```json
+[
+   {
+      "var": "result",
+      "value": "John lives in Chicago!",
+      "type": "<class 'str'>",
+      "usage": "${{ steps.STEP_ID.outputs.result }}"
+   },
+   {
+      "var": "phrase",
+      "value": "John is also a Software Developer.",
+      "type": "<class 'str'>",
+      "usage": "${{ steps.STEP_ID.outputs.phrase }}"
+   }
+]
+```
 
 ## Annotations
 You can use `pyaction.workflow.annotations` module to throw annotations in the workflow page.
 
 ```python title="your-action/main.py"
-from pyaction.workflow import annotations
+from pyaction.workflow import annotations as A
 
 ...
 @workflow.action()
 def my_action(name: str, home_town: str) -> None:
-  annotations.error("...")
-  annotations.warning("...")
-  annotations.notice("...")
+  A.error("...")
+  A.warning("...")
+  A.notice("...")
 ```
 
 And you'll see the annotations right above the pipeline execution panel.
@@ -298,7 +315,7 @@ workflow = PyAction()
 
 @workflow.action()
 def my_action(repository: str, issue_number: int, github_token: str) -> None:
-    user_input = IssueForm(repo=repository, number=issue_number, token=github_token).render()
+    user_input = IssueForm(repository=repository, number=issue_number, token=github_token).render()
 
     # user_input (dict): {
     #   "Text": "While many quantum experiments examine very small..",
