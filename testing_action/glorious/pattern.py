@@ -1,4 +1,4 @@
-def rainbowify(string):
+def rainbowfier(string):
     colors = [
         "\033[91m",
         "\033[93m",
