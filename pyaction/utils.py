@@ -1,31 +1,40 @@
 import inspect
-from typing import Callable
+import os
+from typing import Callable, Optional
 
 from pyaction.exceptions import NotAnnotated
-from pyaction.logger import setup_logger
+from pyaction.logging import Logger
 
-logger = setup_logger(__name__)
+logger = Logger(__name__, include_name=False)
 
 
 def check_parameters(func: Callable) -> None:
-    """checks the function params annotations and default values
+    """
+    Checks the function params typing and annotation.
 
     Args:
-        func (Callable): the function
+        func (Callable): The function.
 
     Raises:
-        NotAnnotated: if there is param(s) not annotated
+        NotAnnotated: If there is param(s) not annotated.
     """
-
     signature = inspect.signature(func)
     for param_name, param in signature.parameters.items():
+        if param.annotation == inspect.Parameter.empty:
+            raise NotAnnotated(f"parameter `{param_name}` is not annotated.")
+
         if param.default != inspect.Parameter.empty:
             logger.warning(
-                f"Parameter `{param_name}` in the action function `{func.__name__}` has gotten the default value `{param.default}` which has no effect. "
-                "Set the default value(s) inside the `action.yml` instead."
+                f"parameter `{param_name}` has a default value which has no effect. "
+                "Set the default value(s) inside the `action.yml`."
             )
 
-        if param.annotation == inspect.Parameter.empty:
-            raise NotAnnotated(
-                f"Parameter `{param_name}` in the action function `{func.__name__}` is not annotated."
-            )
+
+def get_running_platform() -> Optional[str]:
+    """
+    Determine the current operating environment for the action.
+
+    Returns:
+        Returns the value stored in the `GITHUB_OUTPUT` environment variable if the action is running on Runner; otherwise, returns `None`.
+    """
+    return os.environ.get("GITHUB_OUTPUT", None)
