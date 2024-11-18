@@ -1,48 +1,51 @@
 import subprocess
 
-from pyaction.consts import DEBUG_MODE, Color
+from pyaction.utils import get_running_platform
 
 
 def error(title: str) -> None:
-    """pops an error annotation
+    """
+    Pops an error annotation.
 
     Args:
-        title (str): the error title
+        title (str): The error title.
     """
 
-    if DEBUG_MODE:
-        message = f"{Color.BOLD_RED.value}Error: {Color.RESET.value}{title}"
-    else:
+    if get_running_platform():
         message = f"::error::{title}"
+    else:
+        message = f"Error Annotation: {title}"
 
     subprocess.call(["echo", message])
 
 
 def warning(title: str) -> None:
-    """pops a warning annotation
+    """
+    Pops a warning annotation.
 
     Args:
-        title (str): the warning title
+        title (str): The warning title.
     """
 
-    if DEBUG_MODE:
-        message = f"{Color.YELLOW.value}Warning: {Color.RESET.value}{title}"
-    else:
+    if get_running_platform():
         message = f"::warning::{title}"
+    else:
+        message = f"Warning Annotation: {title}"
 
     subprocess.call(["echo", message])
 
 
 def notice(title: str) -> None:
-    """pops a notice annotation
+    """
+    Pops a notice annotation.
 
     Args:
-        title (str): the notice title
+        title (str): The notice title.
     """
 
-    if DEBUG_MODE:
-        message = f"{Color.GREY.value}Notice: {Color.RESET.value}{title}"
-    else:
+    if get_running_platform():
         message = f"::notice::{title}"
+    else:
+        message = f"Notice Annotation: {title}"
 
     subprocess.call(["echo", message])

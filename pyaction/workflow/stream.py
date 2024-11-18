@@ -1,57 +1,49 @@
-from abc import ABC, abstractmethod
-from typing import Any, Dict
+import json
+from typing import Dict, NewType
 
-from pyaction.consts import GITHUB_OUTPUT, MULTILINE_OUTPUT
-from pyaction.workflow.utils import generate_param_table
+WorkflowContext = NewType("WorkflowContext", Dict[str, int | float | str | bool])
+
+DELIMITER: str = "EOF"
+
+MULTILINE_OUTPUT: str = f"""
+{{variable}}<<{DELIMITER}
+{{value}}
+{DELIMITER}
+"""
 
 
-class Stream(ABC):
-    @abstractmethod
-    def put(self, context: Dict[str, Any]):
-        pass
+def push_to_local(context: WorkflowContext) -> None:
+    """
+    Pushes/prints the context data to the output stream.
+
+    Args:
+        context (WorkflowContext): A dictionary containing variable names and their respective values.
+    """
+    output_params = []
+    for var, val in context.items():
+        output_params.append(
+            {
+                "var": var,
+                "value": val,
+                "type": str(type(val)),
+                "usage": f"${{{{ steps.STEP_ID.outputs.{var} }}}}",
+            }
+        )
+
+    print(json.dumps(output_params, indent=3))
 
 
-class LocalStream(Stream):
-    def __init__(self) -> None:
-        """initializer
+def push_to_runner(context: WorkflowContext, stream: str) -> None:
+    """
+    Pushes the content of the context to the specified stream (GITHUB_OUTPUT).
 
-        Args:
-            context (Dict[str, Any]): context containing the variables
-        """
-
-        self.table = generate_param_table()
-
-    def put(self, context: Dict[str, Any]):
-        """uses `rich` to put the information into the STDOUT"""
-
-        from rich.console import Console
-
-        console = Console()
-
+    Args:
+        context (WorkflowContext): A dictionary containing variable names and their respective values.
+        stream (str): The stream to write into.
+    """
+    with open(stream, "+w") as streamline:
         for var, val in context.items():
-            self.table.add_row(
-                var,
-                str(val),
-                str(type(val)),
-                f"${{{{ steps.STEP_ID.outputs.{var} }}}}",
-            )
-
-        console.print(self.table)
-
-
-class WorkflowStream(Stream):
-    def __init__(self, stream: str | None = GITHUB_OUTPUT) -> None:
-        self.stream = stream
-
-    def put(self, context: Dict[str, Any]):
-        """writes the `context` into the `GITHUB_OUTPUT` environment variable"""
-
-        if self.stream:
-            with open(self.stream, "+w") as streamline:
-                for var, val in context.items():
-                    if "\n" in val:
-                        streamline.write(
-                            MULTILINE_OUTPUT.format(variable=var, value=val)
-                        )
-                    else:
-                        streamline.write(f"{var}={val}\r\n")
+            if isinstance(val, str) and "\\n" in val:
+                streamline.write(MULTILINE_OUTPUT.format(variable=var, value=val))
+            else:
+                streamline.write(f"{var}={val}\r\n")

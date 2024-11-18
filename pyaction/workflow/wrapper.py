@@ -1,14 +1,36 @@
-from typing import Any, Callable, Dict, get_type_hints
+import sys
+from typing import Callable, get_type_hints
 
 from pydantic import TypeAdapter
 
 from pyaction import io
+from pyaction.exceptions import NotAnnotated
+from pyaction.logging import Logger
 from pyaction.utils import check_parameters
+from pyaction.workflow.stream import WorkflowContext
+
+logger = Logger(__name__, include_name=False)
 
 
 class Action:
-    def __call__(self, func: Callable) -> Any:
-        check_parameters(func)
+    def __call__(self, func: Callable) -> None:
+        """
+        Validate parameters based on function annotations and process them accordingly.
+
+        Args:
+            func (Callable): The function to be executed with validated parameters.
+
+        Raises:
+            NotAnnotated: If function parameters are not annotated properly.
+
+        Returns:
+            The result of the function call with validated parameters.
+        """
+        try:
+            check_parameters(func)
+        except NotAnnotated as e:
+            logger.error(str(e))
+            sys.exit(1)
 
         params = {
             key: (type_, io.read(key))
@@ -26,14 +48,17 @@ class Action:
 
 class PyAction:
     def __init__(self) -> None:
+        """
+        Initializes PyAction class with an instance of the Action class.
+        """
         self.action = Action
 
     @staticmethod
-    def write(context: Dict[str, Any]) -> None:
-        """writes the `context` env var(s) into the streamline
+    def write(context: WorkflowContext) -> None:
+        """
+        Writes the `context` env var(s) into the streamline.
 
         Args:
-            context (Dict[str, Any]): variables and values
+            context (WorkflowContext): Variables and values.
         """
-
         io.write(context)  # pragma: no cover
