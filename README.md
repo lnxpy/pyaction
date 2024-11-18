@@ -16,7 +16,7 @@ PyAction helps you to develop [GitHub Actions](https://docs.github.com/en/action
 from pyaction import PyAction
 
 
-workflow = PyAction.workflow()
+workflow = PyAction()
 
 @workflow.action()
 def greetings_action(name: str, age: int) -> None:
@@ -27,11 +27,14 @@ def greetings_action(name: str, age: int) -> None:
     )
 
 # $ pyaction run
-# ┏━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
-# ┃ Variable ┃          Value          ┃     Type      ┃           Workflow Usage            ┃
-# ┡━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
-# │  phrase  │ Hello Jane. You are 20! │ <class 'str'> │ ${{ steps.STEP_ID.outputs.phrase }} │
-# └──────────┴─────────────────────────┴───────────────┴─────────────────────────────────────┘
+# [
+#    {
+#       "var": "phrase",
+#       "value": "Hello Jane. You are 20!",
+#       "type": "<class 'str'>",
+#       "usage": "${{ steps.STEP_ID.outputs.phrase }}"
+#    }
+# ]
 ```
 
 Check out the [official docs](https://pyaction.imsadra.me) for more detailed information. There is also a [Quickstart](https://pyaction.imsadra.me/quickstart) demo tutorial that walks you through a simple hello-world action.
