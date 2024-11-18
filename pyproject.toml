@@ -7,11 +7,8 @@ name = "pyaction"
 version = "0.7.3"
 description = "Create GitHub Actions using Python"
 authors = [{ name = "Sadra Yahyapour", email = "lnxpylnxpy@gmail.com" }]
-requires-python = ">=3.8"
-dependencies = [
-    "pydantic ~= 2.7.0",
-    "requests ~= 2.32.3"
-]
+requires-python = ">=3.9"
+dependencies = ["pydantic ~= 2.7.0", "requests ~= 2.32.3"]
 readme = { file = "README.md", content-type = "text/markdown" }
 license = { file = "LICENSE" }
 classifiers = [
@@ -33,14 +30,9 @@ classifiers = [
 pyaction = "pyaction.cli:cli"
 
 [project.optional-dependencies]
-dev = ["coverage", "pytest-cookies"]
+dev = ["coverage", "pytest-cookies", "tox"]
 docs = ["mkdocs-material", "cairosvg", "pillow"]
-cli = [
-    "copier ~= 9.2",
-    "click ~= 8.1",
-    "rich ~= 13.7.1",
-    "python-dotenv ~= 1.0.1",
-]
+cli = ["copier ~= 9.2", "click ~= 8.1", "python-dotenv ~= 1.0.1"]
 
 [project.urls]
 Documentation = "https://pyaction.imsadra.me"
