@@ -5,8 +5,7 @@ import click
 from copier import run_copy
 from dotenv import load_dotenv
 
-from pyaction import __version__
-from pyaction.consts import PROJECT_NAME, TEMPLATE_PATH
+from pyaction import PROJECT_NAME, TEMPLATE_PATH, __version__
 
 
 @click.version_option(
@@ -32,7 +31,7 @@ def init() -> None:
 def run() -> None:
     if not os.path.isfile(".env"):
         raise FileNotFoundError(
-            "Make sure you have the `.env` file in the root path of your action directory."
+            "make sure you have the `.env` file in the root path of your action directory."
         )
 
     load_dotenv(".env")
