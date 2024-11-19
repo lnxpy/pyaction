@@ -1,0 +1,10 @@
+[project]
+name = "{{ action_slug }}"
+version = "0.0.1"
+description = "{{ description }}"
+readme = "README.md"
+requires-python = ">={{ python_version }}"
+dependencies = ["pyaction==0.7.3"]
+
+[project.optional-dependencies]
+dev = ["pyaction[cli]==0.7.3"]

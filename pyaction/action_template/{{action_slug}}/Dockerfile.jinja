@@ -1,14 +1,26 @@
 # setting the base-image
 FROM python:{{ python_version }}-slim
 
+# Copy only the necessary binaries from uv
+COPY --from=ghcr.io/astral-sh/uv:0.5.1 /uv /uvx /bin/
+
+# Set environment variable early to take advantage of layer caching
+ENV UV_PROJECT_ENVIRONMENT="/usr/local/"
+
+# Set the working directory to /action
+WORKDIR /action
+
 # importing the action
-COPY . /action
+COPY . .
 
-# running the script.sh
-RUN [ -f /action/script.sh ] && sh /action/script.sh || true
+# running the pre-script.sh
+RUN [ -f /action/pre-script.sh ] && sh /action/pre-script.sh || true
 
-# installing the requirements
-RUN pip install -U pip -r /action/requirements.txt
+# Install project dependencies first for better caching
+RUN uv sync --frozen --no-cache
 
-# running the main.py file
-CMD [ "python", "/action/main.py" ]
+# running the post-script.sh
+RUN [ -f /action/post-script.sh ] && sh /action/post-script.sh || true
+
+# Specify the command to run main.py with uv
+CMD [ "uv", "run", "main.py" ]
