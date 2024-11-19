@@ -1,0 +1,10 @@
+[project]
+name = "test-action"
+version = "0.0.1"
+description = "An action for testing the latest changes of PyAction's main branch"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = ["pyaction @ git+https://github.com/lnxpy/pyaction#main"]
+
+[project.optional-dependencies]
+dev = ["pyaction[cli] @ git+https://github.com/lnxpy/pyaction#main"]

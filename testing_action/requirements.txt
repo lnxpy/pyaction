@@ -1,1 +1,0 @@
-pyaction @ git+https://github.com/lnxpy/pyaction@main

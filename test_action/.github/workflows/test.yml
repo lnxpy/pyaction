@@ -1,0 +1,17 @@
+name: Testing
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  Test:
+    runs-on: ubuntu-latest
+    name: Testing the action
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Running the action
+        uses: ./

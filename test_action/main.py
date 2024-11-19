@@ -7,7 +7,7 @@ from pyaction.workflow.stream import WorkflowContext
 workflow = PyAction()
 
 
-@workflow.action()
+@workflow.action
 def testing_action(test_name: str, test_age: int) -> None:
     annotations.warning("This is a warning annotation!")
     annotations.notice("This is a notice annotation!")
