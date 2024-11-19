@@ -16,7 +16,7 @@ description:
 author_name:
   type: str
   help: Author's name
-  placeholder: John Doe
+  default: John Doe
 
 python_version:
   type: float
