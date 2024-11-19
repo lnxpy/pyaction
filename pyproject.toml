@@ -8,7 +8,7 @@ version = "0.8.0"
 description = "Create GitHub Actions using Python"
 authors = [{ name = "Sadra Yahyapour", email = "lnxpylnxpy@gmail.com" }]
 requires-python = ">=3.9"
-dependencies = ["pydantic ~= 2.7.0", "requests ~= 2.32.3"]
+dependencies = ["pydantic ~= 2.9.2", "requests ~= 2.32.3"]
 readme = { file = "README.md", content-type = "text/markdown" }
 license = { file = "LICENSE" }
 classifiers = [
