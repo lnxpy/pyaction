@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "pyaction"
-version = "0.7.3"
+version = "0.8.0"
 description = "Create GitHub Actions using Python"
 authors = [{ name = "Sadra Yahyapour", email = "lnxpylnxpy@gmail.com" }]
 requires-python = ">=3.9"
@@ -42,7 +42,7 @@ Repository = "https://github.com/lnxpy/pyaction"
 exclude = ["test*"]
 
 [tool.bumpversion]
-current_version = "0.7.3"
+current_version = "0.8.0"
 commit = "true"
 tag = "true"
 
