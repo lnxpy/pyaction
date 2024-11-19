@@ -22,6 +22,7 @@ classifiers = [
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
     "Programming Language :: Python :: 3 :: Only",
 ]
 
@@ -52,4 +53,4 @@ filename = "pyproject.toml"
 filename = "pyaction/__init__.py"
 
 [[tool.bumpversion.files]]
-filename = "pyaction/template/{{action_slug}}/pyproject.toml"
+filename = "pyaction/action_template/{{action_slug}}/pyproject.toml.jinja"
