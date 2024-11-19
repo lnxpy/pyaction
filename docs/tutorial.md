@@ -107,33 +107,46 @@ In general, it would take three major steps to implement IO interactions within 
 - Writing the values into the workflow with the `workflow.write()` method.
 
 ## Dependency Management
-If your action is powered by some third-party Python packages, simply add them into the `your-action/requirements.txt` file.
+If your action is powered by some third-party Python packages, simply add them into the `your-action/pyproject.toml` file.
+
+```toml title="your-action/pyproject.toml"
+[project]
+...
+dependencies = [
+    "pyaction",
+    # package 1,
+    # package 2,
+]
+```
 
 !!! Danger "Keep in mind.."
-    Do not remove the `pyaction` dependency from the `requirements.txt` file as it is the initial package that your action requires to run.
+    Do not remove the `pyaction` dependency from the `pyproject.toml` file as it is the initial package that your action requires to run.
 
 ## Running Additional Commands
-If your action requires some additional system dependencies or you want to execute some bash commands inside the action container, include them inside a `your-action/script.sh` file. It'll be executed before the `your-action/requirements.txt` installation.
+If your action requires some additional system dependencies or you want to execute some bash commands inside the action container, create a `your-action/pre-script.sh` or `your-action/post-script.sh` and include your commands there.
 
-``` hl_lines="5"
+- `your-action/pre-script.sh`: runs before your action dependencies installation.
+- `your-action/post-script.sh`: runs after your action dependencies installation.
+
+``` hl_lines="5 6"
 your-action/
   ├── Dockerfile
   ├── README.md
   ├── action.yml
-  ├── script.sh
+  ├── pre-script.sh
+  ├── post-script.sh
   ├── main.py
-  └── requirements.txt
+  └── pyproject.toml
 ```
 
-## Local Testing
-There is a `run` command that runs the `main.py` file in your action based on the variables defined within the `your-action/.env`. Ultimately, it shows a table filled with the variables available within the workflow.
+## Local Running
+There is a `run` command that runs the `main.py` file in your action based on the variables defined in the `your-action/.env`. It's a good trick if you want to run the action locally or maybe test it before deploying.
 
-!!! Note "If you don't see the `.env` file.."
-    Create one inside your action directory.
+First create the `.env` file.
 
-    ```bash
-    touch .env
-    ```
+```bash
+touch .env
+```
 
 Consider the following `action.yml`.
 
@@ -147,7 +160,7 @@ inputs:
     required: true
 ```
 
-Variables defined in the `.env` file are supposed to be the inputs of your action. Thus, they all have to be uppercase and start with `INPUT_`. If you want to test an action with those inputs, then the `.env` file would look like this.
+Variables defined in the `.env` file are supposed to be the inputs of the action. Thus, they all have to be uppercase and start with `INPUT_`. If you want to test an action with those inputs, then the `.env` file should look like this.
 
 ```bash title="your-action/.env" linenums="1"
 INPUT_NAME=John
@@ -170,7 +183,7 @@ def my_action(name: str, home_town: str) -> None:
     )
 ```
 
-Now, test your action with the following command.
+Now, run the action with the following command.
 
 ```bash
 pyaction run
@@ -204,12 +217,12 @@ from pyaction.workflow import annotations as A
 ...
 @workflow.action
 def my_action(name: str, home_town: str) -> None:
-  A.error("...")
-  A.warning("...")
-  A.notice("...")
+  A.error("This is an error annotation!")
+  A.warning("This is a warning annotation!")
+  A.notice("This is a notice annotation!")
 ```
 
-And you'll see the annotations right above the pipeline execution panel.
+![Annotations](img/annotations.png){.rounded}
 
 ## IssueForm
 Issue form templates allow developers to create specific structures for the issue openers.
@@ -257,11 +270,11 @@ body:
 
 Head to the **"Issues"** tab of your repository. Try to create one and you'll see an issue template item called **"Text Summarization"**.
 
-![Image title](img/issue-items.png){.rounded}
+![Issue items](img/issue-items.png){.rounded}
 
 Click **"Get started"** and you'll see an interface in the following form.
 
-![Image title](img/issue-template.png){.rounded}
+![Issue template](img/issue-template.png){.rounded}
 
 Now, the point is that when you create the issue, you can have a job triggered to read this issue body and process it. In the next section, we'll see how you can read the issue in your action.
 
@@ -323,7 +336,7 @@ def my_action(repository: str, issue_number: int, github_token: str) -> None:
     # }
 ```
 
-### Testing
+### Running Locally
 To test an action that uses Issue Forms, you should define the following three input variables inside your `.env` file.
 
 ```env title="your-action/.env"

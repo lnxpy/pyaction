@@ -14,7 +14,7 @@ PyAction helps you to create and develop custom GitHub Actions using Python.
 This documentation covers a tutorial and a demo hello-world action. Head to [Quickstart](quickstart.md) to see the demo project and create an action in a flash. :zap:
 
 ## Easy to Setup
-Make sure you have `pip` and `python>=3.8` installed on your machine and install `pyaction`.
+Make sure you have `python>=3.9` installed and install `pyaction`.
 
 ```
 pip install -U "pyaction[cli]"

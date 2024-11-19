@@ -31,18 +31,17 @@ And here would be the prompting for our action called "PyAction Hello World".
    Yes
 
 Copying from template version None
- identical  .
     create  pyaction-hello-world
-    create  pyaction-hello-world/requirements.txt
     create  pyaction-hello-world/.github
     create  pyaction-hello-world/.github/workflows
     create  pyaction-hello-world/.github/workflows/test.yml
-    create  pyaction-hello-world/README.md
     create  pyaction-hello-world/action.yml
     create  pyaction-hello-world/Dockerfile
+    create  pyaction-hello-world/README.md
     create  pyaction-hello-world/.dockerignore
     create  pyaction-hello-world/.gitignore
     create  pyaction-hello-world/main.py
+    create  pyaction-hello-world/pyproject.toml
 
 ✨ Your action `pyaction-hello-world` has been created successfully!
 🔗 Visit https://pyaction.imsadra.me/quickstart for a quick demonstration.
@@ -105,7 +104,7 @@ outputs:
 ```
 
 ### Main Executing File (`main.py`)
-This is the main Python file that gets executed when the workflow container gets triggered. In this file, we have access to all the input parameters that users have passed to us from the `my_action` parameters. All we need to do is to retrieve the `name` and return the `phrase` that contains the greeting message.
+This is the main Python file that gets executed when the workflow container gets triggered. In this file, we have access to all the input parameters that users have passed to us from the `my_action` arguments. All we need to do is to retrieve the `name` and return the `phrase` that contains the greeting message.
 
 ```python title="pyaction-hello-world/main.py" linenums="1"
 from pyaction import PyAction

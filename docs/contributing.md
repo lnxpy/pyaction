@@ -25,13 +25,5 @@ If you've changed the docs and want to see the results, run the following comman
 tox -e docs
 ```
 
-??? Note "Access the `venv` that `tox` has created.."
-    If you need to access an environment with all the dev dependencies installed, run the following command and it'll create a virtualenv with all the requirements installed in it.
-
-    ```bash
-    tox --devenv venv
-    source venv/bin/activate
-    ```
-
 ### Make a Pull Request
 If all tests are passed then open a pull-request. :fire:
