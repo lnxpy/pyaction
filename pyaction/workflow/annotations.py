@@ -2,6 +2,8 @@ import subprocess
 
 from pyaction.utils import get_running_platform
 
+RUNNING_ON_RUNNER: bool = True if get_running_platform() else False
+
 
 def error(title: str) -> None:
     """
@@ -11,7 +13,7 @@ def error(title: str) -> None:
         title (str): The error title.
     """
 
-    if get_running_platform():
+    if RUNNING_ON_RUNNER:
         message = f"::error::{title}"
     else:
         message = f"Error Annotation: {title}"
@@ -27,7 +29,7 @@ def warning(title: str) -> None:
         title (str): The warning title.
     """
 
-    if get_running_platform():
+    if RUNNING_ON_RUNNER:
         message = f"::warning::{title}"
     else:
         message = f"Warning Annotation: {title}"
@@ -43,7 +45,7 @@ def notice(title: str) -> None:
         title (str): The notice title.
     """
 
-    if get_running_platform():
+    if RUNNING_ON_RUNNER:
         message = f"::notice::{title}"
     else:
         message = f"Notice Annotation: {title}"
