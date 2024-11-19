@@ -34,7 +34,7 @@ from pyaction import PyAction
 
 workflow = PyAction()
 
-@workflow.action()
+@workflow.action
 def my_action(endpoint: str, is_ssl: bool) -> None:
     # endpoint (str): somewhere.com/api/endpoint
     # is_ssl (bool): False
@@ -49,7 +49,7 @@ def my_action(endpoint: str, is_ssl: bool) -> None:
 
     workflow = PyAction()
 
-    @workflow.action()
+    @workflow.action
     def my_action(endpoint: str, is_ssl: str) -> None:
         # endpoint (str): somewhere.com/api/endpoint
         # is_ssl (str): false
@@ -74,7 +74,7 @@ from pyaction.workflow.stream import WorkflowContext
 workflow = PyAction()
 
 
-@workflow.action()
+@workflow.action
 def my_action() -> None:
     workflow.write(
         WorkflowContext(
@@ -158,7 +158,7 @@ The `workflow.write()` intends to write the variables into the [`GITHUB_OUTPUT`]
 
 ```python title="your-action/main.py"
 ...
-@workflow.action()
+@workflow.action
 def my_action(name: str, home_town: str) -> None:
     workflow.write(
         WorkflowContext(
@@ -202,7 +202,7 @@ You can use `pyaction.workflow.annotations` module to throw annotations in the w
 from pyaction.workflow import annotations as A
 
 ...
-@workflow.action()
+@workflow.action
 def my_action(name: str, home_town: str) -> None:
   A.error("...")
   A.warning("...")
@@ -313,7 +313,7 @@ from pyaction.issues import IssueForm
 workflow = PyAction()
 
 
-@workflow.action()
+@workflow.action
 def my_action(repository: str, issue_number: int, github_token: str) -> None:
     user_input = IssueForm(repository=repository, number=issue_number, token=github_token).render()
 

@@ -43,7 +43,7 @@ Here you can see a very basic greeting action example that returns a greeting me
     workflow = PyAction()
 
 
-    @workflow.action()
+    @workflow.action
     def my_action(name: str) -> None:
         context = WorkflowContext(
             {

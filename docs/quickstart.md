@@ -114,7 +114,7 @@ from pyaction.workflow.stream import WorkflowContext
 workflow = PyAction()
 
 
-@workflow.action()
+@workflow.action
 def my_action(name: str) -> None:
     context = WorkflowContext(
         {

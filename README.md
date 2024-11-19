@@ -18,7 +18,7 @@ from pyaction import PyAction
 
 workflow = PyAction()
 
-@workflow.action()
+@workflow.action
 def greetings_action(name: str, age: int) -> None:
     workflow.write(
         {
