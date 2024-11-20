@@ -30,4 +30,4 @@ include_cicd_testing:
 
 _message_after_copy: |
   ✨ Your action `{{ action_slug }}` has been created successfully!
-  🔗 Visit https://pyaction.imsadra.me/quickstart for a quick demonstration.
+  🔗 Visit https://pyaction.imsadra.me/docs/quickstart for a quick demonstration.
