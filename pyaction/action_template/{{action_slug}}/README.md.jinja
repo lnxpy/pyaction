@@ -17,4 +17,4 @@ If you want to run this action locally, follow these steps.
 * Run `uv run pyaction run`.
 
 > [!TIP]
-> Check out [this guide](https://pyaction.imsadra.me/tutorial/#local-running) if you need more details.
+> Check out [this guide](https://pyaction.imsadra.me/docs/concepts/local-running) if you need more details.
