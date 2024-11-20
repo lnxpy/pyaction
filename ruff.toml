@@ -1,0 +1,9 @@
+exclude = [
+    "pyaction/action_template/",
+    "test_action/",
+    ".pypi_chart/",
+]
+
+[lint]
+extend-select = ["I"]
+ignore = ["E501"]
