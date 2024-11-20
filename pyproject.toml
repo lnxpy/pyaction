@@ -31,7 +31,6 @@ pyaction = "pyaction.cli:cli"
 
 [project.optional-dependencies]
 dev = ["coverage", "pytest-cookies"]
-docs = ["mkdocs-material", "cairosvg", "pillow"]
 cli = ["copier ~= 9.2", "click ~= 8.1", "python-dotenv ~= 1.0.1"]
 
 [project.urls]
