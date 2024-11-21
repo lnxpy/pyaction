@@ -43,7 +43,7 @@ def push_to_runner(context: WorkflowContext, stream: str) -> None:
     """
     with open(stream, "+w") as streamline:
         for var, val in context.items():
-            if isinstance(val, str) and "\\n" in val:
+            if isinstance(val, str) and "\n" in val:
                 streamline.write(MULTILINE_OUTPUT.format(variable=var, value=val))
             else:
                 streamline.write(f"{var}={val}\r\n")
