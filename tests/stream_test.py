@@ -6,7 +6,6 @@ import pytest
 
 from pyaction.workflow.stream import (
     MULTILINE_OUTPUT,
-    WorkflowContext,
     push_to_local,
     push_to_runner,
 )
