@@ -1,7 +1,7 @@
 import pytest
 
 from pyaction.exceptions import NotAnnotated
-from pyaction.utils import check_parameters
+from pyaction.workflow.utils import check_parameters
 
 from .test_objects import action_functions
 
@@ -25,6 +25,7 @@ valued_test_objects = [
 
 
 @pytest.mark.parametrize("function", valued_test_objects)
-def test_function_params_default_values(function, caplog):
+def test_function_params_default_values(function, capsys):
     check_parameters(function)
-    assert "default value" in caplog.text
+    captured = capsys.readouterr()
+    assert "default value" in captured.out

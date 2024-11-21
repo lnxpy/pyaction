@@ -1,16 +1,19 @@
+import json
 import os
 import tempfile
 
 import pytest
-from rich.console import Console
 
-from pyaction.consts import MULTILINE_OUTPUT
-from pyaction.workflow.stream import LocalStream, WorkflowStream
-from pyaction.workflow.utils import generate_param_table
+from pyaction.workflow.stream import (
+    MULTILINE_OUTPUT,
+    WorkflowContext,
+    push_to_local,
+    push_to_runner,
+)
 
 tmp_stream = str(os.path.join(tempfile.gettempdir(), "GITHUB_OUTPUT_TEST.txt"))
 
-test_env_var_context = [
+test_context = [
     (
         {"foo": "Bar", "baz": "Buff"},
         "foo=Bar\nbaz=Buff\n",
@@ -30,39 +33,27 @@ test_env_var_context = [
 ]
 
 
-@pytest.mark.parametrize("context,expected", test_env_var_context)
-def test_workflow_stream(context, expected):
-    stream = WorkflowStream(stream=tmp_stream)
-    stream.put(context)
+@pytest.mark.parametrize("context,value", test_context)
+def test_push_to_runner_stream(context, value):
+    _ = push_to_runner(context, tmp_stream)
 
     with open(tmp_stream) as file:
-        assert file.read() == expected
+        assert file.read() == value
 
 
-test_stdout_env_var_context = [
-    (
-        {"name": "Alex"},
-        ["name", "Alex", str(str), "${{ steps.STEP_ID.outputs.name }}"],
-    ),
-    (
-        {"name": "Joe"},
-        ["name", "Joe", str(str), "${{ steps.STEP_ID.outputs.name }}"],
-    ),
-]
+@pytest.mark.parametrize("context,value", test_context)
+def test_local_stream(capsys, context, value):
+    expected_output = []
+    for var, val in context.items():
+        expected_output.append(
+            {
+                "var": var,
+                "value": val,
+                "type": str(type(val)),
+                "usage": f"${{{{ steps.STEP_ID.outputs.{var} }}}}",
+            }
+        )
 
-
-@pytest.mark.parametrize("context,row", test_stdout_env_var_context)
-def test_local_stream(capsys, context, row):
-    stream = LocalStream()
-    console = Console()
-
-    stream.put(context)
-    captured_table = capsys.readouterr()
-
-    table = generate_param_table()
-    table.add_row(*row)
-
-    console.print(table)
-    expected_table = capsys.readouterr()
-
-    assert captured_table == expected_table
+    push_to_local(context)
+    captured = json.loads(capsys.readouterr().out)
+    assert captured == expected_output
