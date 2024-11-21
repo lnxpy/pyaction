@@ -1,3 +1,5 @@
+from typing import Optional
+
 import requests
 
 from pyaction.issues.rendering import IssueTemplate
@@ -6,14 +8,16 @@ GITHUB_BASE_URL = "https://api.github.com/"
 
 
 class IssueForm:
-    def __init__(self, repository: str, number: int, token: str | None = None) -> None:
+    def __init__(
+        self, repository: str, number: int, token: Optional[str] = None
+    ) -> None:
         """
-        initializer
+        Initializer.
 
         Args:
-            repository (str): repository name in the form of username/repository
-            number (int): issue number/ID
-            token (str, optional): GITHUB_TOKEN token. Defaults to None.
+            repository (str): Repository name in the form of username/repository.
+            number (int): Issue number/ID.
+            token (Optional[str]): `GITHUB_TOKEN` token. Defaults to None.
         """
         self._token = token
         self.repository = repository
@@ -21,10 +25,10 @@ class IssueForm:
 
     def render(self) -> dict[str, str]:
         """
-        renders the issue body
+        Renders the issue body.
 
         Returns:
-            OrderedDict: the issue body in form of dictionary
+            Returns the issue body in form of dictionary.
         """
         headers = {"Accept": "application/vnd.github+json"}
 

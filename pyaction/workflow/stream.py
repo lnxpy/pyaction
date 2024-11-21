@@ -1,7 +1,7 @@
 import json
-from typing import Dict, NewType
+from typing import Dict, NewType, Union
 
-WorkflowContext = NewType("WorkflowContext", Dict[str, int | float | str | bool])
+WorkflowContext = NewType("WorkflowContext", Dict[str, Union[int, float, str, bool]])
 
 DELIMITER: str = "EOF"
 
