@@ -48,7 +48,7 @@ class PyAction:
         return func
 
     @staticmethod
-    def write(context: WorkflowContext) -> None:
+    def write(context: WorkflowContext) -> None:  # noqa
         """
         Writes the context to a stream based on the action running platform.
 
