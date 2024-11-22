@@ -2,9 +2,8 @@ name: Update the PyPI chart badge
 
 on:
   schedule:
-    - cron: "0 0 1 * *"  # <= runs every month
+    - cron: "0 0 1 * *" # <= runs every month
   workflow_dispatch:
-
 
 jobs:
   update-chart-badge:
@@ -16,12 +15,12 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Updating the badge
-        uses: lnxpy/pypi-chart-badge@v1.2
+        uses: lnxpy/pypi-chart-badge@v1.3
         with:
           package_name: pyaction
-          badge_color: '#03fc6f'
+          badge_color: "#03fc6f"
 
       - uses: EndBug/add-and-commit@v9
         with:
           default_author: github_actions
-          message: 'chart badge updated'
+          message: "chart badge updated"
