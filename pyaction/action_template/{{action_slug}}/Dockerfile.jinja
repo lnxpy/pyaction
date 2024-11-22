@@ -14,7 +14,7 @@ COPY . .
 RUN [ -f pre-script.sh ] && sh pre-script.sh || true
 
 # Install action dependencies
-RUN uv sync --no-install-project --no-cache
+RUN uv pip install . --system
 
 # running the post-script.sh
 RUN [ -f post-script.sh ] && sh post-script.sh || true
