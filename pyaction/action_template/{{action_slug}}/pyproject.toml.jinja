@@ -6,5 +6,8 @@ readme = "README.md"
 requires-python = ">={{ python_version }}"
 dependencies = ["pyaction==0.8.1"]
 
+[tool.setuptools.packages.find]
+exclude = ["test*"]
+
 [project.optional-dependencies]
 cli = ["pyaction[cli]==0.8.1"]

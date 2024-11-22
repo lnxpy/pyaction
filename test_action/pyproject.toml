@@ -6,5 +6,8 @@ readme = "README.md"
 requires-python = ">=3.12"
 dependencies = ["pyaction @ git+https://github.com/lnxpy/pyaction#main"]
 
+[tool.setuptools.packages.find]
+exclude = ["test*"]
+
 [project.optional-dependencies]
 dev = ["pyaction[cli] @ git+https://github.com/lnxpy/pyaction#main"]

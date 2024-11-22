@@ -1,4 +1,4 @@
-from glorious.pattern import rainbowfier
+from glorious import rainbowfier
 
 from pyaction import PyAction
 from pyaction.workflow import annotations
