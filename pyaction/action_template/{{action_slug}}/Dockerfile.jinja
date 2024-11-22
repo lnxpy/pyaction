@@ -19,5 +19,5 @@ RUN uv pip install . --system
 # running the post-script.sh
 RUN [ -f post-script.sh ] && sh post-script.sh || true
 
-# Specify the command to run main.py with uv
-CMD [ "uv", "run", "/action/main.py" ]
+# Specify the command to run the main.py
+CMD [ "python", "/action/main.py" ]
