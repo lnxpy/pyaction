@@ -1,4 +1,4 @@
-name: List Action
+name: Add Action to Marketplace 🛒
 description: Request to add an action to PyAction marketplace
 title: "Add ___ to the marketplace"
 labels: ["marketplace"]
@@ -22,7 +22,7 @@ body:
   - type: input
     attributes:
       label: Repository
-      description: Repository address
+      description: Repository URL
       placeholder: https://github.com/...
     validations:
       required: true
