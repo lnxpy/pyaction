@@ -1,28 +1,28 @@
 name: List Action
-description: Add an action to PyAction marketplace
-title: "Add X to the marketplace"
+description: Request to add an action to PyAction marketplace
+title: "Add ___ to the marketplace"
 labels: ["marketplace"]
 assignees: lnxpy
 body:
   - type: input
-    id: name
     attributes:
-      label: Action name
-      placeholder: Action name/title
+      label: Title
+      description: Action title
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Description
+      description: Describe the action and tell what it does.
+      render: markdown
     validations:
       required: true
 
   - type: input
-    id: url
     attributes:
-      label: Action repository
+      label: Repository
+      description: Repository address
       placeholder: https://github.com/...
-    validations:
-      required: true
-
-  - type: markdown
-    attributes:
-      label: Description
-      placeholder: Describe the action and tell what it does..
     validations:
       required: true
