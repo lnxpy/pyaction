@@ -1,0 +1,28 @@
+name: List Action
+description: Add an action to PyAction marketplace
+title: "Add X to the marketplace"
+labels: ["marketplace"]
+assignees: lnxpy
+body:
+  - type: input
+    id: name
+    attributes:
+      label: Action name
+      placeholder: Action name/title
+    validations:
+      required: true
+
+  - type: input
+    id: url
+    attributes:
+      label: Action repository
+      placeholder: https://github.com/...
+    validations:
+      required: true
+
+  - type: markdown
+    attributes:
+      label: Description
+      placeholder: Describe the action and tell what it does..
+    validations:
+      required: true
