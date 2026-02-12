@@ -34,7 +34,7 @@ dev = ["coverage", "pytest-cookies"]
 cli = ["copier >= 9.2", "click >= 8.1", "python-dotenv >= 1.0.1"]
 
 [project.urls]
-Documentation = "https://pyaction.imsadra.me"
+Documentation = "https://pyaction.imsadra.dev"
 Repository = "https://github.com/lnxpy/pyaction"
 
 [tool.setuptools.packages.find]
