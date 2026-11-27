@@ -56,6 +56,21 @@ def _pop(
     subprocess.call(["echo", output])
 
 
+def debug(message: str) -> None:
+    """
+    Pops a debug message.
+
+    Debug messages are only rendered in the job logs when debug logging is
+    enabled for the step (e.g. re-running the job with debug logging or
+    setting the `ACTIONS_STEP_DEBUG` repository secret).
+
+    Args:
+        message (str): The debug message.
+    """
+
+    _pop("debug", message)
+
+
 def error(
     message: str,
     *,

@@ -2,7 +2,7 @@ from unittest.mock import patch
 
 import pytest
 
-from pyaction.workflow.annotations import error, notice, warning
+from pyaction.workflow.annotations import debug, error, notice, warning
 
 
 @pytest.fixture
@@ -132,4 +132,22 @@ def test_notice_with_metadata_off_runner(
         notice("Test Notice", title="Heads Up")
         mock_subprocess_call.assert_called_once_with(
             ["echo", "Notice Annotation: Test Notice"]
+        )
+
+
+def test_debug_on_runner(mock_subprocess_call, mock_get_running_platform):
+    """Test debug function when running on a runner."""
+    mock_get_running_platform.return_value = True  # Simulates being on a runner
+    with patch("pyaction.workflow.annotations.RUNNING_ON_RUNNER", True):
+        debug("Test Debug")
+        mock_subprocess_call.assert_called_once_with(["echo", "::debug::Test Debug"])
+
+
+def test_debug_off_runner(mock_subprocess_call, mock_get_running_platform):
+    """Test debug function when not running on a runner."""
+    mock_get_running_platform.return_value = False  # Simulates being off a runner
+    with patch("pyaction.workflow.annotations.RUNNING_ON_RUNNER", False):
+        debug("Test Debug")
+        mock_subprocess_call.assert_called_once_with(
+            ["echo", "Debug Annotation: Test Debug"]
         )
