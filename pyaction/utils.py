@@ -1,8 +1,9 @@
+from __future__ import annotations
+
 import os
-from typing import Optional
 
 
-def get_running_platform() -> Optional[str]:
+def get_running_platform() -> str | None:
     """
     Determine the current operating environment for the action.
 

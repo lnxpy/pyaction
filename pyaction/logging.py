@@ -1,7 +1,6 @@
 import sys
-from typing import Dict
 
-COLORS: Dict[str, str] = {
+COLORS: dict[str, str] = {
     "DEBUG": "\033[1m\033[94m",
     "INFO": "\033[1m\033[92m",
     "WARNING": "\033[1m\033[93m",

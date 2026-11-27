@@ -16,7 +16,6 @@ from pyaction import PROJECT_NAME, TEMPLATE_PATH, __version__
 @click.group()
 def cli():
     """Create GitHub Actions using Python"""
-    pass
 
 
 @cli.command("init", help="Creates a basic action template (recommended for starting)")

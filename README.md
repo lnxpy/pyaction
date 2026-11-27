@@ -20,13 +20,11 @@ from pyaction import PyAction
 
 workflow = PyAction()
 
+
 @workflow.action
 def greetings_action(name: str, age: int) -> None:
-    workflow.write(
-        {
-            "phrase": f"Hello {name}. You are {age}!"
-        }
-    )
+    workflow.write({"phrase": f"Hello {name}. You are {age}!"})
+
 
 # $ pyaction run
 # [
