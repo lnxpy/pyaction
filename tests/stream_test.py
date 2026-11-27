@@ -36,7 +36,9 @@ test_context = [
 def test_push_to_runner_stream(context, value):
     _ = push_to_runner(context, tmp_stream)
 
-    with open(tmp_stream) as file:
+    # `newline=""` disables the universal-newline translation, so the test
+    # actually verifies the exact line endings written to the stream
+    with open(tmp_stream, newline="") as file:
         assert file.read() == value
 
 
