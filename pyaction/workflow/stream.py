@@ -41,9 +41,9 @@ def push_to_runner(context: WorkflowContext, stream: str) -> None:
         context (WorkflowContext): A dictionary containing variable names and their respective values.
         stream (str): The stream to write into.
     """
-    with open(stream, "+w") as streamline:
+    with open(stream, "w+") as streamline:
         for var, val in context.items():
             if isinstance(val, str) and "\n" in val:
                 streamline.write(MULTILINE_OUTPUT.format(variable=var, value=val))
             else:
-                streamline.write(f"{var}={val}\r\n")
+                streamline.write(f"{var}={val}\n")
