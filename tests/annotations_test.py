@@ -73,3 +73,63 @@ def test_notice_off_runner(mock_subprocess_call, mock_get_running_platform):
         mock_subprocess_call.assert_called_once_with(
             ["echo", "Notice Annotation: Test Notice"]
         )
+
+
+def test_notice_with_full_metadata_on_runner(
+    mock_subprocess_call, mock_get_running_platform
+):
+    """Test notice function with all metadata properties on a runner."""
+    mock_get_running_platform.return_value = True
+    with patch("pyaction.workflow.annotations.RUNNING_ON_RUNNER", True):
+        notice(
+            "Test Notice",
+            title="Heads Up",
+            file="app.py",
+            line=3,
+            end_line=5,
+            col=7,
+            end_column=9,
+        )
+        mock_subprocess_call.assert_called_once_with(
+            [
+                "echo",
+                "::notice title=Heads Up,file=app.py,line=3,endLine=5,col=7,endColumn=9::Test Notice",
+            ]
+        )
+
+
+def test_error_with_partial_metadata_on_runner(
+    mock_subprocess_call, mock_get_running_platform
+):
+    """Test error function with some metadata properties on a runner."""
+    mock_get_running_platform.return_value = True
+    with patch("pyaction.workflow.annotations.RUNNING_ON_RUNNER", True):
+        error("Deployment Failed", title="Deploy Check", file="main.py")
+        mock_subprocess_call.assert_called_once_with(
+            ["echo", "::error title=Deploy Check,file=main.py::Deployment Failed"]
+        )
+
+
+def test_metadata_escaping_on_runner(mock_subprocess_call, mock_get_running_platform):
+    """Test that metadata properties and messages are properly escaped."""
+    mock_get_running_platform.return_value = True
+    with patch("pyaction.workflow.annotations.RUNNING_ON_RUNNER", True):
+        warning("Progress 50%:\ndone", title="a,b:c", file="my,file.py")
+        mock_subprocess_call.assert_called_once_with(
+            [
+                "echo",
+                "::warning title=a%2Cb%3Ac,file=my%2Cfile.py::Progress 50%25:%0Adone",
+            ]
+        )
+
+
+def test_notice_with_metadata_off_runner(
+    mock_subprocess_call, mock_get_running_platform
+):
+    """Test that metadata is ignored when not running on a runner."""
+    mock_get_running_platform.return_value = False
+    with patch("pyaction.workflow.annotations.RUNNING_ON_RUNNER", False):
+        notice("Test Notice", title="Heads Up")
+        mock_subprocess_call.assert_called_once_with(
+            ["echo", "Notice Annotation: Test Notice"]
+        )
