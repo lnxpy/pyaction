@@ -36,7 +36,10 @@ class PyAction:
                     key: TypeAdapter(type_).validate_python(value)
                     for key, (type_, value) in params.items()
                 }
-            except Exception as e:
+            except Exception as e:  # noqa: BLE001
+                # a broad catch is intentional here: any type-validation
+                # failure should stop the action with a clear message
+                # instead of an unhandled traceback
                 logger.error(f"Parameter type validation error: {e}")
                 sys.exit(1)
 
@@ -48,7 +51,7 @@ class PyAction:
         return func
 
     @staticmethod
-    def write(context: WorkflowContext) -> None:  # noqa
+    def write(context: WorkflowContext) -> None:
         """
         Writes the context to a stream based on the action running platform.
 

@@ -1,4 +1,4 @@
-from typing import Optional
+from __future__ import annotations
 
 import requests
 
@@ -8,9 +8,7 @@ GITHUB_BASE_URL = "https://api.github.com/"
 
 
 class IssueForm:
-    def __init__(
-        self, repository: str, number: int, token: Optional[str] = None
-    ) -> None:
+    def __init__(self, repository: str, number: int, token: str | None = None) -> None:
         """
         Initializer.
 

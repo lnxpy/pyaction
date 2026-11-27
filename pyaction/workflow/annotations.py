@@ -2,7 +2,7 @@ import subprocess
 
 from pyaction.utils import get_running_platform
 
-RUNNING_ON_RUNNER: bool = True if get_running_platform() else False
+RUNNING_ON_RUNNER: bool = bool(get_running_platform())
 
 
 def error(title: str) -> None:
